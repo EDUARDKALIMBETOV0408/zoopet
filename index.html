@@ -220,7 +220,7 @@
 
         /* ----- КАТАЛОГ ----- */
         .product-grid {
-            display: grid;
+            display: grid !important;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 20px;
             margin-top: 8px;
@@ -293,7 +293,7 @@
         }
         .pagination-controls .load-more-btn:hover { background: #3D6A4A; }
 
-        /* ----- МОДАЛЬНЫЕ ОКНА (ОБЩИЕ СТИЛИ) ----- */
+        /* ----- МОДАЛЬНЫЕ ОКНА ----- */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -484,7 +484,7 @@
         .reviews-block .review-form textarea { width: 100%; padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 12px; font-family: var(--font); margin-bottom: 8px; }
         .reviews-block .review-form button { background: var(--accent-green); color: #fff; border: none; padding: 8px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; }
 
-        /* ----- КОРЗИНА (в модалке) ----- */
+        /* ----- КОРЗИНА (В МОДАЛКЕ) ----- */
         .cart-item {
             display: flex;
             justify-content: space-between;
@@ -551,7 +551,7 @@
         /* ----- АДАПТИВНОСТЬ ----- */
         @media (max-width: 640px) {
             .app-container { padding: 16px; }
-            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .product-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; }
             .filters { flex-direction: column; align-items: stretch; }
             .filter-group { flex-wrap: wrap; }
             .modal { padding: 20px; }
@@ -607,25 +607,6 @@
             <label data-i18n="filter_brand">Бренд:</label>
             <select id="filterBrand">
                 <option value="">Все</option>
-                <option value="Acana">Acana</option>
-                <option value="Royal Canin">Royal Canin</option>
-                <option value="Hill's">Hill's</option>
-                <option value="Purina">Purina</option>
-                <option value="Monge">Monge</option>
-                <option value="Farmina">Farmina</option>
-                <option value="Orijen">Orijen</option>
-                <option value="Brit">Brit</option>
-                <option value="Applaws">Applaws</option>
-                <option value="Almo Nature">Almo Nature</option>
-                <option value="Carnilove">Carnilove</option>
-                <option value="Pro Plan">Pro Plan</option>
-                <option value="Eukanuba">Eukanuba</option>
-                <option value="Josera">Josera</option>
-                <option value="Dreamies">Dreamies</option>
-                <option value="Kitekat">Kitekat</option>
-                <option value="Whiskas">Whiskas</option>
-                <option value="Perfect Fit">Perfect Fit</option>
-                <option value="Leonardo">Leonardo</option>
             </select>
         </div>
         <div class="filter-group">
@@ -962,7 +943,8 @@
 <script>
 /**
  * ============================================================
- *  ПОЛНЫЙ ПРОТОТИП ZOO PET — ВСЕ ФУНКЦИИ
+ *  ПОЛНЫЙ КОД БЕЗ ВСТРОЕННЫХ ТОВАРОВ
+ *  Товары загружаются из products.json или добавляются через админку
  * ============================================================
  */
 
@@ -1244,8 +1226,8 @@ const CONFIG = {
     }
 };
 
-// ------ 2. ВСТРОЕННЫЙ МАССИВ ТОВАРОВ (30 шт.) ------
-
+// ------ 2. ПУСТОЙ МАССИВ ТОВАРОВ (заполняется через JSON или админку) ------
+const FALLBACK_PRODUCTS = []; // товары отсутствуют в коде — загружаются извне
 
 // ------ 3. СОСТОЯНИЕ И ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ------
 let state = {
@@ -1333,16 +1315,16 @@ function loadProducts() {
     if (saved) {
         try {
             state.products = JSON.parse(saved);
-            if (!state.products || state.products.length === 0) {
-                state.products = FALLBACK_PRODUCTS;
+            if (!Array.isArray(state.products) || state.products.length === 0) {
+                state.products = [...FALLBACK_PRODUCTS];
                 saveProducts();
             }
         } catch(e) {
-            state.products = FALLBACK_PRODUCTS;
+            state.products = [...FALLBACK_PRODUCTS];
             saveProducts();
         }
     } else {
-        state.products = FALLBACK_PRODUCTS;
+        state.products = [...FALLBACK_PRODUCTS];
         saveProducts();
     }
     let orders = localStorage.getItem('zoopet_orders');
@@ -2304,7 +2286,7 @@ async function init() {
         localStorage.setItem('zooLang', state.currentLang);
     });
 
-    console.log('🐾 ZooPet (полная версия) загружен!');
+    console.log('🐾 ZooPet (без встроенных товаров) загружен!');
     console.log('Всего товаров:', state.products.length);
     console.log('Пользователь:', state.user ? state.user.email : 'не авторизован');
     console.log('Админ:', state.isAdmin);
