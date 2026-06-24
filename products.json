@@ -1,4 +1,3 @@
-[
   {
     "id": 1,
     "name": {
@@ -23,281 +22,699 @@
     },
     "reviews": []
   },
-    {
+  {
     "id": 2,
     "name": {
-      "sr": "Влажна храна за псе Royal Canin Maxi", 
-      "ru": "Влажный корм для собак Royal Canin Maxi", 
+      "sr": "Влажна храна за псе Royal Canin Maxi",
+      "ru": "Влажный корм для собак Royal Canin Maxi",
       "en": "Royal Canin Maxi wet dog food"
-     },
-     "brand": "Royal Canin", 
-     "category": "dog", 
-      "price_rsd": 2100, 
-      "stock": 7,
-      "image": "https://placehold.co/300x300/c0392b/white?text=Royal+Maxi",
-        "description": { 
-          "ru": "Влажный корм в кусочках для взрослых собак крупных пород.",
-          "sr": "Влажна храна у комадима за одрасле псе крупних раса.", 
-          "en": "Wet food in chunks for adult large breed dogs." 
-     },
-      "attributes": { 
-        "weight": { "ru": "400 г", "sr": "400 г", "en": "400 g" }, 
-        "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" }, 
-        "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
     },
-    {
-        "id": 3,
-        "name": { "sr": "Храниво за псе Hill\"s Science Diet Adult", "ru": "Корм для собак Hill\"s Science Diet Adult", "en": "Hill\"s Science Diet Adult dog food" },
-        "brand": "Hill\"s", "category": "dog", "price_rsd": 3200, "stock": 5,
-        "image": "https://placehold.co/300x300/2c3e50/white?text=Hill\"s",
-        "description": { "ru": "Научно разработанный корм для взрослых собак средних пород.", "sr": "Научно развијена храна за одрасле псе средњих раса.", "en": "Science developed food for adult medium breed dogs." },
-        "attributes": { "weight": { "ru": "3 кг", "sr": "3 кг", "en": "3 kg" }, "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "brand": "Royal Canin",
+    "category": "dog",
+    "price_rsd": 2100,
+    "stock": 7,
+    "image": "https://placehold.co/300x300/c0392b/white?text=Royal+Maxi",
+    "description": {
+      "ru": "Влажный корм в кусочках для взрослых собак крупных пород.",
+      "sr": "Влажна храна у комадима за одрасле псе крупних раса.",
+      "en": "Wet food in chunks for adult large breed dogs."
     },
-    {
-        "id": 4,
-        "name": { "sr": "Сува храна за псе Purina Pro Plan Sensitive", "ru": "Сухой корм для собак Purina Pro Plan Sensitive", "en": "Purina Pro Plan Sensitive dry dog food" },
-        "brand": "Purina", "category": "dog", "price_rsd": 3500, "stock": 8,
-        "image": "https://placehold.co/300x300/f39c12/white?text=Purina",
-        "description": { "ru": "Корм для собак с чувствительной кожей и пищеварением.", "sr": "Храна за псе са осетљивом кожом и пробавом.", "en": "Food for dogs with Sensitive skin and digestion." },
-        "attributes": { "weight": { "ru": "2.5 кг", "sr": "2.5 кг", "en": "2.5 kg" }, "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "attributes": {
+      "weight": { "ru": "400 г", "sr": "400 г", "en": "400 g" },
+      "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
     },
-    {
-        "id": 5,
-        "name": { "sr": "Сува храна за псе Monge Grain Free", "ru": "Сухой корм для собак Monge Grain Free", "en": "Monge Grain Free dry dog food" },
-        "brand": "Monge", "category": "dog", "price_rsd": 4200, "stock": 6,
-        "image": "https://placehold.co/300x300/2980b9/white?text=Monge",
-        "description": { "ru": "Беззерновой корм с высоким содержанием мяса.", "sr": "Храна без житарица са високим садржајем меса.", "en": "Grain-free food with high meat content." },
-        "attributes": { "weight": { "ru": "2.5 кг", "sr": "2.5 кг", "en": "2.5 kg" }, "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "reviews": []
+  },
+  {
+    "id": 3,
+    "name": {
+      "sr": "Храниво за псе Hill\"s Science Diet Adult",
+      "ru": "Корм для собак Hill\"s Science Diet Adult",
+      "en": "Hill\"s Science Diet Adult dog food"
     },
-    {
-        "id": 6,
-        "name": { "sr": "Сува храна за псе Farmina N&D Ancestral", "ru": "Сухой корм для собак Farmina N&D Ancestral", "en": "Farmina N&D Ancestral dry dog food" },
-        "brand": "Farmina", "category": "dog", "price_rsd": 4800, "stock": 4,
-        "image": "https://placehold.co/300x300/e67e22/white?text=Farmina",
-        "description": { "ru": "Беззерновой корм по древней рецептуре, обогащённый гранатом.", "sr": "Храна без житарица по древној рецептури, обогаћена наром.", "en": "Grain-free food based on anci"en"t recipe, "en"riched with pomegranate." },
-        "attributes": { "weight": { "ru": "2.5 кг", "sr": "2.5 кг", "en": "2.5 kg" }, "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "brand": "Hill\"s",
+    "category": "dog",
+    "price_rsd": 3200,
+    "stock": 5,
+    "image": "https://placehold.co/300x300/2c3e50/white?text=Hill\"s",
+    "description": {
+      "ru": "Научно разработанный корм для взрослых собак средних пород.",
+      "sr": "Научно развијена храна за одрасле псе средњих раса.",
+      "en": "Science developed food for adult medium breed dogs."
     },
-    {
-        "id": 7,
-        "name": { "sr": "Сува храна за псе Orijen Original", "ru": "Сухой корм для собак Orijen Original", "en": "Orijen Original dry dog food" },
-        "brand": "Orijen", "category": "dog", "price_rsd": 5500, "stock": 3,
-        "image": "https://placehold.co/300x300/8e44ad/white?text=Orijen",
-        "description": { "ru": "Биологически соответствующий корм с 85% мяса.", "sr": "Биолошки одговарајућа храна са 85% меса.", "en": "Biologically appropriate food with 85% meat." },
-        "attributes": { "weight": { "ru": "2.5 кг", "sr": "2.5 кг", "en": "2.5 kg" }, "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "attributes": {
+      "weight": { "ru": "3 кг", "sr": "3 кг", "en": "3 kg" },
+      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
     },
-    {
-        "id": 8,
-        "name": { "sr": "Сува храна за псе Brit Care Grain Free", "ru": "Сухой корм для собак Brit Care Grain Free", "en": "Brit Care Grain Free dry dog food" },
-        "brand": "Brit", "category": "dog", "price_rsd": 3900, "stock": 9,
-        "image": "https://placehold.co/300x300/16a085/white?text=Brit",
-        "description": { "ru": "Беззерновой корм для собак мелких пород с чувствительным пищеварением.", "sr": "Храна без житарица за псе малих раса.", "en": "Grain-free food for small breed dogs with Sensitive digestion." },
-        "attributes": { "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" }, "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "reviews": []
+  },
+  {
+    "id": 4,
+    "name": {
+      "sr": "Сува храна за псе Purina Pro Plan Sensitive",
+      "ru": "Сухой корм для собак Purina Pro Plan Sensitive",
+      "en": "Purina Pro Plan Sensitive dry dog food"
     },
-    {
-        "id": 9,
-        "name": { "sr": "Сува храна за псе Eukanuba Adult Medium", "ru": "Сухой корм для собак Eukanuba Adult Medium", "en": "Eukanuba Adult Medium dry dog food" },
-        "brand": "Eukanuba", "category": "dog", "price_rsd": 3100, "stock": 10,
-        "image": "https://placehold.co/300x300/3498db/white?text=Eukanuba",
-        "description": { "ru": "Сбалансированный корм для взрослых собак средних пород.", "sr": "Избалансирана храна за одрасле псе средњих раса.", "en": "Balanced food for adult medium breed dogs." },
-        "attributes": { "weight": { "ru": "2.5 кг", "sr": "2.5 кг", "en": "2.5 kg" }, "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "brand": "Purina",
+    "category": "dog",
+    "price_rsd": 3500,
+    "stock": 8,
+    "image": "https://placehold.co/300x300/f39c12/white?text=Purina",
+    "description": {
+      "ru": "Корм для собак с чувствительной кожей и пищеварением.",
+      "sr": "Храна за псе са осетљивом кожом и пробавом.",
+      "en": "Food for dogs with Sensitive skin and digestion."
     },
-    {
-        "id": 10,
-        "name": { "sr": "Сува храна за псе Josera MiniWell", "ru": "Сухой корм для собак Josera MiniWell", "en": "Josera MiniWell dry dog food" },
-        "brand": "Josera", "category": "dog", "price_rsd": 2700, "stock": 11,
-        "image": "https://placehold.co/300x300/1abc9c/white?text=Josera",
-        "description": { "ru": "Корм для собак мелких пород с высоким содержанием белка.", "sr": "Храна за псе малих раса са високим садржајем протеина.", "en": "Food for small breed dogs with high protein content." },
-        "attributes": { "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" }, "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "attributes": {
+      "weight": { "ru": "2.5 кг", "sr": "2.5 кг", "en": "2.5 kg" },
+      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
     },
-    {
-        "id": 11,
-        "name": { "sr": "Влажна храна за псе Applaws Adult", "ru": "Влажный корм для собак Applaws Adult", "en": "Applaws Adult wet dog food" },
-        "brand": "Applaws", "category": "dog", "price_rsd": 1800, "stock": 15,
-        "image": "https://placehold.co/300x300/27ae60/white?text=Applaws",
-        "description": { "ru": "Влажный корм с курицей в собственном соку, без злаков.", "sr": "Влажна храна са пилетином у сопственом соку.", "en": "Wet food with chicken in its own juice, grain-free." },
-        "attributes": { "weight": { "ru": "400 г", "sr": "400 г", "en": "400 g" }, "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "reviews": []
+  },
+  {
+    "id": 5,
+    "name": {
+      "sr": "Сува храна за псе Monge Grain Free",
+      "ru": "Сухой корм для собак Monge Grain Free",
+      "en": "Monge Grain Free dry dog food"
     },
-    {
-        "id": 12,
-        "name": { "sr": "Влажна храна за псе Almo Nature Dog", "ru": "Влажный корм для собак Almo Nature", "en": "Almo Nature wet dog food" },
-        "brand": "Almo Nature", "category": "dog", "price_rsd": 1500, "stock": 14,
-        "image": "https://placehold.co/300x300/e74c3c/white?text=Almo",
-        "description": { "ru": "Натуральный влажный корм с говядиной, без консервантов.", "sr": "Природна влажна храна са говедином.", "en": "Natural wet food with beef, no preservatives." },
-        "attributes": { "weight": { "ru": "400 г", "sr": "400 г", "en": "400 g" }, "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "brand": "Monge",
+    "category": "dog",
+    "price_rsd": 4200,
+    "stock": 6,
+    "image": "https://placehold.co/300x300/2980b9/white?text=Monge",
+    "description": {
+      "ru": "Беззерновой корм с высоким содержанием мяса.",
+      "sr": "Храна без житарица са високим садржајем меса.",
+      "en": "Grain-free food with high meat content."
     },
-    {
-        "id": 13,
-        "name": { "sr": "Сува храна за псе Carnilove Venison", "ru": "Сухой корм для собак Carnilove Venison", "en": "Carnilove Venison dry dog food" },
-        "brand": "Carnilove", "category": "dog", "price_rsd": 5000, "stock": 4,
-        "image": "https://placehold.co/300x300/9b59b6/white?text=Carnilove",
-        "description": { "ru": "Беззерновой корм с олениной, для здоровья мочевыводящей системы.", "sr": "Храна без житарица са јеленетином.", "en": "Grain-free food with Venison, for urinary health." },
-        "attributes": { "weight": { "ru": "2.5 кг", "sr": "2.5 кг", "en": "2.5 kg" }, "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "attributes": {
+      "weight": { "ru": "2.5 кг", "sr": "2.5 кг", "en": "2.5 kg" },
+      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
     },
-    {
-        "id": 14,
-        "name": { "sr": "Ветеринарска храна за псе Pro Plan Veterinary Diets", "ru": "Ветеринарный корм для собак Pro Plan Veterinary Diets", "en": "Pro Plan Veterinary Diets dog food" },
-        "brand": "Pro Plan", "category": "dog", "price_rsd": 7800, "stock": 2,
-        "image": "https://placehold.co/300x300/f1c40f/black?text=ProPlan",
-        "description": { "ru": "Специализированный ветеринарный корм для собак с заболеваниями ЖКТ.", "sr": "Специјализована ветеринарска храна за псе са болестима пробаве.", "en": "Specialized veterinary food for dogs with gastrointestinal disorders." },
-        "attributes": { "weight": { "ru": "3 кг", "sr": "3 кг", "en": "3 kg" }, "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "reviews": []
+  },
+  {
+    "id": 6,
+    "name": {
+      "sr": "Сува храна за псе Farmina N&D Ancestral",
+      "ru": "Сухой корм для собак Farmina N&D Ancestral",
+      "en": "Farmina N&D Ancestral dry dog food"
     },
-    {
-        "id": 15,
-        "name": { "sr": "Ветеринарска храна за псе Hill\"s Prescription Diet", "ru": "Ветеринарный корм для собак Hill\"s Prescription Diet", "en": "Hill\"s Prescription Diet dog food" },
-        "brand": "Hill\"s", "category": "dog", "price_rsd": 7000, "stock": 3,
-        "image": "https://placehold.co/300x300/2c3e50/white?text=Hills+Rx",
-        "description": { "ru": "Ветеринарный корм для поддержки суставов.", "sr": "Ветеринарска храна за подршку зглобова.", "en": "Veterinary food for joint support." },
-        "attributes": { "weight": { "ru": "3 кг", "sr": "3 кг", "en": "3 kg" }, "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "brand": "Farmina",
+    "category": "dog",
+    "price_rsd": 4800,
+    "stock": 4,
+    "image": "https://placehold.co/300x300/e67e22/white?text=Farmina",
+    "description": {
+      "ru": "Беззерновой корм по древней рецептуре, обогащённый гранатом.",
+      "sr": "Храна без житарица по древној рецептури, обогаћена наром.",
+      "en": "Grain-free food based on ancient recipe, enriched with pomegranate."
     },
-    // === КОШКИ ===
-    {
-        "id": 16,
-        "name": { "sr": "Влажна храна за мачке Royal Canin Instinctive", "ru": "Влажный корм для кошек Royal Canin Instinctive", "en": "Royal Canin Instinctive wet cat food" },
-        "brand": "Royal Canin", "category": "cat", "price_rsd": 1750, "stock": 8,
-        "image": "https://placehold.co/300x300/e67e22/white?text=RC+Instinct",
-        "description": { "ru": "Влажный корм в соусе для взрослых кошек.", "sr": "Влажна храна у соса за одрасле мачке.", "en": "Wet food in gravy for adult cats." },
-        "attributes": { "weight": { "ru": "85 г", "sr": "85 г", "en": "85 g" }, "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "attributes": {
+      "weight": { "ru": "2.5 кг", "sr": "2.5 кг", "en": "2.5 kg" },
+      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
     },
-    {
-        "id": 17,
-        "name": { "sr": "Ветеринарска храна за мачке Hill\"s Prescription", "ru": "Ветеринарный корм для кошек Hill\"s Prescription", "en": "Hill\"s Prescription cat food" },
-        "brand": "Hill\"s", "category": "cat", "price_rsd": 5600, "stock": 2,
-        "image": "https://placehold.co/300x300/2980b9/white?text=Hills+Cat",
-        "description": { "ru": "Ветеринарный корм для кошек с чувствительным пищеварением.", "sr": "Ветеринарска храна за мачке са осетљивом пробавом.", "en": "Veterinary food for cats with Sensitive digestion." },
-        "attributes": { "weight": { "ru": "1.5 кг", "sr": "1.5 кг", "en": "1.5 kg" }, "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "reviews": []
+  },
+  {
+    "id": 7,
+    "name": {
+      "sr": "Сува храна за псе Orijen Original",
+      "ru": "Сухой корм для собак Orijen Original",
+      "en": "Orijen Original dry dog food"
     },
-    {
-        "id": 18,
-        "name": { "sr": "Посластице за мачке Dreamies", "ru": "Лакомства для кошек Dreamies", "en": "Dreamies cat treats" },
-        "brand": "Dreamies", "category": "cat", "price_rsd": 750, "stock": 20,
-        "image": "https://placehold.co/300x300/8e44ad/white?text=Dreamies",
-        "description": { "ru": "Хрустящие лакомства с начинкой, которые обожают кошки.", "sr": "Хрскаве посластице са пуњењем које мачке обожавају.", "en": "Crunchy treats with a filling that cats love." },
-        "attributes": { "weight": { "ru": "60 г", "sr": "60 г", "en": "60 g" }, "food_type": { "ru": "Лакомство", "sr": "Посластица", "en": "Treat" }, "age": { "ru": "Для всех возрастов", "sr": "За све узрасте", "en": "All ages" } },
-        "reviews": []
+    "brand": "Orijen",
+    "category": "dog",
+    "price_rsd": 5500,
+    "stock": 3,
+    "image": "https://placehold.co/300x300/8e44ad/white?text=Orijen",
+    "description": {
+      "ru": "Биологически соответствующий корм с 85% мяса.",
+      "sr": "Биолошки одговарајућа храна са 85% меса.",
+      "en": "Biologically appropriate food with 85% meat."
     },
-    {
-        "id": 19,
-        "name": { "sr": "Сува храна за мачке Acana Pacifica", "ru": "Сухой корм для кошек Acana Pacifica", "en": "Acana Pacifica dry cat food" },
-        "brand": "Acana", "category": "cat", "price_rsd": 3200, "stock": 6,
-        "image": "https://placehold.co/300x300/3d7e5c/white?text=Acana+Cat",
-        "description": { "ru": "Беззерновой корм с тихоокеанской рыбой.", "sr": "Храна без житарица са пацифичком рибом.", "en": "Grain-free food with Pacific fish." },
-        "attributes": { "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" }, "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "attributes": {
+      "weight": { "ru": "2.5 кг", "sr": "2.5 кг", "en": "2.5 kg" },
+      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
     },
-    {
-        "id": 20,
-        "name": { "sr": "Сува храна за мачке Royal Canin Sterilised", "ru": "Сухой корм для кошек Royal Canin Sterilised", "en": "Royal Canin Sterilised dry cat food" },
-        "brand": "Royal Canin", "category": "cat", "price_rsd": 3600, "stock": 9,
-        "image": "https://placehold.co/300x300/e67e22/white?text=RC+Sterilised",
-        "description": { "ru": "Сухой корм для стерилизованных кошек, контролирует вес.", "sr": "Сува храна за стерилисане мачке, контролише тежину.", "en": "Dry food for sterilized cats, controls weight." },
-        "attributes": { "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" }, "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "reviews": []
+  },
+  {
+    "id": 8,
+    "name": {
+      "sr": "Сува храна за псе Brit Care Grain Free",
+      "ru": "Сухой корм для собак Brit Care Grain Free",
+      "en": "Brit Care Grain Free dry dog food"
     },
-    {
-        "id": 21,
-        "name": { "sr": "Сува храна за мачке Farmina N&D Pumpkin", "ru": "Сухой корм для кошек Farmina N&D Pumpkin", "en": "Farmina N&D Pumpkin dry cat food" },
-        "brand": "Farmina", "category": "cat", "price_rsd": 4400, "stock": 5,
-        "image": "https://placehold.co/300x300/e67e22/white?text=Farmina+Cat",
-        "description": { "ru": "Беззерновой корм с тыквой и курицей.", "sr": "Храна без житарица са бундевом и пилетином.", "en": "Grain-free food with pumpkin and chicken." },
-        "attributes": { "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" }, "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "brand": "Brit",
+    "category": "dog",
+    "price_rsd": 3900,
+    "stock": 9,
+    "image": "https://placehold.co/300x300/16a085/white?text=Brit",
+    "description": {
+      "ru": "Беззерновой корм для собак мелких пород с чувствительным пищеварением.",
+      "sr": "Храна без житарица за псе малих раса.",
+      "en": "Grain-free food for small breed dogs with Sensitive digestion."
     },
-    {
-        "id": 22,
-        "name": { "sr": "Сува храна за мачке Orijen Cat & Kitten", "ru": "Сухой корм для кошек Orijen Cat & Kitten", "en": "Orijen Cat & Kitten dry cat food" },
-        "brand": "Orijen", "category": "cat", "price_rsd": 5200, "stock": 4,
-        "image": "https://placehold.co/300x300/8e44ad/white?text=Orijen+Cat",
-        "description": { "ru": "Биологически соответствующий корм для кошек всех возрастов.", "sr": "Биолошки одговарајућа храна за мачке свих узраста.", "en": "Biologically appropriate food for cats of all ages." },
-        "attributes": { "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" }, "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" }, "age": { "ru": "Для всех возрастов", "sr": "За све узрасте", "en": "All ages" } },
-        "reviews": []
+    "attributes": {
+      "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" },
+      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
     },
-    {
-        "id": 23,
-        "name": { "sr": "Сува храна за мачке Brit Care Sterilised", "ru": "Сухой корм для кошек Brit Care Sterilised", "en": "Brit Care Sterilised dry cat food" },
-        "brand": "Brit", "category": "cat", "price_rsd": 3400, "stock": 7,
-        "image": "https://placehold.co/300x300/16a085/white?text=Brit+Cat",
-        "description": { "ru": "Сухой корм для стерилизованных кошек с пониженным содержанием жира.", "sr": "Сува храна за стерилисане мачке са смањеном масти.", "en": "Dry food for sterilized cats with reduced fat." },
-        "attributes": { "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" }, "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "reviews": []
+  },
+  {
+    "id": 9,
+    "name": {
+      "sr": "Сува храна за псе Eukanuba Adult Medium",
+      "ru": "Сухой корм для собак Eukanuba Adult Medium",
+      "en": "Eukanuba Adult Medium dry dog food"
     },
-    {
-        "id": 24,
-        "name": { "sr": "Влажна храна за мачке Monge Fresh", "ru": "Влажный корм для кошек Monge Fresh", "en": "Monge Fresh wet cat food" },
-        "brand": "Monge", "category": "cat", "price_rsd": 1400, "stock": 12,
-        "image": "https://placehold.co/300x300/2980b9/white?text=Monge+Cat",
-        "description": { "ru": "Влажный корм в паучах, без злаков.", "sr": "Влажна храна у паучама, без житарица.", "en": "Wet food in pouches, grain-free." },
-        "attributes": { "weight": { "ru": "100 г", "sr": "100 г", "en": "100 g" }, "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "brand": "Eukanuba",
+    "category": "dog",
+    "price_rsd": 3100,
+    "stock": 10,
+    "image": "https://placehold.co/300x300/3498db/white?text=Eukanuba",
+    "description": {
+      "ru": "Сбалансированный корм для взрослых собак средних пород.",
+      "sr": "Избалансирана храна за одрасле псе средњих раса.",
+      "en": "Balanced food for adult medium breed dogs."
     },
-    {
-        "id": 25,
-        "name": { "sr": "Влажна храна за мачке Almo Nature Wet", "ru": "Влажный корм для кошек Almo Nature", "en": "Almo Nature wet cat food" },
-        "brand": "Almo Nature", "category": "cat", "price_rsd": 1600, "stock": 14,
-        "image": "https://placehold.co/300x300/e74c3c/white?text=Almo+Cat",
-        "description": { "ru": "Натуральный влажный корм с тунцом в желе.", "sr": "Природна влажна храна са туном у желатину.", "en": "Natural wet food with tuna in jelly." },
-        "attributes": { "weight": { "ru": "85 г", "sr": "85 г", "en": "85 g" }, "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "attributes": {
+      "weight": { "ru": "2.5 кг", "sr": "2.5 кг", "en": "2.5 kg" },
+      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
     },
-    {
-        "id": 26,
-        "name": { "sr": "Влажна храна за мачке Applaws Cat", "ru": "Влажный корм для кошек Applaws", "en": "Applaws wet cat food" },
-        "brand": "Applaws", "category": "cat", "price_rsd": 1700, "stock": 11,
-        "image": "https://placehold.co/300x300/27ae60/white?text=Applaws+Cat",
-        "description": { "ru": "Влажный корм с куриной грудкой в бульоне.", "sr": "Влажна храна са пилећим прсима у буљону.", "en": "Wet food with chicken breast in broth." },
-        "attributes": { "weight": { "ru": "85 г", "sr": "85 г", "en": "85 g" }, "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "reviews": []
+  },
+  {
+    "id": 10,
+    "name": {
+      "sr": "Сува храна за псе Josera MiniWell",
+      "ru": "Сухой корм для собак Josera MiniWell",
+      "en": "Josera MiniWell dry dog food"
     },
-    {
-        "id": 27,
-        "name": { "sr": "Влажна храна за мачке Leonardo", "ru": "Влажный корм для кошек Leonardo", "en": "Leonardo wet cat food" },
-        "brand": "Leonardo", "category": "cat", "price_rsd": 1900, "stock": 10,
-        "image": "https://placehold.co/300x300/9b59b6/white?text=Leonardo",
-        "description": { "ru": "Влажный корм премиум-класса с говядиной и курицей.", "sr": "Влажна храна премиум класе са говедином и пилетином.", "en": "Premium wet food with beef and chicken." },
-        "attributes": { "weight": { "ru": "85 г", "sr": "85 г", "en": "85 g" }, "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "brand": "Josera",
+    "category": "dog",
+    "price_rsd": 2700,
+    "stock": 11,
+    "image": "https://placehold.co/300x300/1abc9c/white?text=Josera",
+    "description": {
+      "ru": "Корм для собак мелких пород с высоким содержанием белка.",
+      "sr": "Храна за псе малих раса са високим садржајем протеина.",
+      "en": "Food for small breed dogs with high protein content."
     },
-    {
-        "id": 28,
-        "name": { "sr": "Сува храна за мачке Perfect Fit Adult", "ru": "Сухой корм для кошек Perfect Fit Adult", "en": "Perfect Fit Adult dry cat food" },
-        "brand": "Perfect Fit", "category": "cat", "price_rsd": 2600, "stock": 13,
-        "image": "https://placehold.co/300x300/f39c12/white?text=Perfect+Fit",
-        "description": { "ru": "Сбалансированный сухой корм для взрослых кошек.", "sr": "Избалансирана сува храна за одрасле мачке.", "en": "Balanced dry food for adult cats." },
-        "attributes": { "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" }, "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "attributes": {
+      "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" },
+      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
     },
-    {
-        "id": 29,
-        "name": { "sr": "Влажна храна за мачке Kitekat", "ru": "Влажный корм для кошек Kitekat", "en": "Kitekat wet cat food" },
-        "brand": "Kitekat", "category": "cat", "price_rsd": 800, "stock": 25,
-        "image": "https://placehold.co/300x300/f1c40f/black?text=Kitekat",
-        "description": { "ru": "Бюджетный влажный корм в соусе, с курицей и овощами.", "sr": "Буџетска влажна храна у соса, са пилетином и поврћем.", "en": "Budget wet food in gravy with chicken and vegetables." },
-        "attributes": { "weight": { "ru": "100 г", "sr": "100 г", "en": "100 g" }, "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
+    "reviews": []
+  },
+  {
+    "id": 11,
+    "name": {
+      "sr": "Влажна храна за псе Applaws Adult",
+      "ru": "Влажный корм для собак Applaws Adult",
+      "en": "Applaws Adult wet dog food"
     },
-    {
-        "id": 30,
-        "name": { "sr": "Сува храна за мачке Whiskas Adult", "ru": "Сухой корм для кошек Whiskas Adult", "en": "Whiskas Adult dry cat food" },
-        "brand": "Whiskas", "category": "cat", "price_rsd": 2200, "stock": 18,
-        "image": "https://placehold.co/300x300/e67e22/white?text=Whiskas",
-        "description": { "ru": "Сухой корм для взрослых кошек с курицей и злаками.", "sr": "Сува храна за одрасле мачке са пилетином и житарицама.", "en": "Dry food for adult cats with chicken and grains." },
-        "attributes": { "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" }, "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" }, "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" } },
-        "reviews": []
-    }
- 
-]
+    "brand": "Applaws",
+    "category": "dog",
+    "price_rsd": 1800,
+    "stock": 15,
+    "image": "https://placehold.co/300x300/27ae60/white?text=Applaws",
+    "description": {
+      "ru": "Влажный корм с курицей в собственном соку, без злаков.",
+      "sr": "Влажна храна са пилетином у сопственом соку.",
+      "en": "Wet food with chicken in its own juice, grain-free."
+    },
+    "attributes": {
+      "weight": { "ru": "400 г", "sr": "400 г", "en": "400 g" },
+      "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+    },
+    "reviews": []
+  },
+  {
+    "id": 12,
+    "name": {
+      "sr": "Влажна храна за псе Almo Nature Dog",
+      "ru": "Влажный корм для собак Almo Nature",
+      "en": "Almo Nature wet dog food"
+    },
+    "brand": "Almo Nature",
+    "category": "dog",
+    "price_rsd": 1500,
+    "stock": 14,
+    "image": "https://placehold.co/300x300/e74c3c/white?text=Almo",
+    "description": {
+      "ru": "Натуральный влажный корм с говядиной, без консервантов.",
+      "sr": "Природна влажна храна са говедином.",
+      "en": "Natural wet food with beef, no preservatives."
+    },
+    "attributes": {
+      "weight": { "ru": "400 г", "sr": "400 г", "en": "400 g" },
+      "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+    },
+    "reviews": []
+  },
+  {
+    "id": 13,
+    "name": {
+      "sr": "Сува храна за псе Carnilove Venison",
+      "ru": "Сухой корм для собак Carnilove Venison",
+      "en": "Carnilove Venison dry dog food"
+    },
+    "brand": "Carnilove",
+    "category": "dog",
+    "price_rsd": 5000,
+    "stock": 4,
+    "image": "https://placehold.co/300x300/9b59b6/white?text=Carnilove",
+    "description": {
+      "ru": "Беззерновой корм с олениной, для здоровья мочевыводящей системы.",
+      "sr": "Храна без житарица са јеленетином.",
+      "en": "Grain-free food with Venison, for urinary health."
+    },
+    "attributes": {
+      "weight": { "ru": "2.5 кг", "sr": "2.5 кг", "en": "2.5 kg" },
+      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+    },
+    "reviews": []
+  },
+  {
+    "id": 14,
+    "name": {
+      "sr": "Ветеринарска храна за псе Pro Plan Veterinary Diets",
+      "ru": "Ветеринарный корм для собак Pro Plan Veterinary Diets",
+      "en": "Pro Plan Veterinary Diets dog food"
+    },
+    "brand": "Pro Plan",
+    "category": "dog",
+    "price_rsd": 7800,
+    "stock": 2,
+    "image": "https://placehold.co/300x300/f1c40f/black?text=ProPlan",
+    "description": {
+      "ru": "Специализированный ветеринарный корм для собак с заболеваниями ЖКТ.",
+      "sr": "Специјализована ветеринарска храна за псе са болестима пробаве.",
+      "en": "Specialized veterinary food for dogs with gastrointestinal disorders."
+    },
+    "attributes": {
+      "weight": { "ru": "3 кг", "sr": "3 кг", "en": "3 kg" },
+      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+    },
+    "reviews": []
+  },
+  {
+    "id": 15,
+    "name": {
+      "sr": "Ветеринарска храна за псе Hill\"s Prescription Diet",
+      "ru": "Ветеринарный корм для собак Hill\"s Prescription Diet",
+      "en": "Hill\"s Prescription Diet dog food"
+    },
+    "brand": "Hill\"s",
+    "category": "dog",
+    "price_rsd": 7000,
+    "stock": 3,
+    "image": "https://placehold.co/300x300/2c3e50/white?text=Hills+Rx",
+    "description": {
+      "ru": "Ветеринарный корм для поддержки суставов.",
+      "sr": "Ветеринарска храна за подршку зглобова.",
+      "en": "Veterinary food for joint support."
+    },
+    "attributes": {
+      "weight": { "ru": "3 кг", "sr": "3 кг", "en": "3 kg" },
+      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+    },
+    "reviews": []
+  },
+  {
+    "id": 16,
+    "name": {
+      "sr": "Влажна храна за мачке Royal Canin Instinctive",
+      "ru": "Влажный корм для кошек Royal Canin Instinctive",
+      "en": "Royal Canin Instinctive wet cat food"
+    },
+    "brand": "Royal Canin",
+    "category": "cat",
+    "price_rsd": 1750,
+    "stock": 8,
+    "image": "https://placehold.co/300x300/e67e22/white?text=RC+Instinct",
+    "description": {
+      "ru": "Влажный корм в соусе для взрослых кошек.",
+      "sr": "Влажна храна у соса за одрасле мачке.",
+      "en": "Wet food in gravy for adult cats."
+    },
+    "attributes": {
+      "weight": { "ru": "85 г", "sr": "85 г", "en": "85 g" },
+      "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+    },
+    "reviews": []
+  },
+  {
+    "id": 17,
+    "name": {
+      "sr": "Ветеринарска храна за мачке Hill\"s Prescription",
+      "ru": "Ветеринарный корм для кошек Hill\"s Prescription",
+      "en": "Hill\"s Prescription cat food"
+    },
+    "brand": "Hill\"s",
+    "category": "cat",
+    "price_rsd": 5600,
+    "stock": 2,
+    "image": "https://placehold.co/300x300/2980b9/white?text=Hills+Cat",
+    "description": {
+      "ru": "Ветеринарный корм для кошек с чувствительным пищеварением.",
+      "sr": "Ветеринарска храна за мачке са осетљивом пробавом.",
+      "en": "Veterinary food for cats with Sensitive digestion."
+    },
+    "attributes": {
+      "weight": { "ru": "1.5 кг", "sr": "1.5 кг", "en": "1.5 kg" },
+      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+    },
+    "reviews": []
+  },
+  {
+    "id": 18,
+    "name": {
+      "sr": "Посластице за мачке Dreamies",
+      "ru": "Лакомства для кошек Dreamies",
+      "en": "Dreamies cat treats"
+    },
+    "brand": "Dreamies",
+    "category": "cat",
+    "price_rsd": 750,
+    "stock": 20,
+    "image": "https://placehold.co/300x300/8e44ad/white?text=Dreamies",
+    "description": {
+      "ru": "Хрустящие лакомства с начинкой, которые обожают кошки.",
+      "sr": "Хрскаве посластице са пуњењем које мачке обожавају.",
+      "en": "Crunchy treats with a filling that cats love."
+    },
+    "attributes": {
+      "weight": { "ru": "60 г", "sr": "60 г", "en": "60 g" },
+      "food_type": { "ru": "Лакомство", "sr": "Посластица", "en": "Treat" },
+      "age": { "ru": "Для всех возрастов", "sr": "За све узрасте", "en": "All ages" }
+    },
+    "reviews": []
+  },
+  {
+    "id": 19,
+    "name": {
+      "sr": "Сува храна за мачке Acana Pacifica",
+      "ru": "Сухой корм для кошек Acana Pacifica",
+      "en": "Acana Pacifica dry cat food"
+    },
+    "brand": "Acana",
+    "category": "cat",
+    "price_rsd": 3200,
+    "stock": 6,
+    "image": "https://placehold.co/300x300/3d7e5c/white?text=Acana+Cat",
+    "description": {
+      "ru": "Беззерновой корм с тихоокеанской рыбой.",
+      "sr": "Храна без житарица са пацифичком рибом.",
+      "en": "Grain-free food with Pacific fish."
+    },
+    "attributes": {
+      "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" },
+      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+    },
+    "reviews": []
+  },
+  {
+    "id": 20,
+    "name": {
+      "sr": "Сува храна за мачке Royal Canin Sterilised",
+      "ru": "Сухой корм для кошек Royal Canin Sterilised",
+      "en": "Royal Canin Sterilised dry cat food"
+    },
+    "brand": "Royal Canin",
+    "category": "cat",
+    "price_rsd": 3600,
+    "stock": 9,
+    "image": "https://placehold.co/300x300/e67e22/white?text=RC+Sterilised",
+    "description": {
+      "ru": "Сухой корм для стерилизованных кошек, контролирует вес.",
+      "sr": "Сува храна за стерилисане мачке, контролише тежину.",
+      "en": "Dry food for sterilized cats, controls weight."
+    },
+    "attributes": {
+      "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" },
+      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+    },
+    "reviews": []
+  },
+  {
+    "id": 21,
+    "name": {
+      "sr": "Сува храна за мачке Farmina N&D Pumpkin",
+      "ru": "Сухой корм для кошек Farmina N&D Pumpkin",
+      "en": "Farmina N&D Pumpkin dry cat food"
+    },
+    "brand": "Farmina",
+    "category": "cat",
+    "price_rsd": 4400,
+    "stock": 5,
+    "image": "https://placehold.co/300x300/e67e22/white?text=Farmina+Cat",
+    "description": {
+      "ru": "Беззерновой корм с тыквой и курицей.",
+      "sr": "Храна без житарица са бундевом и пилетином.",
+      "en": "Grain-free food with pumpkin and chicken."
+    },
+    "attributes": {
+      "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" },
+      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+    },
+    "reviews": []
+  },
+  {
+    "id": 22,
+    "name": {
+      "sr": "Сува храна за мачке Orijen Cat & Kitten",
+      "ru": "Сухой корм для кошек Orijen Cat & Kitten",
+      "en": "Orijen Cat & Kitten dry cat food"
+    },
+    "brand": "Orijen",
+    "category": "cat",
+    "price_rsd": 5200,
+    "stock": 4,
+    "image": "https://placehold.co/300x300/8e44ad/white?text=Orijen+Cat",
+    "description": {
+      "ru": "Биологически соответствующий корм для кошек всех возрастов.",
+      "sr": "Биолошки одговарајућа храна за мачке свих узраста.",
+      "en": "Biologically appropriate food for cats of all ages."
+    },
+    "attributes": {
+      "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" },
+      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
+      "age": { "ru": "Для всех возрастов", "sr": "За све узрасте", "en": "All ages" }
+    },
+    "reviews": []
+  },
+  {
+    "id": 23,
+    "name": {
+      "sr": "Сува храна за мачке Brit Care Sterilised",
+      "ru": "Сухой корм для кошек Brit Care Sterilised",
+      "en": "Brit Care Sterilised dry cat food"
+    },
+    "brand": "Brit",
+    "category": "cat",
+    "price_rsd": 3400,
+    "stock": 7,
+    "image": "https://placehold.co/300x300/16a085/white?text=Brit+Cat",
+    "description": {
+      "ru": "Сухой корм для стерилизованных кошек с пониженным содержанием жира.",
+      "sr": "Сува храна за стерилисане мачке са смањеном масти.",
+      "en": "Dry food for sterilized cats with reduced fat."
+    },
+    "attributes": {
+      "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" },
+      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+    },
+    "reviews": []
+  },
+  {
+    "id": 24,
+    "name": {
+      "sr": "Влажна храна за мачке Monge Fresh",
+      "ru": "Влажный корм для кошек Monge Fresh",
+      "en": "Monge Fresh wet cat food"
+    },
+    "brand": "Monge",
+    "category": "cat",
+    "price_rsd": 1400,
+    "stock": 12,
+    "image": "https://placehold.co/300x300/2980b9/white?text=Monge+Cat",
+    "description": {
+      "ru": "Влажный корм в паучах, без злаков.",
+      "sr": "Влажна храна у паучама, без житарица.",
+      "en": "Wet food in pouches, grain-free."
+    },
+    "attributes": {
+      "weight": { "ru": "100 г", "sr": "100 г", "en": "100 g" },
+      "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+    },
+    "reviews": []
+  },
+  {
+    "id": 25,
+    "name": {
+      "sr": "Влажна храна за мачке Almo Nature Wet",
+      "ru": "Влажный корм для кошек Almo Nature",
+      "en": "Almo Nature wet cat food"
+    },
+    "brand": "Almo Nature",
+    "category": "cat",
+    "price_rsd": 1600,
+    "stock": 14,
+    "image": "https://placehold.co/300x300/e74c3c/white?text=Almo+Cat",
+    "description": {
+      "ru": "Натуральный влажный корм с тунцом в желе.",
+      "sr": "Природна влажна храна са туном у желатину.",
+      "en": "Natural wet food with tuna in jelly."
+    },
+    "attributes": {
+      "weight": { "ru": "85 г", "sr": "85 г", "en": "85 g" },
+      "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+    },
+    "reviews": []
+  },
+  {
+    "id": 26,
+    "name": {
+      "sr": "Влажна храна за мачке Applaws Cat",
+      "ru": "Влажный корм для кошек Applaws",
+      "en": "Applaws wet cat food"
+    },
+    "brand": "Applaws",
+    "category": "cat",
+    "price_rsd": 1700,
+    "stock": 11,
+    "image": "https://placehold.co/300x300/27ae60/white?text=Applaws+Cat",
+    "description": {
+      "ru": "Влажный корм с куриной грудкой в бульоне.",
+      "sr": "Влажна храна са пилећим прсима у буљону.",
+      "en": "Wet food with chicken breast in broth."
+    },
+    "attributes": {
+      "weight": { "ru": "85 г", "sr": "85 г", "en": "85 g" },
+      "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+    },
+    "reviews": []
+  },
+  {
+    "id": 27,
+    "name": {
+      "sr": "Влажна храна за мачке Leonardo",
+      "ru": "Влажный корм для кошек Leonardo",
+      "en": "Leonardo wet cat food"
+    },
+    "brand": "Leonardo",
+    "category": "cat",
+    "price_rsd": 1900,
+    "stock": 10,
+    "image": "https://placehold.co/300x300/9b59b6/white?text=Leonardo",
+    "description": {
+      "ru": "Влажный корм премиум-класса с говядиной и курицей.",
+      "sr": "Влажна храна премиум класе са говедином и пилетином.",
+      "en": "Premium wet food with beef and chicken."
+    },
+    "attributes": {
+      "weight": { "ru": "85 г", "sr": "85 г", "en": "85 g" },
+      "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+    },
+    "reviews": []
+  },
+  {
+    "id": 28,
+    "name": {
+      "sr": "Сува храна за мачке Perfect Fit Adult",
+      "ru": "Сухой корм для кошек Perfect Fit Adult",
+      "en": "Perfect Fit Adult dry cat food"
+    },
+    "brand": "Perfect Fit",
+    "category": "cat",
+    "price_rsd": 2600,
+    "stock": 13,
+    "image": "https://placehold.co/300x300/f39c12/white?text=Perfect+Fit",
+    "description": {
+      "ru": "Сбалансированный сухой корм для взрослых кошек.",
+      "sr": "Избалансирана сува храна за одрасле мачке.",
+      "en": "Balanced dry food for adult cats."
+    },
+    "attributes": {
+      "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" },
+      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+    },
+    "reviews": []
+  },
+  {
+    "id": 29,
+    "name": {
+      "sr": "Влажна храна за мачке Kitekat",
+      "ru": "Влажный корм для кошек Kitekat",
+      "en": "Kitekat wet cat food"
+    },
+    "brand": "Kitekat",
+    "category": "cat",
+    "price_rsd": 800,
+    "stock": 25,
+    "image": "https://placehold.co/300x300/f1c40f/black?text=Kitekat",
+    "description": {
+      "ru": "Бюджетный влажный корм в соусе, с курицей и овощами.",
+      "sr": "Буџетска влажна храна у соса, са пилетином и поврћем.",
+      "en": "Budget wet food in gravy with chicken and vegetables."
+    },
+    "attributes": {
+      "weight": { "ru": "100 г", "sr": "100 г", "en": "100 g" },
+      "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+    },
+    "reviews": []
+  },
+  {
+    "id": 30,
+    "name": {
+      "sr": "Сува храна за мачке Whiskas Adult",
+      "ru": "Сухой корм для кошек Whiskas Adult",
+      "en": "Whiskas Adult dry cat food"
+    },
+    "brand": "Whiskas",
+    "category": "cat",
+    "price_rsd": 2200,
+    "stock": 18,
+    "image": "https://placehold.co/300x300/e67e22/white?text=Whiskas",
+    "description": {
+      "ru": "Сухой корм для взрослых кошек с курицей и злаками.",
+      "sr": "Сува храна за одрасле мачке са пилетином и житарицама.",
+      "en": "Dry food for adult cats with chicken and grains."
+    },
+    "attributes": {
+      "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" },
+      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
+      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+    },
+    "reviews": []
+  }
