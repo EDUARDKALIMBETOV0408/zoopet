@@ -1164,6 +1164,72 @@
         </form>
     </div>
 </div>
+<div class="modal-overlay" id="addProductModal">
+    <div class="modal">
+        <button class="modal-close" id="addProductCloseBtn">&times;</button>
+        <h2 data-i18n="add_product_title">➕ Добавление товара</h2>
+        <form id="addProductForm">
+            <div class="form-group">
+                <label data-i18n="brand">Бренд</label>
+                <input type="text" id="addBrand" required>
+            </div>
+            <div class="form-group">
+                <label data-i18n="category">Категория (dog/cat)</label>
+                <input type="text" id="addCategory" required>
+            </div>
+            <div class="form-group">
+                <label data-i18n="price">Цена (RSD)</label>
+                <input type="number" id="addPrice" required>
+            </div>
+            <div class="form-group">
+                <label data-i18n="stock">Количество</label>
+                <input type="number" id="addStock" required>
+            </div>
+            <div class="form-group">
+                <label data-i18n="image_url">URL изображения</label>
+                <input type="text" id="addImage" placeholder="https://placehold.co/300x300/...">
+            </div>
+            <div class="form-group">
+                <label data-i18n="name_ru">Название (RU)</label>
+                <input type="text" id="addNameRu" required>
+            </div>
+            <div class="form-group">
+                <label data-i18n="name_sr">Название (SR)</label>
+                <input type="text" id="addNameSr">
+            </div>
+            <div class="form-group">
+                <label data-i18n="name_en">Название (EN)</label>
+                <input type="text" id="addNameEn">
+            </div>
+            <div class="form-group">
+                <label data-i18n="desc_ru">Описание (RU)</label>
+                <textarea id="addDescRu"></textarea>
+            </div>
+            <div class="form-group">
+                <label data-i18n="desc_sr">Описание (SR)</label>
+                <textarea id="addDescSr"></textarea>
+            </div>
+            <div class="form-group">
+                <label data-i18n="desc_en">Описание (EN)</label>
+                <textarea id="addDescEn"></textarea>
+            </div>
+            <div class="form-group">
+                <label data-i18n="weight_ru">Вес (RU)</label>
+                <input type="text" id="addWeightRu">
+            </div>
+            <div class="form-group">
+                <label data-i18n="food_type_ru">Тип корма (RU)</label>
+                <input type="text" id="addFoodRu">
+            </div>
+            <div class="form-group">
+                <label data-i18n="age_ru">Возраст (RU)</label>
+                <input type="text" id="addAgeRu">
+            </div>
+            <button type="submit" class="btn btn-primary" data-i18n="add_product_save">Добавить товар</button>
+            <div id="addProductStatus" class="status-msg"></div>
+        </form>
+    </div>
+</div>    
 
 <script>
 /**
@@ -1904,6 +1970,69 @@ document.querySelectorAll('#authTabs button').forEach(btn => {
 document.getElementById('authCloseBtn').addEventListener('click', () => closeModal('authModal'));
 document.getElementById('authModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeModal('authModal'); });
 
+// ------ 10. НОВОЕ ОКНО ДОБАВЛЕНИЯ ТОВАРА ------
+function openAddProductModal() {
+    document.getElementById('addProductForm').reset();
+    document.getElementById('addProductStatus').textContent = '';
+    openModal('addProductModal');
+}
+document.getElementById('addProductCloseBtn').addEventListener('click', () => closeModal('addProductModal'));
+document.getElementById('addProductModal').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) closeModal('addProductModal');
+});
+document.getElementById('openAddProductBtn').addEventListener('click', openAddProductModal);
+
+document.getElementById('addProductForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const brand = document.getElementById('addBrand').value.trim();
+    const category = document.getElementById('addCategory').value.trim();
+    const price = parseFloat(document.getElementById('addPrice').value);
+    const stock = parseInt(document.getElementById('addStock').value);
+    const image = document.getElementById('addImage').value.trim() || 'https://placehold.co/300x300/ccc?text=Новый+товар';
+    const nameRu = document.getElementById('addNameRu').value.trim();
+    const nameSr = document.getElementById('addNameSr').value.trim() || nameRu;
+    const nameEn = document.getElementById('addNameEn').value.trim() || nameRu;
+    const descRu = document.getElementById('addDescRu').value.trim();
+    const descSr = document.getElementById('addDescSr').value.trim() || descRu;
+    const descEn = document.getElementById('addDescEn').value.trim() || descRu;
+    const weightRu = document.getElementById('addWeightRu').value.trim() || '—';
+    const foodRu = document.getElementById('addFoodRu').value.trim() || '—';
+    const ageRu = document.getElementById('addAgeRu').value.trim() || '—';
+
+    if (!brand || !category || !price || !stock || !nameRu) {
+        document.getElementById('addProductStatus').textContent = '⚠️ Заполните обязательные поля (бренд, категория, цена, кол-во, название RU)';
+        return;
+    }
+
+    const newProduct = {
+        id: Date.now(),
+        brand,
+        category,
+        price_rsd: price,
+        stock: stock,
+        image: image,
+        name: { ru: nameRu, sr: nameSr, en: nameEn },
+        description: { ru: descRu, sr: descSr, en: descEn },
+        attributes: {
+            weight: { ru: weightRu, sr: weightRu, en: weightRu },
+            food_type: { ru: foodRu, sr: foodRu, en: foodRu },
+            age: { ru: ageRu, sr: ageRu, en: ageRu }
+        },
+        reviews: []
+    };
+
+    state.products.push(newProduct);
+    saveProducts();
+    closeModal('addProductModal');
+    renderAll();
+    // Обновляем список товаров в админ-панели, если она открыта
+    if (document.getElementById('profileModal').classList.contains('open')) {
+        renderAdminProducts();
+    }
+    showToast('✅ Товар добавлен!');
+});
+    
 // ------ 12. ПРОФИЛЬ И АДМИН-ПАНЕЛЬ ------
 function openProfileModal() {
     if (!state.user) return;
