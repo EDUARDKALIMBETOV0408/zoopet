@@ -1103,6 +1103,10 @@
             <div class="divider"></div>
             <button type="submit" class="btn btn-primary" data-i18n="save_profile">Сохранить изменения</button>
             <div id="profileStatus" class="status-msg"></div>
+             <!-- КНОПКА ВЫХОДА -->
+            <div style="margin-top: 16px;">
+                <button type="button" class="btn btn-outline" id="logoutBtn" data-i18n="logout">Выйти из аккаунта</button>
+            </div>
         </form>
     </div>
 </div>
@@ -1249,6 +1253,7 @@ const CONFIG = {
             age: 'Возраст',
             toast_added: '✅ Товар добавлен в корзину!',
             toast_removed: '🗑️ Товар удалён из корзины',
+            logout: 'Выйти из аккаунта',
         },
         sr: {
             banner_title: '🐶 Посебна понуда!',
@@ -1319,6 +1324,7 @@ const CONFIG = {
             age: 'Узраст',
             toast_added: '✅ Додато у корпу!',
             toast_removed: '🗑️ Уклоњено из корпе',
+            logout: 'Одјави се',
         },
         en: {
             banner_title: '🐶 Special Offer!',
@@ -1389,6 +1395,7 @@ const CONFIG = {
             age: 'Age',
             toast_added: '✅ Added to cart!',
             toast_removed: '🗑️ Removed from cart',
+            logout: 'Log out',
         }
     }
 };
@@ -2037,6 +2044,15 @@ document.getElementById('profileForm').addEventListener('submit', function(e) {
     showToast(getTranslation('toast_profile_saved'));
     renderUserArea();
 });
+// ------ ОБРАБОТЧИК КНОПКИ ВЫХОДА ------
+document.getElementById('logoutBtn').addEventListener('click', function() {
+    state.user = null;
+    state.isAdmin = false;
+    localStorage.removeItem('zooUser');
+    renderAll();
+    closeModal('profileModal');
+    showToast('👋 Вы вышли из аккаунта');
+});   
 
 document.getElementById('profileCloseBtn').addEventListener('click', () => closeModal('profileModal'));
 document.getElementById('profileModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeModal('profileModal'); });
