@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ZooPet — Зоомагазин в Сербии</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -218,11 +218,11 @@
         }
         .btn-apply:hover { background: #3D6A4A; transform: translateY(-1px); }
 
-        /* ----- КАТАЛОГ ----- */
+        /* ----- КАТАЛОГ (усиленные стили для мобильных) ----- */
         .product-grid {
             display: grid !important;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+            gap: 20px !important;
             margin-top: 8px;
         }
         .product-card {
@@ -548,10 +548,19 @@
         }
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-        /* ----- АДАПТИВНОСТЬ ----- */
+        /* ----- АДАПТИВНОСТЬ (УСИЛЕННАЯ ДЛЯ ТЕЛЕФОНОВ) ----- */
         @media (max-width: 640px) {
             .app-container { padding: 16px; }
-            .product-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; }
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 10px !important;
+            }
+            .product-card {
+                padding: 10px !important;
+            }
+            .product-card img {
+                max-height: 120px !important;
+            }
             .filters { flex-direction: column; align-items: stretch; }
             .filter-group { flex-wrap: wrap; }
             .modal { padding: 20px; }
@@ -944,7 +953,7 @@
 /**
  * ============================================================
  *  ПОЛНЫЙ КОД БЕЗ ВСТРОЕННЫХ ТОВАРОВ
- *  Товары загружаются из products.json или добавляются через админку
+ *  АВТОМАТИЧЕСКАЯ ЗАГРУЗКА ИЗ JSON, АДАПТИВНОСТЬ ДЛЯ ТЕЛЕФОНОВ
  * ============================================================
  */
 
@@ -1226,10 +1235,10 @@ const CONFIG = {
     }
 };
 
-// ------ 2. ПУСТОЙ МАССИВ ТОВАРОВ (заполняется через JSON или админку) ------
-const FALLBACK_PRODUCTS = []; // товары отсутствуют в коде — загружаются извне
+// ------ 2. ПУСТОЙ МАССИВ ТОВАРОВ (заполняется из JSON) ------
+const FALLBACK_PRODUCTS = [];
 
-// ------ 3. СОСТОЯНИЕ И ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ------
+// ------ 3. СОСТОЯНИЕ ------
 let state = {
     currentLang: 'ru',
     currentCurrency: 'RSD',
@@ -1309,26 +1318,40 @@ function getCartItemCount() {
     return state.cart.reduce((sum, item) => sum + item.quantity, 0);
 }
 
-// ------ 4. ЗАГРУЗКА ТОВАРОВ ------
-function loadProducts() {
+// ------ 4. ЗАГРУЗКА ТОВАРОВ (АВТОМАТИЧЕСКАЯ ИЗ JSON) ------
+async function loadProducts() {
+    // Сначала проверяем localStorage
     const saved = localStorage.getItem('zoopet_products');
     if (saved) {
         try {
-            state.products = JSON.parse(saved);
-            if (!Array.isArray(state.products) || state.products.length === 0) {
-                state.products = [...FALLBACK_PRODUCTS];
-                saveProducts();
+            const parsed = JSON.parse(saved);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+                state.products = parsed;
+                applyFiltersAndPagination();
+                return;
             }
-        } catch(e) {
-            state.products = [...FALLBACK_PRODUCTS];
-            saveProducts();
-        }
-    } else {
-        state.products = [...FALLBACK_PRODUCTS];
-        saveProducts();
+        } catch(e) {}
     }
-    let orders = localStorage.getItem('zoopet_orders');
-    state.orders = orders ? JSON.parse(orders) : [];
+
+    // Если в localStorage нет, пытаемся загрузить из JSON файла
+    try {
+        const response = await fetch('products.json');
+        if (response.ok) {
+            const data = await response.json();
+            if (Array.isArray(data) && data.length > 0) {
+                state.products = data;
+                localStorage.setItem('zoopet_products', JSON.stringify(data));
+                applyFiltersAndPagination();
+                return;
+            }
+        }
+    } catch (error) {
+        console.warn('Не удалось загрузить products.json, используем пустой массив', error);
+    }
+
+    // Если ничего не загрузилось, используем пустой массив
+    state.products = [...FALLBACK_PRODUCTS];
+    localStorage.setItem('zoopet_products', JSON.stringify(state.products));
     applyFiltersAndPagination();
 }
 
@@ -1938,7 +1961,7 @@ function renderAdminOrders() {
     container.innerHTML = html;
 }
 
-// Загрузка товаров из JSON
+// Загрузка товаров из JSON (вручную)
 document.getElementById('loadJsonBtn')?.addEventListener('click', async function() {
     const status = document.getElementById('loadJsonStatus');
     try {
@@ -2272,7 +2295,13 @@ async function init() {
     });
 
     loadUser();
-    loadProducts();
+
+    // Асинхронная загрузка товаров
+    await loadProducts();
+
+    // Дополнительно загружаем заказы
+    let orders = localStorage.getItem('zoopet_orders');
+    state.orders = orders ? JSON.parse(orders) : [];
 
     if (state.user && state.user.email === 'admin@admin.com') {
         state.isAdmin = true;
