@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <style>
-        /* ----- Сброс и переменные ----- */
+        /* ----- СБРОС И ПЕРЕМЕННЫЕ ----- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --bg-primary: #F7F5F0;
@@ -43,7 +43,8 @@
             padding: 32px;
             margin: 20px 0;
         }
-        /* ----- Хедер ----- */
+
+        /* ----- ШАПКА ----- */
         .header {
             display: flex;
             justify-content: space-between;
@@ -54,19 +55,9 @@
             padding-bottom: 16px;
             border-bottom: 1px solid var(--border-color);
         }
-        .logo {
-            font-weight: 700;
-            font-size: 26px;
-            color: var(--accent-green);
-            letter-spacing: -0.5px;
-            cursor: default;
-        }
+        .logo { font-weight: 700; font-size: 26px; color: var(--accent-green); letter-spacing: -0.5px; cursor: default; }
         .logo span { color: var(--accent-orange); }
-        .header-controls {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
+        .header-controls { display: flex; align-items: center; gap: 20px; }
         .lang-switcher {
             display: flex;
             gap: 6px;
@@ -87,13 +78,8 @@
             font-family: var(--font);
             text-transform: uppercase;
         }
-        .lang-btn.active {
-            background: var(--bg-white);
-            color: var(--accent-green);
-            box-shadow: 0 2px 8px rgba(74, 124, 89, 0.15);
-        }
+        .lang-btn.active { background: var(--bg-white); color: var(--accent-green); box-shadow: 0 2px 8px rgba(74,124,89,0.15); }
         .lang-btn:hover { color: var(--text-primary); }
-
         .user-area {
             display: flex;
             align-items: center;
@@ -113,10 +99,7 @@
             font-size: 16px;
             text-transform: uppercase;
         }
-        .user-area .user-name {
-            font-weight: 500;
-            font-size: 14px;
-        }
+        .user-area .user-name { font-weight: 500; font-size: 14px; }
         .user-area .login-btn {
             background: none;
             border: 1px solid var(--accent-green);
@@ -129,11 +112,7 @@
             transition: 0.2s;
             font-family: var(--font);
         }
-        .user-area .login-btn:hover {
-            background: var(--accent-green);
-            color: #fff;
-        }
-
+        .user-area .login-btn:hover { background: var(--accent-green); color: #fff; }
         .cart-icon {
             position: relative;
             cursor: pointer;
@@ -157,7 +136,7 @@
             text-align: center;
         }
 
-        /* ----- Баннер ----- */
+        /* ----- БАННЕР ----- */
         .banner {
             background: linear-gradient(135deg, #E8F3EB 0%, #D4E4DA 100%);
             border-radius: var(--radius);
@@ -170,19 +149,9 @@
             gap: 16px;
             border: 1px solid var(--accent-green-light);
         }
-        .banner-content {
-            flex: 1;
-        }
-        .banner-content h2 {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--accent-green);
-        }
-        .banner-content p {
-            font-size: 16px;
-            color: var(--text-secondary);
-            margin-top: 6px;
-        }
+        .banner-content { flex: 1; }
+        .banner-content h2 { font-size: 24px; font-weight: 700; color: var(--accent-green); }
+        .banner-content p { font-size: 16px; color: var(--text-secondary); margin-top: 6px; }
         .banner-emoji {
             font-size: 48px;
             background: var(--bg-white);
@@ -190,15 +159,10 @@
             border-radius: 60px;
             box-shadow: var(--shadow);
         }
-        @media (max-width: 480px) {
-            .banner { flex-direction: column; text-align: center; }
-            .banner-emoji { font-size: 32px; padding: 8px 16px; }
-        }
+        @media (max-width: 480px) { .banner { flex-direction: column; text-align: center; } .banner-emoji { font-size: 32px; padding: 8px 16px; } }
 
-        /* ----- Поиск и фильтры ----- */
-        .search-bar {
-            margin: 8px 0 20px;
-        }
+        /* ----- ПОИСК И ФИЛЬТРЫ ----- */
+        .search-bar { margin: 8px 0 20px; }
         .search-bar input {
             width: 100%;
             padding: 12px 20px;
@@ -210,11 +174,7 @@
             transition: 0.2s;
             outline: none;
         }
-        .search-bar input:focus {
-            border-color: var(--accent-green);
-            box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.1);
-        }
-
+        .search-bar input:focus { border-color: var(--accent-green); box-shadow: 0 0 0 3px rgba(74,124,89,0.1); }
         .filters {
             display: flex;
             flex-wrap: wrap;
@@ -231,10 +191,7 @@
             gap: 6px;
             flex-wrap: wrap;
         }
-        .filter-group label {
-            font-weight: 600;
-            font-size: 14px;
-        }
+        .filter-group label { font-weight: 600; font-size: 14px; }
         .filter-group select,
         .filter-group input {
             padding: 8px 14px;
@@ -246,9 +203,7 @@
             outline: none;
         }
         .filter-group select:focus,
-        .filter-group input:focus {
-            border-color: var(--accent-green);
-        }
+        .filter-group input:focus { border-color: var(--accent-green); }
         .btn-apply {
             padding: 8px 28px;
             border: none;
@@ -261,12 +216,9 @@
             transition: 0.2s;
             font-family: var(--font);
         }
-        .btn-apply:hover {
-            background: #3D6A4A;
-            transform: translateY(-1px);
-        }
+        .btn-apply:hover { background: #3D6A4A; transform: translateY(-1px); }
 
-        /* ----- Каталог ----- */
+        /* ----- КАТАЛОГ ----- */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -284,10 +236,7 @@
             flex-direction: column;
             border: 1px solid var(--border-color);
         }
-        .product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-        }
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
         .product-card img {
             width: 100%;
             aspect-ratio: 1/1;
@@ -295,26 +244,10 @@
             border-radius: 12px;
             background: var(--bg-primary);
         }
-        .product-card h3 {
-            font-size: 15px;
-            margin: 10px 0 4px;
-            font-weight: 600;
-        }
-        .product-card .brand {
-            font-size: 13px;
-            color: var(--text-secondary);
-        }
-        .product-card .price {
-            font-weight: 700;
-            font-size: 18px;
-            color: var(--accent-green);
-            margin: 6px 0;
-        }
-        .product-card .stock {
-            font-size: 13px;
-            color: var(--text-secondary);
-            margin-bottom: 10px;
-        }
+        .product-card h3 { font-size: 15px; margin: 10px 0 4px; font-weight: 600; }
+        .product-card .brand { font-size: 13px; color: var(--text-secondary); }
+        .product-card .price { font-weight: 700; font-size: 18px; color: var(--accent-green); margin: 6px 0; }
+        .product-card .stock { font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; }
         .product-card .add-to-cart {
             background: var(--accent-orange);
             color: #fff;
@@ -328,11 +261,9 @@
             margin-top: auto;
             font-family: var(--font);
         }
-        .product-card .add-to-cart:hover {
-            background: #c97a4a;
-        }
+        .product-card .add-to-cart:hover { background: #c97a4a; }
 
-        /* ----- Пагинация ----- */
+        /* ----- ПАГИНАЦИЯ ----- */
         .pagination-controls {
             display: flex;
             justify-content: center;
@@ -351,13 +282,8 @@
             transition: 0.2s;
             font-family: var(--font);
         }
-        .pagination-controls button:hover {
-            background: var(--accent-green-light);
-        }
-        .pagination-controls button:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
+        .pagination-controls button:hover { background: var(--accent-green-light); }
+        .pagination-controls button:disabled { opacity: 0.4; cursor: not-allowed; }
         .pagination-controls .load-more-btn {
             background: var(--accent-green);
             color: #fff;
@@ -365,11 +291,9 @@
             padding: 10px 30px;
             border-radius: 40px;
         }
-        .pagination-controls .load-more-btn:hover {
-            background: #3D6A4A;
-        }
+        .pagination-controls .load-more-btn:hover { background: #3D6A4A; }
 
-        /* ----- Модальные окна ----- */
+        /* ----- МОДАЛЬНЫЕ ОКНА (ОБЩИЕ СТИЛИ) ----- */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -399,10 +323,7 @@
             background: none;
             border: none;
         }
-        .modal h2 {
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
+        .modal h2 { margin-bottom: 20px; font-size: 24px; }
         .modal .tabs {
             display: flex;
             gap: 8px;
@@ -422,25 +343,11 @@
             color: var(--text-secondary);
             transition: 0.2s;
         }
-        .modal .tabs button.active {
-            background: var(--accent-green);
-            color: #fff;
-        }
-        .modal .tab-content {
-            display: none;
-        }
-        .modal .tab-content.active {
-            display: block;
-        }
-        .modal .form-group {
-            margin-bottom: 16px;
-        }
-        .modal .form-group label {
-            display: block;
-            font-weight: 500;
-            font-size: 14px;
-            margin-bottom: 4px;
-        }
+        .modal .tabs button.active { background: var(--accent-green); color: #fff; }
+        .modal .tab-content { display: none; }
+        .modal .tab-content.active { display: block; }
+        .modal .form-group { margin-bottom: 16px; }
+        .modal .form-group label { display: block; font-weight: 500; font-size: 14px; margin-bottom: 4px; }
         .modal .form-group input,
         .modal .form-group select,
         .modal .form-group textarea {
@@ -458,7 +365,7 @@
         .modal .form-group textarea:focus {
             outline: none;
             border-color: var(--accent-green);
-            box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.15);
+            box-shadow: 0 0 0 3px rgba(74,124,89,0.15);
         }
         .modal .checkbox-group {
             display: flex;
@@ -473,10 +380,7 @@
             accent-color: var(--accent-green);
             flex-shrink: 0;
         }
-        .modal .checkbox-group label {
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
+        .modal .checkbox-group label { font-size: 14px; color: var(--text-secondary); }
         .modal .btn {
             padding: 12px 28px;
             border: none;
@@ -488,22 +392,10 @@
             font-family: var(--font);
             width: 100%;
         }
-        .modal .btn-primary {
-            background: var(--accent-green);
-            color: white;
-        }
-        .modal .btn-primary:hover {
-            background: #3D6A4A;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.3);
-        }
-        .modal .btn-outline {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-        }
+        .modal .btn-primary { background: var(--accent-green); color: white; }
+        .modal .btn-primary:hover { background: #3D6A4A; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(74,124,89,0.3); }
+        .modal .btn-outline { background: transparent; border: 1px solid var(--border-color); color: var(--text-primary); }
         .modal .btn-outline:hover { background: var(--bg-primary); }
-
         .modal .address-card,
         .modal .profile-item {
             background: var(--bg-primary);
@@ -515,11 +407,7 @@
             gap: 16px;
             border: 1px solid var(--border-color);
         }
-        .modal .address-card input[type="radio"] {
-            accent-color: var(--accent-green);
-            width: 18px;
-            height: 18px;
-        }
+        .modal .address-card input[type="radio"] { accent-color: var(--accent-green); width: 18px; height: 18px; }
         .modal .address-card .primary-badge {
             background: var(--accent-green-light);
             color: var(--accent-green);
@@ -529,7 +417,6 @@
             border-radius: 20px;
             margin-left: 8px;
         }
-
         .modal .inline-add-form {
             background: var(--bg-primary);
             padding: 16px;
@@ -545,23 +432,14 @@
             width: auto;
             margin-right: 8px;
         }
-        .modal .inline-add-form .btn-sm.btn-outline {
-            background: transparent;
-            border: 1px solid var(--border-color);
-        }
-        .modal .inline-add-form .btn-sm.btn-primary {
-            background: var(--accent-green);
-            color: #fff;
-        }
+        .modal .inline-add-form .btn-sm.btn-outline { background: transparent; border: 1px solid var(--border-color); }
+        .modal .inline-add-form .btn-sm.btn-primary { background: var(--accent-green); color: #fff; }
         .modal .inline-add-form .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
         }
-        .modal .inline-add-form .form-row .full-width {
-            grid-column: 1 / -1;
-        }
-
+        .modal .inline-add-form .form-row .full-width { grid-column: 1 / -1; }
         .modal .profile-item .item-remove {
             background: #fde8e8;
             border: none;
@@ -571,59 +449,18 @@
             cursor: pointer;
             font-weight: 600;
         }
-        .modal .divider {
-            margin: 20px 0;
-            border-top: 1px solid var(--border-color);
-        }
-        .modal .status-msg {
-            margin-top: 12px;
-            font-size: 14px;
-            color: var(--accent-orange);
-        }
+        .modal .divider { margin: 20px 0; border-top: 1px solid var(--border-color); }
+        .modal .status-msg { margin-top: 12px; font-size: 14px; color: var(--accent-orange); }
 
-        /* Карточка товара в модалке */
-        .product-detail {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-        .product-detail .detail-image {
-            width: 100%;
-            max-height: 300px;
-            object-fit: contain;
-            border-radius: 12px;
-            background: var(--bg-primary);
-        }
-        .product-detail .detail-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-        }
-        .product-detail .detail-title {
-            font-size: 24px;
-            font-weight: 700;
-        }
-        .product-detail .detail-brand {
-            color: var(--text-secondary);
-            font-size: 16px;
-        }
-        .product-detail .detail-price {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--accent-green);
-        }
-        .product-detail .detail-stock {
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-        .product-detail .detail-description {
-            font-size: 15px;
-            color: var(--text-primary);
-            line-height: 1.7;
-            border-top: 1px solid var(--border-color);
-            padding-top: 16px;
-        }
+        /* ----- КАРТОЧКА ТОВАРА (МОДАЛКА) ----- */
+        .product-detail { display: flex; flex-direction: column; gap: 16px; }
+        .product-detail .detail-image { width: 100%; max-height: 300px; object-fit: contain; border-radius: 12px; background: var(--bg-primary); }
+        .product-detail .detail-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; }
+        .product-detail .detail-title { font-size: 24px; font-weight: 700; }
+        .product-detail .detail-brand { color: var(--text-secondary); font-size: 16px; }
+        .product-detail .detail-price { font-size: 28px; font-weight: 700; color: var(--accent-green); }
+        .product-detail .detail-stock { font-size: 14px; color: var(--text-secondary); }
+        .product-detail .detail-description { font-size: 15px; color: var(--text-primary); line-height: 1.7; border-top: 1px solid var(--border-color); padding-top: 16px; }
         .product-detail .detail-attributes {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -632,61 +469,22 @@
             padding: 12px 16px;
             border-radius: 12px;
         }
-        .product-detail .detail-attributes .attr-item {
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-        }
-        .product-detail .detail-attributes .attr-item .attr-label {
-            color: var(--text-secondary);
-        }
-        .product-detail .detail-attributes .attr-item .attr-value {
-            font-weight: 500;
-        }
-        .product-detail .detail-add-btn {
-            margin-top: 8px;
-        }
+        .product-detail .detail-attributes .attr-item { display: flex; justify-content: space-between; font-size: 14px; }
+        .product-detail .detail-attributes .attr-item .attr-label { color: var(--text-secondary); }
+        .product-detail .detail-attributes .attr-item .attr-value { font-weight: 500; }
+        .product-detail .detail-add-btn { margin-top: 8px; }
 
-        /* Отзывы */
-        .reviews-block {
-            margin-top: 16px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 16px;
-        }
-        .reviews-block .review-item {
-            padding: 8px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .reviews-block .review-item .review-rating {
-            color: var(--accent-orange);
-            font-weight: 700;
-        }
-        .reviews-block .review-item .review-user {
-            font-weight: 600;
-        }
-        .reviews-block .review-form {
-            margin-top: 12px;
-        }
+        /* ----- ОТЗЫВЫ ----- */
+        .reviews-block { margin-top: 16px; border-top: 1px solid var(--border-color); padding-top: 16px; }
+        .reviews-block .review-item { padding: 8px 0; border-bottom: 1px solid var(--border-color); }
+        .reviews-block .review-item .review-rating { color: var(--accent-orange); font-weight: 700; }
+        .reviews-block .review-item .review-user { font-weight: 600; }
+        .reviews-block .review-form { margin-top: 12px; }
         .reviews-block .review-form select,
-        .reviews-block .review-form textarea {
-            width: 100%;
-            padding: 8px 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            font-family: var(--font);
-            margin-bottom: 8px;
-        }
-        .reviews-block .review-form button {
-            background: var(--accent-green);
-            color: #fff;
-            border: none;
-            padding: 8px 24px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-        }
+        .reviews-block .review-form textarea { width: 100%; padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 12px; font-family: var(--font); margin-bottom: 8px; }
+        .reviews-block .review-form button { background: var(--accent-green); color: #fff; border: none; padding: 8px 24px; border-radius: 30px; cursor: pointer; font-weight: 600; }
 
-        /* Корзина */
+        /* ----- КОРЗИНА (в модалке) ----- */
         .cart-item {
             display: flex;
             justify-content: space-between;
@@ -694,18 +492,8 @@
             padding: 12px 0;
             border-bottom: 1px solid var(--border-color);
         }
-        .cart-item-remove {
-            background: none;
-            border: none;
-            color: #c0392b;
-            font-size: 20px;
-            cursor: pointer;
-            padding: 0 4px;
-        }
-        .cart-item-remove:hover {
-            color: #a93226;
-            transform: scale(1.1);
-        }
+        .cart-item-remove { background: none; border: none; color: #c0392b; font-size: 20px; cursor: pointer; padding: 0 4px; }
+        .cart-item-remove:hover { color: #a93226; transform: scale(1.1); }
         .cart-qty-btn {
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
@@ -716,9 +504,7 @@
             font-weight: 600;
             transition: 0.2s;
         }
-        .cart-qty-btn:hover {
-            background: var(--accent-green-light);
-        }
+        .cart-qty-btn:hover { background: var(--accent-green-light); }
         .cart-total {
             margin-top: 16px;
             padding-top: 16px;
@@ -729,68 +515,21 @@
             justify-content: space-between;
         }
 
-        /* Админ-панель */
-        .admin-section {
-            margin-top: 20px;
-            border-top: 2px solid var(--accent-green);
-            padding-top: 20px;
-        }
-        .admin-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-        }
-        .admin-tabs button {
-            padding: 8px 20px;
-            border: 1px solid var(--border-color);
-            border-radius: 30px;
-            background: var(--bg-white);
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.2s;
-        }
-        .admin-tabs button.active {
-            background: var(--accent-green);
-            color: #fff;
-            border-color: var(--accent-green);
-        }
+        /* ----- АДМИН-ПАНЕЛЬ ----- */
+        .admin-section { margin-top: 20px; border-top: 2px solid var(--accent-green); padding-top: 20px; }
+        .admin-tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+        .admin-tabs button { padding: 8px 20px; border: 1px solid var(--border-color); border-radius: 30px; background: var(--bg-white); cursor: pointer; font-weight: 600; transition: 0.2s; }
+        .admin-tabs button.active { background: var(--accent-green); color: #fff; border-color: var(--accent-green); }
         .admin-tab-content { display: none; }
         .admin-tab-content.active { display: block; }
 
-        .product-edit-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .product-edit-item .edit-btn {
-            background: var(--accent-orange);
-            color: #fff;
-            border: none;
-            padding: 4px 16px;
-            border-radius: 30px;
-            cursor: pointer;
-        }
-        .order-item {
-            background: var(--bg-primary);
-            padding: 12px;
-            border-radius: 12px;
-            margin-bottom: 12px;
-        }
-        .order-item .order-header {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 600;
-        }
-        .order-item .order-details {
-            margin-top: 8px;
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
+        .product-edit-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-color); }
+        .product-edit-item .edit-btn { background: var(--accent-orange); color: #fff; border: none; padding: 4px 16px; border-radius: 30px; cursor: pointer; }
+        .order-item { background: var(--bg-primary); padding: 12px; border-radius: 12px; margin-bottom: 12px; }
+        .order-item .order-header { display: flex; justify-content: space-between; font-weight: 600; }
+        .order-item .order-details { margin-top: 8px; font-size: 14px; color: var(--text-secondary); }
 
-        /* Тост */
+        /* ----- ТОСТ ----- */
         .toast {
             background: var(--accent-green);
             color: white;
@@ -807,24 +546,17 @@
             box-shadow: var(--shadow);
             z-index: 1000;
         }
-        .toast.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-        /* Адаптивность */
+        /* ----- АДАПТИВНОСТЬ ----- */
         @media (max-width: 640px) {
             .app-container { padding: 16px; }
             .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
             .filters { flex-direction: column; align-items: stretch; }
             .filter-group { flex-wrap: wrap; }
             .modal { padding: 20px; }
-            .modal .inline-add-form .form-row {
-                grid-template-columns: 1fr;
-            }
-            .product-detail .detail-attributes {
-                grid-template-columns: 1fr;
-            }
+            .modal .inline-add-form .form-row { grid-template-columns: 1fr; }
+            .product-detail .detail-attributes { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -833,7 +565,7 @@
 <div class="app-container" id="app">
     <div id="toast" class="toast">✅ Успешно!</div>
 
-    <!-- HEADER -->
+    <!-- ===== ШАПКА ===== -->
     <header class="header">
         <div class="logo">🐾 Zoo<span>Pet</span></div>
         <div class="header-controls">
@@ -849,7 +581,7 @@
         </div>
     </header>
 
-    <!-- BANNER -->
+    <!-- ===== БАННЕР ===== -->
     <div class="banner">
         <div class="banner-content">
             <h2 data-i18n="banner_title">🐶 Специальное предложение!</h2>
@@ -858,7 +590,7 @@
         <div class="banner-emoji">🎉</div>
     </div>
 
-    <!-- SEARCH & FILTERS -->
+    <!-- ===== ПОИСК И ФИЛЬТРЫ ===== -->
     <div class="search-bar">
         <input type="text" id="searchInput" data-i18n-placeholder="search_placeholder" placeholder="Поиск товаров...">
     </div>
@@ -911,16 +643,16 @@
         <button class="btn-apply" id="applyFilters" data-i18n="apply_filters">Применить</button>
     </div>
 
-    <!-- CATALOG -->
+    <!-- ===== КАТАЛОГ ===== -->
     <div class="product-grid" id="productGrid"></div>
 
-    <!-- PAGINATION CONTROLS -->
+    <!-- ===== ПАГИНАЦИЯ ===== -->
     <div class="pagination-controls" id="paginationControls"></div>
 </div>
 
 <!-- ===== МОДАЛЬНЫЕ ОКНА ===== -->
 
-<!-- CART MODAL -->
+<!-- КОРЗИНА -->
 <div class="modal-overlay" id="cartModal">
     <div class="modal">
         <button class="modal-close" id="cartCloseBtn">&times;</button>
@@ -934,7 +666,7 @@
     </div>
 </div>
 
-<!-- AUTH MODAL -->
+<!-- АВТОРИЗАЦИЯ -->
 <div class="modal-overlay" id="authModal">
     <div class="modal">
         <button class="modal-close" id="authCloseBtn">&times;</button>
@@ -943,7 +675,6 @@
             <button class="active" data-tab="login" data-i18n="login_tab">Вход</button>
             <button data-tab="register" data-i18n="register_tab">Регистрация</button>
         </div>
-        <!-- Вкладка Вход -->
         <div class="tab-content active" id="tabLogin">
             <form id="loginForm">
                 <div class="form-group">
@@ -958,7 +689,6 @@
                 <div id="loginStatus" class="status-msg"></div>
             </form>
         </div>
-        <!-- Вкладка Регистрация -->
         <div class="tab-content" id="tabRegister">
             <form id="registerForm">
                 <div class="form-group">
@@ -993,7 +723,7 @@
     </div>
 </div>
 
-<!-- PROFILE MODAL -->
+<!-- ПРОФИЛЬ -->
 <div class="modal-overlay" id="profileModal">
     <div class="modal">
         <button class="modal-close" id="profileCloseBtn">&times;</button>
@@ -1103,7 +833,7 @@
     </div>
 </div>
 
-<!-- CHECKOUT MODAL -->
+<!-- ОФОРМЛЕНИЕ ЗАКАЗА -->
 <div class="modal-overlay" id="checkoutModal">
     <div class="modal">
         <button class="modal-close" id="checkoutCloseBtn">&times;</button>
@@ -1133,7 +863,7 @@
     </div>
 </div>
 
-<!-- PRODUCT DETAIL MODAL -->
+<!-- КАРТОЧКА ТОВАРА -->
 <div class="modal-overlay" id="productModal">
     <div class="modal">
         <button class="modal-close" id="productCloseBtn">&times;</button>
@@ -1141,7 +871,7 @@
     </div>
 </div>
 
-<!-- EDIT PRODUCT MODAL -->
+<!-- РЕДАКТИРОВАНИЕ ТОВАРА -->
 <div class="modal-overlay" id="editProductModal">
     <div class="modal">
         <button class="modal-close" id="editProductCloseBtn">&times;</button>
@@ -1160,6 +890,8 @@
         </form>
     </div>
 </div>
+
+<!-- ДОБАВЛЕНИЕ ТОВАРА (НОВОЕ ОКНО) -->
 <div class="modal-overlay" id="addProductModal">
     <div class="modal">
         <button class="modal-close" id="addProductCloseBtn">&times;</button>
@@ -1226,11 +958,11 @@
         </form>
     </div>
 </div>
-    
+
 <script>
 /**
  * ============================================================
- *  ПОЛНЫЙ ПРОТОТИП С ЗАГРУЗКОЙ ТОВАРОВ ИЗ JSON И ПАГИНАЦИЕЙ
+ *  ПОЛНЫЙ ПРОТОТИП ZOO PET — ВСЕ ФУНКЦИИ
  * ============================================================
  */
 
@@ -1311,7 +1043,8 @@ const CONFIG = {
             age: 'Возраст',
             toast_added: '✅ Товар добавлен в корзину!',
             toast_removed: '🗑️ Товар удалён из корзины',
-             add_product_title: '➕ Добавление товара',
+            logout: 'Выйти из аккаунта',
+            add_product_title: '➕ Добавление товара',
             brand: 'Бренд',
             category: 'Категория (dog/cat)',
             price: 'Цена (RSD)',
@@ -1329,7 +1062,6 @@ const CONFIG = {
             add_product_save: 'Добавить товар',
             open_add_form: 'Открыть форму добавления',
             export_json: '📥 Скачать JSON',
-            logout: 'Выйти',
         },
         sr: {
             banner_title: '🐶 Посебна понуда!',
@@ -1400,6 +1132,7 @@ const CONFIG = {
             age: 'Узраст',
             toast_added: '✅ Додато у корпу!',
             toast_removed: '🗑️ Уклоњено из корпе',
+            logout: 'Одјави се',
             add_product_title: '➕ Додавање производа',
             brand: 'Бренд',
             category: 'Категорија (dog/cat)',
@@ -1418,7 +1151,6 @@ const CONFIG = {
             add_product_save: 'Додај производ',
             open_add_form: 'Отвори форму за додавање',
             export_json: '📥 Преузми JSON',
-            logout: 'Одјави се',
         },
         en: {
             banner_title: '🐶 Special Offer!',
@@ -1489,6 +1221,7 @@ const CONFIG = {
             age: 'Age',
             toast_added: '✅ Added to cart!',
             toast_removed: '🗑️ Removed from cart',
+            logout: 'Log out',
             add_product_title: '➕ Add Product',
             brand: 'Brand',
             category: 'Category (dog/cat)',
@@ -1507,10 +1240,12 @@ const CONFIG = {
             add_product_save: 'Add product',
             open_add_form: 'Open add form',
             export_json: '📥 Download JSON',
-            logout: 'Log out',
         }
     }
 };
+
+// ------ 2. ВСТРОЕННЫЙ МАССИВ ТОВАРОВ (30 шт.) ------
+
 
 // ------ 3. СОСТОЯНИЕ И ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ------
 let state = {
@@ -1541,11 +1276,8 @@ function loadUser() {
 }
 
 function saveUser() {
-    if (state.user) {
-        localStorage.setItem('zooUser', JSON.stringify(state.user));
-    } else {
-        localStorage.removeItem('zooUser');
-    }
+    if (state.user) localStorage.setItem('zooUser', JSON.stringify(state.user));
+    else localStorage.removeItem('zooUser');
 }
 
 function saveProducts() {
@@ -1595,36 +1327,30 @@ function getCartItemCount() {
     return state.cart.reduce((sum, item) => sum + item.quantity, 0);
 }
 
-// ------ 4. ЗАГРУЗКА ТОВАРОВ ИЗ JSON ИЛИ FALLBACK ------
-async function loadProducts() {
-    try {
-        const response = await fetch('products.json');
-        if (!response.ok) throw new Error('Файл products.json не найден');
-        const data = await response.json();
-        // Проверяем, есть ли сохранённые данные с отзывами
-        const saved = localStorage.getItem('zoopet_products');
-        if (saved) {
+// ------ 4. ЗАГРУЗКА ТОВАРОВ ------
+function loadProducts() {
+    const saved = localStorage.getItem('zoopet_products');
+    if (saved) {
+        try {
             state.products = JSON.parse(saved);
-        } else {
-            state.products = data;
-            localStorage.setItem('zoopet_products', JSON.stringify(state.products));
-        }
-    } catch (error) {
-        console.warn('Не удалось загрузить products.json, используем встроенный массив.', error);
-        // Используем fallback
-        const saved = localStorage.getItem('zoopet_products');
-        if (saved) {
-            state.products = JSON.parse(saved);
-        } else {
+            if (!state.products || state.products.length === 0) {
+                state.products = FALLBACK_PRODUCTS;
+                saveProducts();
+            }
+        } catch(e) {
             state.products = FALLBACK_PRODUCTS;
-            localStorage.setItem('zoopet_products', JSON.stringify(state.products));
+            saveProducts();
         }
+    } else {
+        state.products = FALLBACK_PRODUCTS;
+        saveProducts();
     }
-    // Применяем фильтры и пагинацию
+    let orders = localStorage.getItem('zoopet_orders');
+    state.orders = orders ? JSON.parse(orders) : [];
     applyFiltersAndPagination();
 }
 
-// ------ 5. ФИЛЬТРАЦИЯ, СОРТИРОВКА И ПАГИНАЦИЯ ------
+// ------ 5. ФИЛЬТРАЦИЯ, СОРТИРОВКА, ПАГИНАЦИЯ ------
 function applyFiltersAndPagination() {
     const petFilter = document.getElementById('filterPet')?.value || '';
     const brandFilter = document.getElementById('filterBrand')?.value || '';
@@ -1647,12 +1373,11 @@ function applyFiltersAndPagination() {
     else if (sortOrder === 'price_desc') filtered.sort((a, b) => b.price_rsd - a.price_rsd);
 
     state.filteredProducts = filtered;
-    state.currentPage = 1; // сбрасываем на первую страницу при изменении фильтров
+    state.currentPage = 1;
     renderCatalog();
     updatePaginationControls();
 }
 
-// ------ 6. РЕНДЕРИНГ КАТАЛОГА С ПАГИНАЦИЕЙ ------
 function renderCatalog() {
     const grid = document.getElementById('productGrid');
     if (!grid) return;
@@ -1701,7 +1426,6 @@ function renderCatalog() {
     });
 }
 
-// ------ 7. УПРАВЛЕНИЕ ПАГИНАЦИЕЙ ------
 function updatePaginationControls() {
     const container = document.getElementById('paginationControls');
     if (!container) return;
@@ -1747,7 +1471,7 @@ function updatePaginationControls() {
     });
 }
 
-// ------ 8. КОРЗИНА ------
+// ------ 6. КОРЗИНА ------
 function addToCart(productId, delta = 1) {
     const existing = state.cart.find(item => item.productId === productId);
     if (existing) {
@@ -1823,7 +1547,7 @@ function renderModalCart() {
     });
 }
 
-// ------ 9. КАРТОЧКА ТОВАРА С ОТЗЫВАМИ ------
+// ------ 7. КАРТОЧКА ТОВАРА С ОТЗЫВАМИ ------
 function openProductDetail(productId) {
     const product = state.products.find(p => p.id === productId);
     if (!product) return;
@@ -1928,7 +1652,7 @@ function openProductDetail(productId) {
     openModal('productModal');
 }
 
-// ------ 10. МОДАЛЬНЫЕ ОКНА (общие) ------
+// ------ 8. МОДАЛЬНЫЕ ОКНА (ОБЩИЕ) ------
 function openModal(id) {
     document.getElementById(id).classList.add('open');
 }
@@ -1936,7 +1660,7 @@ function closeModal(id) {
     document.getElementById(id).classList.remove('open');
 }
 
-// ------ 11. АВТОРИЗАЦИЯ ------
+// ------ 9. АВТОРИЗАЦИЯ ------
 function openAuthModal() {
     document.getElementById('loginStatus').textContent = '';
     document.getElementById('registerStatus').textContent = '';
@@ -2023,7 +1747,7 @@ document.querySelectorAll('#authTabs button').forEach(btn => {
 document.getElementById('authCloseBtn').addEventListener('click', () => closeModal('authModal'));
 document.getElementById('authModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeModal('authModal'); });
 
-// ------ 12. ПРОФИЛЬ И АДМИН-ПАНЕЛЬ ------
+// ------ 10. ПРОФИЛЬ, АДМИН-ПАНЕЛЬ, ВЫХОД ------
 function openProfileModal() {
     if (!state.user) return;
     document.getElementById('profFirstName').value = state.user.firstName || '';
@@ -2157,10 +1881,19 @@ document.getElementById('profileForm').addEventListener('submit', function(e) {
     renderUserArea();
 });
 
+document.getElementById('logoutBtn').addEventListener('click', function() {
+    state.user = null;
+    state.isAdmin = false;
+    localStorage.removeItem('zooUser');
+    renderAll();
+    closeModal('profileModal');
+    showToast('👋 Вы вышли из аккаунта');
+});
+
 document.getElementById('profileCloseBtn').addEventListener('click', () => closeModal('profileModal'));
 document.getElementById('profileModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeModal('profileModal'); });
 
-// ------ 13. АДМИН-ПАНЕЛЬ (рендеринг) ------
+// ------ 11. АДМИН-ПАНЕЛЬ (рендеринг, кнопки) ------
 function renderAdminPanel() {
     const tabs = document.querySelectorAll('.admin-tabs button');
     tabs.forEach(btn => {
@@ -2223,7 +1956,40 @@ function renderAdminOrders() {
     container.innerHTML = html;
 }
 
-// ------ 14. РЕДАКТИРОВАНИЕ ТОВАРА ------
+// Загрузка товаров из JSON
+document.getElementById('loadJsonBtn')?.addEventListener('click', async function() {
+    const status = document.getElementById('loadJsonStatus');
+    try {
+        const response = await fetch('products.json');
+        if (!response.ok) throw new Error('Файл products.json не найден');
+        const data = await response.json();
+        if (!Array.isArray(data) || data.length === 0) throw new Error('Файл пуст или невалиден');
+        state.products = data;
+        saveProducts();
+        applyFiltersAndPagination();
+        renderAdminProducts();
+        status.textContent = '✅ Загружено ' + data.length + ' товаров!';
+        status.style.color = 'var(--accent-green)';
+    } catch (error) {
+        status.textContent = '⚠️ Ошибка: ' + error.message;
+        status.style.color = 'var(--accent-orange)';
+    }
+});
+
+// Экспорт в JSON
+document.getElementById('exportJsonBtn')?.addEventListener('click', function() {
+    const dataStr = JSON.stringify(state.products, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'products.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('📥 JSON скачан!');
+});
+
+// ------ 12. РЕДАКТИРОВАНИЕ ТОВАРА ------
 function openEditProductModal(productId) {
     const product = state.products.find(p => p.id === productId);
     if (!product) return;
@@ -2265,15 +2031,14 @@ document.getElementById('editProductForm').addEventListener('submit', function(e
 document.getElementById('editProductCloseBtn').addEventListener('click', () => closeModal('editProductModal'));
 document.getElementById('editProductModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeModal('editProductModal'); });
 
+// ------ 13. ДОБАВЛЕНИЕ ТОВАРА (ОТДЕЛЬНОЕ ОКНО) ------
 function openAddProductModal() {
     document.getElementById('addProductForm').reset();
     document.getElementById('addProductStatus').textContent = '';
     openModal('addProductModal');
 }
 document.getElementById('addProductCloseBtn').addEventListener('click', () => closeModal('addProductModal'));
-document.getElementById('addProductModal').addEventListener('click', (e) => {
-    if (e.target === e.currentTarget) closeModal('addProductModal');
-});
+document.getElementById('addProductModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeModal('addProductModal'); });
 document.getElementById('openAddProductBtn').addEventListener('click', openAddProductModal);
 
 document.getElementById('addProductForm').addEventListener('submit', function(e) {
@@ -2320,27 +2085,13 @@ document.getElementById('addProductForm').addEventListener('submit', function(e)
     saveProducts();
     closeModal('addProductModal');
     renderAll();
-    // Обновляем список товаров в админ-панели, если она открыта
     if (document.getElementById('profileModal').classList.contains('open')) {
         renderAdminProducts();
     }
     showToast('✅ Товар добавлен!');
 });
 
-// ------ 11. ЭКСПОРТ В JSON ------
-document.getElementById('exportJsonBtn').addEventListener('click', function() {
-    const dataStr = JSON.stringify(state.products, null, 2);
-    const blob = new Blob([dataStr], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'products.json';
-    a.click();
-    URL.revokeObjectURL(url);
-    showToast('📥 JSON скачан!');
-});
-
-// ------ 16. ОФОРМЛЕНИЕ ЗАКАЗА ------
+// ------ 14. ОФОРМЛЕНИЕ ЗАКАЗА ------
 function openCheckoutModal() {
     if (state.cart.length === 0) {
         showToast(getTranslation('cart_empty'));
@@ -2424,7 +2175,7 @@ document.getElementById('checkoutBtnModal').addEventListener('click', openChecko
 document.getElementById('checkoutCloseBtn').addEventListener('click', () => closeModal('checkoutModal'));
 document.getElementById('checkoutModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeModal('checkoutModal'); });
 
-// ------ 17. ОБНОВЛЕНИЕ ИНТЕРФЕЙСА (UI) ------
+// ------ 15. ОБНОВЛЕНИЕ ИНТЕРФЕЙСА (UI) ------
 function renderUserArea() {
     const area = document.getElementById('userArea');
     if (!area) return;
@@ -2470,9 +2221,7 @@ function updateCartBadge() {
 }
 
 function renderAll() {
-    // Перерисовываем каталог, корзину, пользовательскую область, тексты, бейдж
-    // Каталог и пагинация уже обновлены через applyFiltersAndPagination, но здесь мы вызываем повторно для синхронизации
-    applyFiltersAndPagination(); // заново применяет фильтры и рендерит каталог
+    applyFiltersAndPagination();
     renderModalCart();
     renderUserArea();
     updateUItexts();
@@ -2482,7 +2231,7 @@ function renderAll() {
     }
 }
 
-// ------ 18. ЯЗЫК, ФИЛЬТРЫ, ПОИСК ------
+// ------ 16. ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА, ФИЛЬТРЫ, ПОИСК ------
 document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', function() {
         const lang = this.getAttribute('data-lang');
@@ -2505,7 +2254,7 @@ document.getElementById('searchInput').addEventListener('input', function() {
     searchTimeout = setTimeout(applyFiltersAndPagination, 300);
 });
 
-// ------ 19. КОРЗИНА (открытие модалки) ------
+// ------ 17. КОРЗИНА (ОТКРЫТИЕ) ------
 document.getElementById('cartOpenBtn').addEventListener('click', function() {
     openModal('cartModal');
     renderModalCart();
@@ -2513,7 +2262,7 @@ document.getElementById('cartOpenBtn').addEventListener('click', function() {
 document.getElementById('cartCloseBtn').addEventListener('click', () => closeModal('cartModal'));
 document.getElementById('cartModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeModal('cartModal'); });
 
-// ------ 20. ТОСТ ------
+// ------ 18. ТОСТ ------
 let toastTimeout;
 function showToast(message) {
     const toast = document.getElementById('toast');
@@ -2525,11 +2274,11 @@ function showToast(message) {
     }, 3000);
 }
 
-// ------ 21. ЗАКРЫТИЕ МОДАЛОК (продукт, корзина, авторизация, профиль, чекаут) ------
+// ------ 19. ЗАКРЫТИЕ МОДАЛОК (ПРОДУКТ) ------
 document.getElementById('productCloseBtn').addEventListener('click', () => closeModal('productModal'));
 document.getElementById('productModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeModal('productModal'); });
 
-// ------ 22. ИНИЦИАЛИЗАЦИЯ ------
+// ------ 20. ИНИЦИАЛИЗАЦИЯ ------
 async function init() {
     const savedLang = localStorage.getItem('zooLang') || 'ru';
     state.currentLang = savedLang;
@@ -2541,35 +2290,26 @@ async function init() {
     });
 
     loadUser();
+    loadProducts();
 
-    // Загружаем товары (из JSON или fallback)
-    await loadProducts();
-
-    // Подгружаем заказы
-    let orders = localStorage.getItem('zoopet_orders');
-    state.orders = orders ? JSON.parse(orders) : [];
-
-    // Если пользователь админ, обновляем флаг
     if (state.user && state.user.email === 'admin@admin.com') {
         state.isAdmin = true;
         state.user.isAdmin = true;
         saveUser();
     }
 
-    // Первичный рендеринг
     renderAll();
 
     window.addEventListener('beforeunload', function() {
         localStorage.setItem('zooLang', state.currentLang);
     });
 
-    console.log('🐾 ZooPet с пагинацией и внешним JSON загружен!');
+    console.log('🐾 ZooPet (полная версия) загружен!');
     console.log('Всего товаров:', state.products.length);
     console.log('Пользователь:', state.user ? state.user.email : 'не авторизован');
     console.log('Админ:', state.isAdmin);
 }
 
-// Запуск
 init();
 </script>
 </body>
