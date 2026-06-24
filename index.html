@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZooPet — Зоомагазин в Сербии</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        /* ----- Сброс и переменные ----- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #F7F5F0;
+            --bg-white: #FFFFFF;
+            --text-primary: #2C3E2F;
+            --text-secondary: #5A6B5D;
+            --accent-green: #4A7C59;
+            --accent-green-light: #E8F3EB;
+            --accent-orange: #D98A5B;
+            --border-color: #DCD8D0;
+            --shadow: 0 4px 24px rgba(44, 62, 47, 0.08);
+            --radius: 16px;
+            --font: 'Inter', -apple-system, sans-serif;
+        }
+        body {
+            font-family: var(--font);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+        .app-container {
+            max-width: 1200px;
+            width: 100%;
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 32px;
+            margin: 20px 0;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .logo {
+            font-weight: 700;
+            font-size: 26px;
+            color: var(--accent-green);
+            letter-spacing: -0.5px;
+            cursor: default;
+        }
+        .logo span { color: var(--accent-orange); }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .lang-switcher {
+            display: flex;
+            gap: 6px;
+            background: var(--bg-primary);
+            padding: 4px;
+            border-radius: 40px;
+        }
+        .lang-btn {
+            border: none;
+            background: transparent;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 13px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+            font-family: var(--font);
+            text-transform: uppercase;
+        }
+        .lang-btn.active {
+            background: var(--bg-white);
+            color: var(--accent-green);
+            box-shadow: 0 2px 8px rgba(74, 124, 89, 0.15);
+        }
+        .lang-btn:hover { color: var(--text-primary); }
+
+        .user-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+        .user-area .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        .user-area .user-name {
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .user-area .login-btn {
+            background: none;
+            border: 1px solid var(--accent-green);
+            border-radius: 30px;
+            padding: 6px 18px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            color: var(--accent-green);
+            transition: 0.2s;
+            font-family: var(--font);
+        }
+        .user-area .login-btn:hover {
+            background: var(--accent-green);
+            color: #fff;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 28px;
+            background: none;
+            border: none;
+            display: flex;
+            align-items: center;
+        }
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: var(--accent-orange);
+            color: #fff;
+            border-radius: 50%;
+            padding: 2px 8px;
+            font-size: 12px;
+            font-weight: 700;
+            min-width: 22px;
+            text-align: center;
+        }
+
+        .banner {
+            background: linear-gradient(135deg, #E8F3EB 0%, #D4E4DA 100%);
+            border-radius: var(--radius);
+            padding: 30px 24px;
+            margin: 12px 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            border: 1px solid var(--accent-green-light);
+        }
+        .banner-content {
+            flex: 1;
+        }
+        .banner-content h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+        .banner-content p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-top: 6px;
+        }
+        .banner-emoji {
+            font-size: 48px;
+            background: var(--bg-white);
+            padding: 12px 20px;
+            border-radius: 60px;
+            box-shadow: var(--shadow);
+        }
+        @media (max-width: 480px) {
+            .banner { flex-direction: column; text-align: center; }
+            .banner-emoji { font-size: 32px; padding: 8px 16px; }
+        }
+
+        .search-bar {
+            margin: 8px 0 20px;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 40px;
+            font-size: 16px;
+            font-family: var(--font);
+            background: var(--bg-primary);
+            transition: 0.2s;
+            outline: none;
+        }
+        .search-bar input:focus {
+            border-color: var(--accent-green);
+            box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.1);
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 24px;
+            background: var(--bg-primary);
+            padding: 16px 20px;
+            border-radius: var(--radius);
+            margin-bottom: 24px;
+            align-items: center;
+        }
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .filter-group label {
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .filter-group select,
+        .filter-group input {
+            padding: 8px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            background: var(--bg-white);
+            font-family: var(--font);
+            font-size: 14px;
+            outline: none;
+        }
+        .filter-group select:focus,
+        .filter-group input:focus {
+            border-color: var(--accent-green);
+        }
+        .btn-apply {
+            padding: 8px 28px;
+            border: none;
+            border-radius: 30px;
+            background: var(--accent-green);
+            color: #fff;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: var(--font);
+        }
+        .btn-apply:hover {
+            background: #3D6A4A;
+            transform: translateY(-1px);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 8px;
+        }
+        .product-card {
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            padding: 16px 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            transition: transform 0.15s ease, box-shadow 0.15s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border-color);
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+        .product-card img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 12px;
+            background: var(--bg-primary);
+        }
+        .product-card h3 {
+            font-size: 15px;
+            margin: 10px 0 4px;
+            font-weight: 600;
+        }
+        .product-card .brand {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        .product-card .price {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--accent-green);
+            margin: 6px 0;
+        }
+        .product-card .stock {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+        .product-card .add-to-cart {
+            background: var(--accent-orange);
+            color: #fff;
+            border: none;
+            padding: 10px 0;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: auto;
+            font-family: var(--font);
+        }
+        .product-card .add-to-cart:hover {
+            background: #c97a4a;
+        }
+
+        /* Модальные окна */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.4);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+        .modal-overlay.open { display: flex; }
+        .modal {
+            background: #fff;
+            max-width: 600px;
+            width: 95%;
+            border-radius: 24px;
+            padding: 28px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 28px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        .modal h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .modal .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+        .modal .tabs button {
+            background: none;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: var(--font);
+            font-size: 15px;
+            color: var(--text-secondary);
+            transition: 0.2s;
+        }
+        .modal .tabs button.active {
+            background: var(--accent-green);
+            color: #fff;
+        }
+        .modal .tab-content {
+            display: none;
+        }
+        .modal .tab-content.active {
+            display: block;
+        }
+        .modal .form-group {
+            margin-bottom: 16px;
+        }
+        .modal .form-group label {
+            display: block;
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        .modal .form-group input,
+        .modal .form-group select {
+            width: 100%;
+            padding: 10px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            font-family: var(--font);
+            font-size: 15px;
+            background: var(--bg-white);
+            transition: 0.2s;
+        }
+        .modal .form-group input:focus,
+        .modal .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-green);
+            box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.15);
+        }
+        .modal .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 8px 0;
+        }
+        .modal .checkbox-group input[type="checkbox"] {
+            margin-top: 4px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent-green);
+            flex-shrink: 0;
+        }
+        .modal .checkbox-group label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        .modal .btn {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: var(--font);
+            width: 100%;
+        }
+        .modal .btn-primary {
+            background: var(--accent-green);
+            color: white;
+        }
+        .modal .btn-primary:hover {
+            background: #3D6A4A;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.3);
+        }
+        .modal .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+        .modal .btn-outline:hover { background: var(--bg-primary); }
+        .modal .address-card,
+        .modal .profile-item {
+            background: var(--bg-primary);
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border: 1px solid var(--border-color);
+        }
+        .modal .address-card input[type="radio"] {
+            accent-color: var(--accent-green);
+            width: 18px;
+            height: 18px;
+        }
+        .modal .address-card .primary-badge {
+            background: var(--accent-green-light);
+            color: var(--accent-green);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-left: 8px;
+        }
+        .modal .inline-add-form {
+            background: var(--bg-primary);
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            display: none;
+            border: 1px dashed var(--border-color);
+        }
+        .modal .inline-add-form.open {
+            display: block;
+        }
+        .modal .inline-add-form .btn-sm {
+            padding: 8px 20px;
+            font-size: 14px;
+            width: auto;
+            margin-right: 8px;
+        }
+        .modal .inline-add-form .btn-sm.btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+        }
+        .modal .inline-add-form .btn-sm.btn-primary {
+            background: var(--accent-green);
+            color: #fff;
+        }
+        .modal .inline-add-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .modal .inline-add-form .form-row .full-width {
+            grid-column: 1 / -1;
+        }
+        .modal .profile-item .item-remove {
+            background: #fde8e8;
+            border: none;
+            border-radius: 30px;
+            padding: 4px 12px;
+            color: #c0392b;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .modal .divider {
+            margin: 20px 0;
+            border-top: 1px solid var(--border-color);
+        }
+        .modal .status-msg {
+            margin-top: 12px;
+            font-size: 14px;
+            color: var(--accent-orange);
+        }
+
+        .product-detail {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .product-detail .detail-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: var(--bg-primary);
+        }
+        .product-detail .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        .product-detail .detail-title {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .product-detail .detail-brand {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+        .product-detail .detail-price {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+        .product-detail .detail-stock {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        .product-detail .detail-description {
+            font-size: 15px;
+            color: var(--text-primary);
+            line-height: 1.7;
+            border-top: 1px solid var(--border-color);
+            padding-top: 16px;
+        }
+        .product-detail .detail-attributes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 16px;
+            background: var(--bg-primary);
+            padding: 12px 16px;
+            border-radius: 12px;
+        }
+        .product-detail .detail-attributes .attr-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+        .product-detail .detail-attributes .attr-item .attr-label {
+            color: var(--text-secondary);
+        }
+        .product-detail .detail-attributes .attr-item .attr-value {
+            font-weight: 500;
+        }
+        .product-detail .detail-add-btn {
+            margin-top: 8px;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: #c0392b;
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.2s;
+            padding: 0 4px;
+        }
+        .cart-item-remove:hover {
+            color: #a93226;
+            transform: scale(1.1);
+        }
+
+        .toast {
+            background: var(--accent-green);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-weight: 500;
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            pointer-events: none;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @media (max-width: 640px) {
+            .app-container { padding: 16px; }
+            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .filters { flex-direction: column; align-items: stretch; }
+            .filter-group { flex-wrap: wrap; }
+            .modal { padding: 20px; }
+            .modal .inline-add-form .form-row {
+                grid-template-columns: 1fr;
+            }
+            .product-detail .detail-attributes {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container" id="app">
+    <div id="toast" class="toast">✅ Успешно!</div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo">🐾 Zoo<span>Pet</span></div>
+        <div class="header-controls">
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="ru">RU</button>
+                <button class="lang-btn" data-lang="sr">SR</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
+            <div class="user-area" id="userArea"></div>
+            <button class="cart-icon" id="cartOpenBtn" aria-label="Корзина">
+                🛒<span class="cart-badge" id="cartBadge">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- BANNER -->
+    <div class="banner">
+        <div class="banner-content">
+            <h2 data-i18n="banner_title">🐶 Специальное предложение!</h2>
+            <p data-i18n="banner_desc">Скидка 20% на первый заказ для новых клиентов. Бесплатная доставка по Белграду.</p>
+        </div>
+        <div class="banner-emoji">🎉</div>
+    </div>
+
+    <!-- SEARCH & FILTERS -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" data-i18n-placeholder="search_placeholder" placeholder="Поиск товаров...">
+    </div>
+    <div class="filters">
+        <div class="filter-group">
+            <label data-i18n="filter_pet">Питомец:</label>
+            <select id="filterPet">
+                <option value="">Все</option>
+                <option value="dog">Собака</option>
+                <option value="cat">Кошка</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label data-i18n="filter_brand">Бренд:</label>
+            <select id="filterBrand">
+                <option value="">Все</option>
+                <option value="Acana">Acana</option>
+                <option value="Royal Canin">Royal Canin</option>
+                <option value="Hill's">Hill's</option>
+                <option value="Purina">Purina</option>
+                <option value="Monge">Monge</option>
+                <option value="Farmina">Farmina</option>
+                <option value="Orijen">Orijen</option>
+                <option value="Brit">Brit</option>
+                <option value="Applaws">Applaws</option>
+                <option value="Almo Nature">Almo Nature</option>
+                <option value="Carnilove">Carnilove</option>
+                <option value="Pro Plan">Pro Plan</option>
+                <option value="Eukanuba">Eukanuba</option>
+                <option value="Josera">Josera</option>
+                <option value="Dreamies">Dreamies</option>
+                <option value="Kitekat">Kitekat</option>
+                <option value="Whiskas">Whiskas</option>
+                <option value="Perfect Fit">Perfect Fit</option>
+                <option value="Leonardo">Leonardo</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label data-i18n="filter_price">Цена до:</label>
+            <input type="number" id="filterPriceMax" placeholder="8000" style="width:100px;">
+        </div>
+        <button class="btn-apply" id="applyFilters" data-i18n="apply_filters">Применить</button>
+    </div>
+
+    <!-- CATALOG -->
+    <div class="product-grid" id="productGrid"></div>
+</div>
+
+<!-- ===== MODAL WINDOWS ===== -->
+
+<!-- CART MODAL -->
+<div class="modal-overlay" id="cartModal">
+    <div class="modal">
+        <button class="modal-close" id="cartCloseBtn">&times;</button>
+        <h2 data-i18n="cart_title">🛒 Корзина</h2>
+        <div id="cartItemsModal"></div>
+        <div class="cart-total" style="margin-top:16px; padding-top:16px; border-top:2px solid var(--accent-green); font-weight:700; font-size:20px; display:flex; justify-content:space-between;">
+            <span data-i18n="total">Итого:</span>
+            <span id="totalPriceModal">0 RSD</span>
+        </div>
+        <button class="btn btn-primary" id="checkoutBtnModal" style="margin-top:16px;" data-i18n="checkout_btn">Оформить заказ</button>
+    </div>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="modal-overlay" id="authModal">
+    <div class="modal">
+        <button class="modal-close" id="authCloseBtn">&times;</button>
+        <h2 data-i18n="auth_title">🔐 Вход / Регистрация</h2>
+        <div class="tabs" id="authTabs">
+            <button class="active" data-tab="login" data-i18n="login_tab">Вход</button>
+            <button data-tab="register" data-i18n="register_tab">Регистрация</button>
+        </div>
+        <div class="tab-content active" id="tabLogin">
+            <form id="loginForm">
+                <div class="form-group">
+                    <label data-i18n="email">Email</label>
+                    <input type="email" id="loginEmail" placeholder="petlover@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="password">Пароль</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary" data-i18n="login_btn">Войти</button>
+                <div id="loginStatus" class="status-msg"></div>
+            </form>
+        </div>
+        <div class="tab-content" id="tabRegister">
+            <form id="registerForm">
+                <div class="form-group">
+                    <label data-i18n="email">Email</label>
+                    <input type="email" id="regEmail" placeholder="petlover@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="first_name">Имя</label>
+                    <input type="text" id="regFirstName" placeholder="Анна" required>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="last_name">Фамилия</label>
+                    <input type="text" id="regLastName" placeholder="Иванова">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="phone">Телефон (сербский формат)</label>
+                    <input type="text" id="regPhone" placeholder="+381 63 123 4567" required>
+                    <small>Пример: +381 63 123 4567</small>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="password">Пароль</label>
+                    <input type="password" id="regPassword" placeholder="••••••••" required minlength="6">
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="consentPd" required>
+                    <label for="consentPd" data-i18n="consent_pd">Я согласен на <a href="#">обработку персональных данных</a></label>
+                </div>
+                <button type="submit" class="btn btn-primary" data-i18n="register_btn">Зарегистрироваться</button>
+                <div id="registerStatus" class="status-msg"></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- PROFILE MODAL -->
+<div class="modal-overlay" id="profileModal">
+    <div class="modal">
+        <button class="modal-close" id="profileCloseBtn">&times;</button>
+        <h2 data-i18n="profile_title">👤 Личный кабинет</h2>
+        <form id="profileForm">
+            <div class="form-group">
+                <label data-i18n="first_name">Имя</label>
+                <input type="text" id="profFirstName" required>
+            </div>
+            <div class="form-group">
+                <label data-i18n="last_name">Фамилия</label>
+                <input type="text" id="profLastName">
+            </div>
+            <div class="form-group">
+                <label data-i18n="phone">Телефон</label>
+                <input type="text" id="profPhone" required>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="profEmail" disabled style="background:#f0f0f0;">
+            </div>
+
+            <div class="divider"></div>
+            <h4 data-i18n="addresses_title">📍 Адреса</h4>
+            <div id="profileAddresses"></div>
+            <div class="inline-add-form" id="addAddressForm">
+                <div class="form-row">
+                    <div class="full-width form-group">
+                        <label data-i18n="address_street">Улица, дом</label>
+                        <input type="text" id="addrStreet" placeholder="Булевар ослобођења 10">
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="address_city">Город</label>
+                        <input type="text" id="addrCity" placeholder="Нови Сад">
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="address_postal">Индекс</label>
+                        <input type="text" id="addrPostal" placeholder="21000">
+                    </div>
+                </div>
+                <div style="display:flex; gap:8px; margin-top:8px;">
+                    <button type="button" class="btn-sm btn-primary" id="saveAddressBtn" data-i18n="save">Сохранить</button>
+                    <button type="button" class="btn-sm btn-outline" id="cancelAddressBtn" data-i18n="cancel">Отмена</button>
+                </div>
+            </div>
+            <button type="button" class="btn btn-outline" id="showAddressFormBtn" style="margin-top:8px;" data-i18n="add_address">+ Добавить адрес</button>
+
+            <div class="divider"></div>
+            <h4 data-i18n="pets_title">🐕 Питомцы</h4>
+            <div id="profilePets"></div>
+            <div class="inline-add-form" id="addPetForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label data-i18n="pet_name">Имя питомца</label>
+                        <input type="text" id="petName" placeholder="Барсик">
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="pet_type">Вид</label>
+                        <input type="text" id="petType" placeholder="Кошка">
+                    </div>
+                    <div class="full-width form-group">
+                        <label data-i18n="pet_birthday">Дата рождения</label>
+                        <input type="date" id="petBirthday">
+                    </div>
+                </div>
+                <div style="display:flex; gap:8px; margin-top:8px;">
+                    <button type="button" class="btn-sm btn-primary" id="savePetBtn" data-i18n="save">Сохранить</button>
+                    <button type="button" class="btn-sm btn-outline" id="cancelPetBtn" data-i18n="cancel">Отмена</button>
+                </div>
+            </div>
+            <button type="button" class="btn btn-outline" id="showPetFormBtn" style="margin-top:8px;" data-i18n="add_pet">+ Добавить питомца</button>
+
+            <div class="divider"></div>
+            <button type="submit" class="btn btn-primary" data-i18n="save_profile">Сохранить изменения</button>
+            <div id="profileStatus" class="status-msg"></div>
+        </form>
+    </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay" id="checkoutModal">
+    <div class="modal">
+        <button class="modal-close" id="checkoutCloseBtn">&times;</button>
+        <h2 data-i18n="checkout_title">🚚 Оформление заказа</h2>
+        <div id="checkoutAddresses"></div>
+        <button type="button" class="btn btn-outline" id="checkoutAddAddressBtn" style="margin-top:8px;" data-i18n="add_address">+ Добавить новый адрес</button>
+        <div class="form-group" style="margin-top:16px;">
+            <label data-i18n="delivery_method">Способ доставки</label>
+            <select id="deliveryMethod">
+                <option value="courier" data-i18n="delivery_courier">Курьер</option>
+                <option value="pickup" data-i18n="delivery_pickup">Самовывоз</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-i18n="payment_method">Способ оплаты</label>
+            <select id="paymentMethod">
+                <option value="card" data-i18n="payment_card">Банковская карта</option>
+                <option value="cash" data-i18n="payment_cash">Наличные при получении</option>
+            </select>
+        </div>
+        <div class="cart-total" style="margin:16px 0;">
+            <span data-i18n="total">Итого:</span>
+            <span id="checkoutTotal">0 RSD</span>
+        </div>
+        <button class="btn btn-primary" id="confirmOrderBtn" data-i18n="confirm_order">Подтвердить заказ</button>
+        <div id="checkoutStatus" class="status-msg"></div>
+    </div>
+</div>
+
+<!-- PRODUCT DETAIL MODAL -->
+<div class="modal-overlay" id="productModal">
+    <div class="modal">
+        <button class="modal-close" id="productCloseBtn">&times;</button>
+        <div class="product-detail" id="productDetail"></div>
+    </div>
+</div>
+
+<script>
+/**
+ * ============================================================
+ *  ПОЛНЫЙ ПРОТОТИП С 30 ТОВАРАМИ (15 собак + 15 кошек)
+ *  Все функции и модальные окна присутствуют
+ * ============================================================
+ */
+
+// ------ 1. КОНФИГУРАЦИЯ ------
+const CONFIG = {
+    currencies: {
+        ru: { code: 'RUB', rate: 1.2 },
+        sr: { code: 'RSD', rate: 1.0 },
+        en: { code: 'EUR', rate: 117 }
+    },
+    i18n: {
+        ru: {
+            banner_title: '🐶 Специальное предложение!',
+            banner_desc: 'Скидка 20% на первый заказ для новых клиентов. Бесплатная доставка по Белграду.',
+            cart_title: '🛒 Корзина',
+            total: 'Итого:',
+            currency_hint: '💰 Базовая валюта: RSD',
+            search_placeholder: 'Поиск товаров...',
+            filter_pet: 'Питомец:',
+            filter_brand: 'Бренд:',
+            filter_price: 'Цена до:',
+            apply_filters: 'Применить',
+            add_to_cart: 'В корзину',
+            in_stock: 'В наличии',
+            out_of_stock: 'Нет в наличии',
+            no_products: 'Нет товаров, соответствующих фильтрам',
+            cart_empty: 'Корзина пуста',
+            checkout_btn: 'Оформить заказ',
+            auth_title: '🔐 Вход / Регистрация',
+            login_tab: 'Вход',
+            register_tab: 'Регистрация',
+            email: 'Email',
+            password: 'Пароль',
+            login_btn: 'Войти',
+            register_btn: 'Зарегистрироваться',
+            consent_pd: 'Я согласен на обработку персональных данных',
+            first_name: 'Имя',
+            last_name: 'Фамилия',
+            phone: 'Телефон (сербский формат)',
+            profile_title: '👤 Личный кабинет',
+            addresses_title: '📍 Адреса',
+            pets_title: '🐕 Питомцы',
+            add_address: '+ Добавить адрес',
+            add_pet: '+ Добавить питомца',
+            save_profile: 'Сохранить изменения',
+            address_street: 'Улица, дом',
+            address_city: 'Город',
+            address_postal: 'Индекс',
+            pet_name: 'Имя питомца',
+            pet_type: 'Вид',
+            pet_birthday: 'Дата рождения',
+            save: 'Сохранить',
+            cancel: 'Отмена',
+            delivery_method: 'Способ доставки',
+            delivery_courier: 'Курьер',
+            delivery_pickup: 'Самовывоз',
+            payment_method: 'Способ оплаты',
+            payment_card: 'Банковская карта',
+            payment_cash: 'Наличные при получении',
+            confirm_order: 'Подтвердить заказ',
+            toast_success: '✅ Регистрация успешна!',
+            toast_login: '✅ Добро пожаловать!',
+            toast_order: '🎉 Заказ оформлен! Спасибо!',
+            toast_profile_saved: '✅ Данные сохранены!',
+            address_primary: 'Основной',
+            address_secondary: 'Дополнительный',
+            phone_invalid: '⚠️ Введите корректный сербский номер (+381 63 123 4567)',
+            consent_required: '⚠️ Необходимо согласие на обработку ПДн',
+            login_failed: '⚠️ Неверный email или пароль',
+            reg_success: '✅ Регистрация успешна! Теперь войдите.',
+            no_addresses: 'Нет сохранённых адресов. Добавьте в профиле.',
+            weight: 'Вес',
+            food_type: 'Тип корма',
+            age: 'Возраст',
+        },
+        sr: {
+            banner_title: '🐶 Посебна понуда!',
+            banner_desc: 'Попуст 20% на прву поруџбину за нове купце. Бесплатна достава у Београду.',
+            cart_title: '🛒 Корпа',
+            total: 'Укупно:',
+            currency_hint: '💰 Основна валута: RSD',
+            search_placeholder: 'Претражите производе...',
+            filter_pet: 'Љубимац:',
+            filter_brand: 'Бренд:',
+            filter_price: 'Цена до:',
+            apply_filters: 'Примени',
+            add_to_cart: 'Додај у корпу',
+            in_stock: 'На лагеру',
+            out_of_stock: 'Нема на лагеру',
+            no_products: 'Нема производа који одговарају филтерима',
+            cart_empty: 'Корпа је празна',
+            checkout_btn: 'Наручи',
+            auth_title: '🔐 Пријава / Регистрација',
+            login_tab: 'Пријава',
+            register_tab: 'Регистрација',
+            email: 'Е-пошта',
+            password: 'Лозинка',
+            login_btn: 'Пријави се',
+            register_btn: 'Региструј се',
+            consent_pd: 'Слажем се са обрадом личних података',
+            first_name: 'Име',
+            last_name: 'Презиме',
+            phone: 'Телефон (српски формат)',
+            profile_title: '👤 Лични налог',
+            addresses_title: '📍 Адресе',
+            pets_title: '🐕 Љубимци',
+            add_address: '+ Додај адресу',
+            add_pet: '+ Додај љубимца',
+            save_profile: 'Сачувај измене',
+            address_street: 'Улица, број',
+            address_city: 'Град',
+            address_postal: 'Поштански број',
+            pet_name: 'Име љубимца',
+            pet_type: 'Врста',
+            pet_birthday: 'Датум рођења',
+            save: 'Сачувај',
+            cancel: 'Откажи',
+            delivery_method: 'Начин доставе',
+            delivery_courier: 'Курир',
+            delivery_pickup: 'Лично преузимање',
+            payment_method: 'Начин плаћања',
+            payment_card: 'Банковна картица',
+            payment_cash: 'Готовина приликом преузимања',
+            confirm_order: 'Потврди наруџбину',
+            toast_success: '✅ Регистрација успешна!',
+            toast_login: '✅ Добродошли!',
+            toast_order: '🎉 Наруџбина прихваћена! Хвала!',
+            toast_profile_saved: '✅ Подаци сачувани!',
+            address_primary: 'Главна',
+            address_secondary: 'Додатна',
+            phone_invalid: '⚠️ Унесите исправан српски број (+381 63 123 4567)',
+            consent_required: '⚠️ Потребна сагласност за обраду ПДн',
+            login_failed: '⚠️ Погрешан email или лозинка',
+            reg_success: '✅ Регистрација успешна! Сада се пријавите.',
+            no_addresses: 'Нема сачуваних адреса. Додајте у профилу.',
+            weight: 'Тежина',
+            food_type: 'Врста хране',
+            age: 'Узраст',
+        },
+        en: {
+            banner_title: '🐶 Special Offer!',
+            banner_desc: '20% off your first order for new customers. Free delivery in Belgrade.',
+            cart_title: '🛒 Cart',
+            total: 'Total:',
+            currency_hint: '💰 Base currency: RSD',
+            search_placeholder: 'Search products...',
+            filter_pet: 'Pet:',
+            filter_brand: 'Brand:',
+            filter_price: 'Price up to:',
+            apply_filters: 'Apply',
+            add_to_cart: 'Add to cart',
+            in_stock: 'In stock',
+            out_of_stock: 'Out of stock',
+            no_products: 'No products matching filters',
+            cart_empty: 'Cart is empty',
+            checkout_btn: 'Checkout',
+            auth_title: '🔐 Login / Register',
+            login_tab: 'Login',
+            register_tab: 'Register',
+            email: 'Email',
+            password: 'Password',
+            login_btn: 'Login',
+            register_btn: 'Register',
+            consent_pd: 'I agree to the processing of personal data',
+            first_name: 'First Name',
+            last_name: 'Last Name',
+            phone: 'Phone (Serbian format)',
+            profile_title: '👤 Profile',
+            addresses_title: '📍 Addresses',
+            pets_title: '🐕 Pets',
+            add_address: '+ Add address',
+            add_pet: '+ Add pet',
+            save_profile: 'Save changes',
+            address_street: 'Street, house',
+            address_city: 'City',
+            address_postal: 'Postal code',
+            pet_name: 'Pet name',
+            pet_type: 'Type',
+            pet_birthday: 'Birthday',
+            save: 'Save',
+            cancel: 'Cancel',
+            delivery_method: 'Delivery method',
+            delivery_courier: 'Courier',
+            delivery_pickup: 'Pickup',
+            payment_method: 'Payment method',
+            payment_card: 'Card',
+            payment_cash: 'Cash on delivery',
+            confirm_order: 'Confirm order',
+            toast_success: '✅ Registration successful!',
+            toast_login: '✅ Welcome!',
+            toast_order: '🎉 Order placed! Thank you!',
+            toast_profile_saved: '✅ Profile saved!',
+            address_primary: 'Primary',
+            address_secondary: 'Additional',
+            phone_invalid: '⚠️ Please enter a valid Serbian number (+381 63 123 4567)',
+            consent_required: '⚠️ Consent to PD processing is required',
+            login_failed: '⚠️ Invalid email or password',
+            reg_success: '✅ Registration successful! Please login.',
+            no_addresses: 'No saved addresses. Add in profile.',
+            weight: 'Weight',
+            food_type: 'Food type',
+            age: 'Age',
+        }
+    }
+};
+
+// ------ 2. ТОВАРЫ (30 позиций: 15 собак + 15 кошек) ------
+const PRODUCTS = [
+    // ===== СОБАКИ =====
+    { id: 1, name: { sr: 'Сува храна за псе Acana Grass-Fed Lamb', ru: 'Сухой корм для собак Acana Grass-Fed Lamb', en: 'Acana Grass-Fed Lamb dry dog food' }, brand: 'Acana', category: 'dog', price_rsd: 2850, stock: 12, image: 'https://placehold.co/300x300/3d7e5c/white?text=Acana', description: { ru: 'Беззерновой корм премиум-класса из ягнятины свободного выпаса. Богат белком и натуральными жирами.', sr: 'Врхунска храна без житарица од јагњетине са слободног испаше. Богата протеинима и природним мастима.', en: 'Premium grain-free food from free-range lamb. Rich in protein and natural fats.' }, attributes: { weight: { ru: '2.5 кг', sr: '2.5 кг', en: '2.5 kg' }, food_type: { ru: 'Сухой', sr: 'Сува', en: 'Dry' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 2, name: { sr: 'Влажна храна за псе Royal Canin Maxi', ru: 'Влажный корм для собак Royal Canin Maxi', en: 'Royal Canin Maxi wet dog food' }, brand: 'Royal Canin', category: 'dog', price_rsd: 2100, stock: 7, image: 'https://placehold.co/300x300/c0392b/white?text=Royal+Maxi', description: { ru: 'Влажный корм в кусочках для взрослых собак крупных пород. Содержит хондропротекторы для суставов.', sr: 'Влажна храна у комадима за одрасле псе крупних раса. Садржи хондропротекторе за зглобове.', en: 'Wet food in chunks for adult large breed dogs. Contains chondroprotectors for joints.' }, attributes: { weight: { ru: '400 г', sr: '400 г', en: '400 g' }, food_type: { ru: 'Влажный', sr: 'Влажна', en: 'Wet' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 3, name: { sr: 'Храниво за псе Hill\'s Science Diet Adult', ru: 'Корм для собак Hill\'s Science Diet Adult', en: 'Hill\'s Science Diet Adult dog food' }, brand: 'Hill\'s', category: 'dog', price_rsd: 3200, stock: 5, image: 'https://placehold.co/300x300/2c3e50/white?text=Hill\'s', description: { ru: 'Научно разработанный корм для взрослых собак средних пород. Поддерживает здоровье пищеварения и иммунитета.', sr: 'Научно развијена храна за одрасле псе средњих раса. Подржава здравље варења и имунитета.', en: 'Scientifically developed food for adult medium breed dogs. Supports digestive health and immunity.' }, attributes: { weight: { ru: '3 кг', sr: '3 кг', en: '3 kg' }, food_type: { ru: 'Сухой', sr: 'Сува', en: 'Dry' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 4, name: { sr: 'Сува храна за псе Purina Pro Plan Sensitive', ru: 'Сухой корм для собак Purina Pro Plan Sensitive', en: 'Purina Pro Plan Sensitive dry dog food' }, brand: 'Purina', category: 'dog', price_rsd: 3500, stock: 8, image: 'https://placehold.co/300x300/f39c12/white?text=Purina', description: { ru: 'Корм для собак с чувствительной кожей и пищеварением. Содержит Омега-3 и пробиотики.', sr: 'Храна за псе са осетљивом кожом и пробавом. Садржи Омега-3 и пробиотике.', en: 'Food for dogs with sensitive skin and digestion. Contains Omega-3 and probiotics.' }, attributes: { weight: { ru: '2.5 кг', sr: '2.5 кг', en: '2.5 kg' }, food_type: { ru: 'Сухой', sr: 'Сува', en: 'Dry' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 5, name: { sr: 'Сува храна за псе Monge Grain Free', ru: 'Сухой корм для собак Monge Grain Free', en: 'Monge Grain Free dry dog food' }, brand: 'Monge', category: 'dog', price_rsd: 4200, stock: 6, image: 'https://placehold.co/300x300/2980b9/white?text=Monge', description: { ru: 'Беззерновой корм с высоким содержанием мяса. Идеален для активных собак всех пород.', sr: 'Храна без житарица са високим садржајем меса. Идеална за активне псе свих раса.', en: 'Grain-free food with high meat content. Ideal for active dogs of all breeds.' }, attributes: { weight: { ru: '2.5 кг', sr: '2.5 кг', en: '2.5 kg' }, food_type: { ru: 'Сухой', sr: 'Сува', en: 'Dry' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 6, name: { sr: 'Сува храна за псе Farmina N&D Ancestral', ru: 'Сухой корм для собак Farmina N&D Ancestral', en: 'Farmina N&D Ancestral dry dog food' }, brand: 'Farmina', category: 'dog', price_rsd: 4800, stock: 4, image: 'https://placehold.co/300x300/e67e22/white?text=Farmina', description: { ru: 'Беззерновой корм по древней рецептуре, обогащённый гранатом и куркумой.', sr: 'Храна без житарица по древној рецептури, обогаћена наром и куркумом.', en: 'Grain-free food based on ancient recipe, enriched with pomegranate and turmeric.' }, attributes: { weight: { ru: '2.5 кг', sr: '2.5 кг', en: '2.5 kg' }, food_type: { ru: 'Сухой', sr: 'Сува', en: 'Dry' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 7, name: { sr: 'Сува храна за псе Orijen Original', ru: 'Сухой корм для собак Orijen Original', en: 'Orijen Original dry dog food' }, brand: 'Orijen', category: 'dog', price_rsd: 5500, stock: 3, image: 'https://placehold.co/300x300/8e44ad/white?text=Orijen', description: { ru: 'Биологически соответствующий корм с высоким содержанием мяса (85%). Свежие ингредиенты.', sr: 'Биолошки одговарајућа храна са високим садржајем меса (85%). Свежи састојци.', en: 'Biologically appropriate food with high meat content (85%). Fresh ingredients.' }, attributes: { weight: { ru: '2.5 кг', sr: '2.5 кг', en: '2.5 kg' }, food_type: { ru: 'Сухой', sr: 'Сува', en: 'Dry' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 8, name: { sr: 'Сува храна за псе Brit Care Grain Free', ru: 'Сухой корм для собак Brit Care Grain Free', en: 'Brit Care Grain Free dry dog food' }, brand: 'Brit', category: 'dog', price_rsd: 3900, stock: 9, image: 'https://placehold.co/300x300/16a085/white?text=Brit', description: { ru: 'Беззерновой корм для собак мелких пород с чувствительным пищеварением.', sr: 'Храна без житарица за псе малих раса са осетљивом пробавом.', en: 'Grain-free food for small breed dogs with sensitive digestion.' }, attributes: { weight: { ru: '2 кг', sr: '2 кг', en: '2 kg' }, food_type: { ru: 'Сухой', sr: 'Сува', en: 'Dry' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 9, name: { sr: 'Сува храна за псе Eukanuba Adult Medium', ru: 'Сухой корм для собак Eukanuba Adult Medium', en: 'Eukanuba Adult Medium dry dog food' }, brand: 'Eukanuba', category: 'dog', price_rsd: 3100, stock: 10, image: 'https://placehold.co/300x300/3498db/white?text=Eukanuba', description: { ru: 'Сбалансированный корм для взрослых собак средних пород. Поддерживает здоровье зубов и суставов.', sr: 'Избалансирана храна за одрасле псе средњих раса. Подржава здравље зуба и зглобова.', en: 'Balanced food for adult medium breed dogs. Supports dental and joint health.' }, attributes: { weight: { ru: '2.5 кг', sr: '2.5 кг', en: '2.5 kg' }, food_type: { ru: 'Сухой', sr: 'Сува', en: 'Dry' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 10, name: { sr: 'Сува храна за псе Josera MiniWell', ru: 'Сухой корм для собак Josera MiniWell', en: 'Josera MiniWell dry dog food' }, brand: 'Josera', category: 'dog', price_rsd: 2700, stock: 11, image: 'https://placehold.co/300x300/1abc9c/white?text=Josera', description: { ru: 'Корм для собак мелких пород с высоким содержанием белка и оптимальной калорийностью.', sr: 'Храна за псе малих раса са високим садржајем протеина и оптималном калоријском вредношћу.', en: 'Food for small breed dogs with high protein content and optimal calorie density.' }, attributes: { weight: { ru: '2 кг', sr: '2 кг', en: '2 kg' }, food_type: { ru: 'Сухой', sr: 'Сува', en: 'Dry' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 11, name: { sr: 'Влажна храна за псе Applaws Adult', ru: 'Влажный корм для собак Applaws Adult', en: 'Applaws Adult wet dog food' }, brand: 'Applaws', category: 'dog', price_rsd: 1800, stock: 15, image: 'https://placehold.co/300x300/27ae60/white?text=Applaws', description: { ru: 'Влажный корм с курицей в собственном соку, без злаков и искусственных добавок.', sr: 'Влажна храна са пилетином у сопственом соку, без житарица и вештачких додатака.', en: 'Wet food with chicken in its own juice, grain-free and no artificial additives.' }, attributes: { weight: { ru: '400 г', sr: '400 г', en: '400 g' }, food_type: { ru: 'Влажный', sr: 'Влажна', en: 'Wet' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 12, name: { sr: 'Влажна храна за псе Almo Nature Dog', ru: 'Влажный корм для собак Almo Nature', en: 'Almo Nature wet dog food' }, brand: 'Almo Nature', category: 'dog', price_rsd: 1500, stock: 14, image: 'https://placehold.co/300x300/e74c3c/white?text=Almo', description: { ru: 'Натуральный влажный корм с говядиной, без консервантов и красителей.', sr: 'Природна влажна храна са говедином, без конзерванса и боја.', en: 'Natural wet food with beef, no preservatives or colorings.' }, attributes: { weight: { ru: '400 г', sr: '400 г', en: '400 g' }, food_type: { ru: 'Влажный', sr: 'Влажна', en: 'Wet' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 13, name: { sr: 'Сува храна за псе Carnilove Venison', ru: 'Сухой корм для собак Carnilove Venison', en: 'Carnilove Venison dry dog food' }, brand: 'Carnilove', category: 'dog', price_rsd: 5000, stock: 4, image: 'https://placehold.co/300x300/9b59b6/white?text=Carnilove', description: { ru: 'Беззерновой корм с олениной, обогащённый ягодами и зеленью для здоровья мочевыводящей системы.', sr: 'Храна без житарица са јеленетином, обогаћена бобицама и зељењем за здравље мокраћног система.', en: 'Grain-free food with venison, enriched with berries and herbs for urinary health.' }, attributes: { weight: { ru: '2.5 кг', sr: '2.5 кг', en: '2.5 kg' }, food_type: { ru: 'Сухой', sr: 'Сува', en: 'Dry' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 14, name: { sr: 'Ветеринарска храна за псе Pro Plan Veterinary Diets', ru: 'Ветеринарный корм для собак Pro Plan Veterinary Diets', en: 'Pro Plan Veterinary Diets dog food' }, brand: 'Pro Plan', category: 'dog', price_rsd: 7800, stock: 2, image: 'https://placehold.co/300x300/f1c40f/black?text=ProPlan', description: { ru: 'Специализированный ветеринарный корм для собак с заболеваниями ЖКТ. Назначается врачом.', sr: 'Специјализована ветеринарска храна за псе са болестима пробавног система. Преписује ветеринар.', en: 'Specialized veterinary food for dogs with gastrointestinal disorders. Prescribed by a vet.' }, attributes: { weight: { ru: '3 кг', sr: '3 кг', en: '3 kg' }, food_type: { ru: 'Сухой', sr: 'Сува', en: 'Dry' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 15, name: { sr: 'Ветеринарска храна за псе Hill\'s Prescription Diet', ru: 'Ветеринарный корм для собак Hill\'s Prescription Diet', en: 'Hill\'s Prescription Diet dog food' }, brand: 'Hill\'s', category: 'dog', price_rsd: 7000, stock: 3, image: 'https://placehold.co/300x300/2c3e50/white?text=Hills+Rx', description: { ru: 'Ветеринарный корм для поддержки суставов и опорно-двигательного аппарата у собак.', sr: 'Ветеринарска храна за подршку зглобова и коштано-мишићног система паса.', en: 'Veterinary food for joint and musculoskeletal support in dogs.' }, attributes: { weight: { ru: '3 кг', sr: '3 кг', en: '3 kg' }, food_type: { ru: 'Сухой', sr: 'Сува', en: 'Dry' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+
+    // ===== КОШКИ =====
+    { id: 16, name: { sr: 'Влажна храна за мачке Royal Canin Instinctive', ru: 'Влажный корм для кошек Royal Canin Instinctive', en: 'Royal Canin Instinctive wet cat food' }, brand: 'Royal Canin', category: 'cat', price_rsd: 1750, stock: 8, image: 'https://placehold.co/300x300/e67e22/white?text=RC+Instinct', description: { ru: 'Влажный корм в соусе для взрослых кошек. Идеальный баланс для здоровья кожи и шерсти.', sr: 'Влажна храна у соса за одрасле мачке. Идеалан баланс за здравље коже и длаке.', en: 'Wet food in gravy for adult cats. Ideal balance for skin and coat health.' }, attributes: { weight: { ru: '85 г', sr: '85 г', en: '85 g' }, food_type: { ru: 'Влажный', sr: 'Влажна', en: 'Wet' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 17, name: { sr: 'Ветеринарска храна за мачке Hill\'s Prescription', ru: 'Ветеринарный корм для кошек Hill\'s Prescription', en: 'Hill\'s Prescription cat food' }, brand: 'Hill\'s', category: 'cat', price_rsd: 5600, stock: 2, image: 'https://placehold.co/300x300/2980b9/white?text=Hills+Cat', description: { ru: 'Ветеринарный корм для кошек с чувствительным пищеварением, назначается врачом.', sr: 'Ветеринарска храна за мачке са осетљивом пробавом, преписује ветеринар.', en: 'Veterinary food for cats with sensitive digestion, prescribed by a vet.' }, attributes: { weight: { ru: '1.5 кг', sr: '1.5 кг', en: '1.5 kg' }, food_type: { ru: 'Сухой', sr: 'Сува', en: 'Dry' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 18, name: { sr: 'Посластице за мачке Dreamies', ru: 'Лакомства для кошек Dreamies', en: 'Dreamies cat treats' }, brand: 'Dreamies', category: 'cat', price_rsd: 750, stock: 20, image: 'https://placehold.co/300x300/8e44ad/white?text=Dreamies', description: { ru: 'Хрустящие лакомства с начинкой, которые обожают кошки. Идеальны для поощрения.', sr: 'Хрскаве посластице са пуњењем које мачке обожавају. Идеалне за награђивање.', en: 'Crunchy treats with a filling that cats love. Perfect for rewarding.' }, attributes: { weight: { ru: '60 г', sr: '60 г', en: '60 g' }, food_type: { ru: 'Лакомство', sr: 'Посластица', en: 'Treat' }, age: { ru: 'Для всех возрастов', sr: 'За све узрасте', en: 'All ages' } } },
+    { id: 19, name: { sr: 'Сува храна за мачке Acana Pacifica', ru: 'Сухой корм для кошек Acana Pacifica', en: 'Acana Pacifica dry cat food' }, brand: 'Acana', category: 'cat', price_rsd: 3200, stock: 6, image: 'https://placehold.co/300x300/3d7e5c/white?text=Acana+Cat', description: { ru: 'Беззерновой корм с тихоокеанской рыбой. Богат Омега-3 для здоровья кожи и шерсти.', sr: 'Храна без житарица са пацифичком рибом. Богата Омега-3 за здравље коже и длаке.', en: 'Grain-free food with Pacific fish. Rich in Omega-3 for skin and coat health.' }, attributes: { weight: { ru: '2 кг', sr: '2 кг', en: '2 kg' }, food_type: { ru: 'Сухой', sr: 'Сува', en: 'Dry' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 20, name: { sr: 'Сува храна за мачке Royal Canin Sterilised', ru: 'Сухой корм для кошек Royal Canin Sterilised', en: 'Royal Canin Sterilised dry cat food' }, brand: 'Royal Canin', category: 'cat', price_rsd: 3600, stock: 9, image: 'https://placehold.co/300x300/e67e22/white?text=RC+Sterilised', description: { ru: 'Сухой корм для стерилизованных кошек. Контролирует вес и поддерживает здоровье мочевыводящей системы.', sr: 'Сува храна за стерилисане мачке. Контролише тежину и подржава здравље мокраћног система.', en: 'Dry food for sterilized cats. Controls weight and supports urinary health.' }, attributes: { weight: { ru: '2 кг', sr: '2 кг', en: '2 kg' }, food_type: { ru: 'Сухой', sr: 'Сува', en: 'Dry' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 21, name: { sr: 'Сува храна за мачке Farmina N&D Pumpkin', ru: 'Сухой корм для кошек Farmina N&D Pumpkin', en: 'Farmina N&D Pumpkin dry cat food' }, brand: 'Farmina', category: 'cat', price_rsd: 4400, stock: 5, image: 'https://placehold.co/300x300/e67e22/white?text=Farmina+Cat', description: { ru: 'Беззерновой корм с тыквой и курицей, для здорового пищеварения и иммунитета.', sr: 'Храна без житарица са бундевом и пилетином, за здраво варење и имунитет.', en: 'Grain-free food with pumpkin and chicken, for healthy digestion and immunity.' }, attributes: { weight: { ru: '2 кг', sr: '2 кг', en: '2 kg' }, food_type: { ru: 'Сухой', sr: 'Сува', en: 'Dry' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 22, name: { sr: 'Сува храна за мачке Orijen Cat & Kitten', ru: 'Сухой корм для кошек Orijen Cat & Kitten', en: 'Orijen Cat & Kitten dry cat food' }, brand: 'Orijen', category: 'cat', price_rsd: 5200, stock: 4, image: 'https://placehold.co/300x300/8e44ad/white?text=Orijen+Cat', description: { ru: 'Биологически соответствующий корм для кошек всех возрастов, с высоким содержанием мяса (90%).', sr: 'Биолошки одговарајућа храна за мачке свих узраста, са високим садржајем меса (90%).', en: 'Biologically appropriate food for cats of all ages, with high meat content (90%).' }, attributes: { weight: { ru: '2 кг', sr: '2 кг', en: '2 kg' }, food_type: { ru: 'Сухой', sr: 'Сува', en: 'Dry' }, age: { ru: 'Для всех возрастов', sr: 'За све узрасте', en: 'All ages' } } },
+    { id: 23, name: { sr: 'Сува храна за мачке Brit Care Sterilised', ru: 'Сухой корм для кошек Brit Care Sterilised', en: 'Brit Care Sterilised dry cat food' }, brand: 'Brit', category: 'cat', price_rsd: 3400, stock: 7, image: 'https://placehold.co/300x300/16a085/white?text=Brit+Cat', description: { ru: 'Сухой корм для стерилизованных кошек, с пониженным содержанием жира и L-карнитином.', sr: 'Сува храна за стерилисане мачке, са смањеним садржајем масти и L-карнитином.', en: 'Dry food for sterilized cats, with reduced fat and L-carnitine.' }, attributes: { weight: { ru: '2 кг', sr: '2 кг', en: '2 kg' }, food_type: { ru: 'Сухой', sr: 'Сува', en: 'Dry' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 24, name: { sr: 'Влажна храна за мачке Monge Fresh', ru: 'Влажный корм для кошек Monge Fresh', en: 'Monge Fresh wet cat food' }, brand: 'Monge', category: 'cat', price_rsd: 1400, stock: 12, image: 'https://placehold.co/300x300/2980b9/white?text=Monge+Cat', description: { ru: 'Влажный корм в паучах, без злаков, с курицей и натуральными ингредиентами.', sr: 'Влажна храна у паучама, без житарица, са пилетином и природним састојцима.', en: 'Wet food in pouches, grain-free, with chicken and natural ingredients.' }, attributes: { weight: { ru: '100 г', sr: '100 г', en: '100 g' }, food_type: { ru: 'Влажный', sr: 'Влажна', en: 'Wet' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 25, name: { sr: 'Влажна храна за мачке Almo Nature Wet', ru: 'Влажный корм для кошек Almo Nature', en: 'Almo Nature wet cat food' }, brand: 'Almo Nature', category: 'cat', price_rsd: 1600, stock: 14, image: 'https://placehold.co/300x300/e74c3c/white?text=Almo+Cat', description: { ru: 'Натуральный влажный корм с тунцом в желе, без консервантов.', sr: 'Природна влажна храна са туном у желатину, без конзерванса.', en: 'Natural wet food with tuna in jelly, no preservatives.' }, attributes: { weight: { ru: '85 г', sr: '85 г', en: '85 g' }, food_type: { ru: 'Влажный', sr: 'Влажна', en: 'Wet' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 26, name: { sr: 'Влажна храна за мачке Applaws Cat', ru: 'Влажный корм для кошек Applaws', en: 'Applaws wet cat food' }, brand: 'Applaws', category: 'cat', price_rsd: 1700, stock: 11, image: 'https://placehold.co/300x300/27ae60/white?text=Applaws+Cat', description: { ru: 'Влажный корм с куриной грудкой в бульоне, натуральный и без злаков.', sr: 'Влажна храна са пилећим прсима у буљону, природна и без житарица.', en: 'Wet food with chicken breast in broth, natural and grain-free.' }, attributes: { weight: { ru: '85 г', sr: '85 г', en: '85 g' }, food_type: { ru: 'Влажный', sr: 'Влажна', en: 'Wet' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 27, name: { sr: 'Влажна храна за мачке Leonardo', ru: 'Влажный корм для кошек Leonardo', en: 'Leonardo wet cat food' }, brand: 'Leonardo', category: 'cat', price_rsd: 1900, stock: 10, image: 'https://placehold.co/300x300/9b59b6/white?text=Leonardo', description: { ru: 'Влажный корм премиум-класса с говядиной и курицей, без ГМО и злаков.', sr: 'Влажна храна премиум класе са говедином и пилетином, без ГМО и житарица.', en: 'Premium wet food with beef and chicken, non-GMO and grain-free.' }, attributes: { weight: { ru: '85 г', sr: '85 г', en: '85 g' }, food_type: { ru: 'Влажный', sr: 'Влажна', en: 'Wet' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 28, name: { sr: 'Сува храна за мачке Perfect Fit Adult', ru: 'Сухой корм для кошек Perfect Fit Adult', en: 'Perfect Fit Adult dry cat food' }, brand: 'Perfect Fit', category: 'cat', price_rsd: 2600, stock: 13, image: 'https://placehold.co/300x300/f39c12/white?text=Perfect+Fit', description: { ru: 'Сбалансированный сухой корм для взрослых кошек, поддерживает здоровье мочевыводящей системы.', sr: 'Избалансирана сува храна за одрасле мачке, подржава здравље мокраћног система.', en: 'Balanced dry food for adult cats, supports urinary health.' }, attributes: { weight: { ru: '2 кг', sr: '2 кг', en: '2 kg' }, food_type: { ru: 'Сухой', sr: 'Сува', en: 'Dry' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 29, name: { sr: 'Влажна храна за мачке Kitekat', ru: 'Влажный корм для кошек Kitekat', en: 'Kitekat wet cat food' }, brand: 'Kitekat', category: 'cat', price_rsd: 800, stock: 25, image: 'https://placehold.co/300x300/f1c40f/black?text=Kitekat', description: { ru: 'Бюджетный влажный корм в соусе, с курицей и овощами, для повседневного кормления.', sr: 'Буџетска влажна храна у соса, са пилетином и поврћем, за свакодневно храњење.', en: 'Budget wet food in gravy, with chicken and vegetables, for everyday feeding.' }, attributes: { weight: { ru: '100 г', sr: '100 г', en: '100 g' }, food_type: { ru: 'Влажный', sr: 'Влажна', en: 'Wet' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } },
+    { id: 30, name: { sr: 'Сува храна за мачке Whiskas Adult', ru: 'Сухой корм для кошек Whiskas Adult', en: 'Whiskas Adult dry cat food' }, brand: 'Whiskas', category: 'cat', price_rsd: 2200, stock: 18, image: 'https://placehold.co/300x300/e67e22/white?text=Whiskas', description: { ru: 'Сухой корм для взрослых кошек, с курицей и злаками, содержит витамины и минералы.', sr: 'Сува храна за одрасле мачке, са пилетином и житарицама, садржи витамине и минерале.', en: 'Dry food for adult cats, with chicken and grains, contains vitamins and minerals.' }, attributes: { weight: { ru: '2 кг', sr: '2 кг', en: '2 kg' }, food_type: { ru: 'Сухой', sr: 'Сува', en: 'Dry' }, age: { ru: 'Взрослый', sr: 'Одрасли', en: 'Adult' } } }
+];
+
+// ------ 3. СОСТОЯНИЕ ------
+let state = {
+    currentLang: 'ru',
+    currentCurrency: 'RSD',
+    exchangeRate: 1.0,
+    cart: [],
+    user: null,
+};
+
+function loadUser() {
+    const saved = localStorage.getItem('zooUser');
+    if (saved) {
+        try { state.user = JSON.parse(saved); return true; } catch(e) {}
+    }
+    return false;
+}
+function saveUser() {
+    if (state.user) {
+        localStorage.setItem('zooUser', JSON.stringify(state.user));
+    } else {
+        localStorage.removeItem('zooUser');
+    }
+}
+
+// ------ 4. ВСПОМОГАТЕЛЬНЫЕ ------
+function getTranslation(key) {
+    return CONFIG.i18n[state.currentLang][key] || key;
+}
+function getProductName(product) {
+    return product.name[state.currentLang] || product.name.ru;
+}
+function getDescription(product) {
+    return product.description ? (product.description[state.currentLang] || product.description.ru) : '';
+}
+function getAttrValue(product, attrKey) {
+    if (product.attributes && product.attributes[attrKey]) {
+        return product.attributes[attrKey][state.currentLang] || product.attributes[attrKey].ru;
+    }
+    return '';
+}
+function formatPrice(priceRsd) {
+    const rate = CONFIG.currencies[state.currentLang].rate;
+    const code = CONFIG.currencies[state.currentLang].code;
+    const converted = priceRsd / rate;
+    return `${converted.toFixed(2)} ${code}`;
+}
+function calculateTotal() {
+    return state.cart.reduce((sum, item) => sum + item.price_rsd * item.quantity, 0);
+}
+function getCartItemCount() {
+    return state.cart.reduce((sum, item) => sum + item.quantity, 0);
+}
+
+// ------ 5. РЕНДЕРИНГ ------
+function renderCatalog() {
+    const grid = document.getElementById('productGrid');
+    const petFilter = document.getElementById('filterPet').value;
+    const brandFilter = document.getElementById('filterBrand').value;
+    const priceMax = parseInt(document.getElementById('filterPriceMax').value) || Infinity;
+    const searchQuery = document.getElementById('searchInput').value.toLowerCase().trim();
+
+    let filtered = PRODUCTS.filter(p => {
+        if (petFilter && p.category !== petFilter) return false;
+        if (brandFilter && p.brand !== brandFilter) return false;
+        if (p.price_rsd > priceMax) return false;
+        if (searchQuery) {
+            const name = getProductName(p).toLowerCase();
+            if (!name.includes(searchQuery)) return false;
+        }
+        return true;
+    });
+
+    if (filtered.length === 0) {
+        grid.innerHTML = `<p style="grid-column:1/-1; text-align:center; padding:40px 0; color:var(--text-secondary);">${getTranslation('no_products')}</p>`;
+        return;
+    }
+
+    let html = '';
+    filtered.forEach(p => {
+        const name = getProductName(p);
+        const stockLabel = p.stock > 0 ? getTranslation('in_stock') : getTranslation('out_of_stock');
+        const addLabel = getTranslation('add_to_cart');
+        html += `
+            <div class="product-card" data-id="${p.id}">
+                <img src="${p.image}" alt="${name}" loading="lazy">
+                <h3>${name}</h3>
+                <div class="brand">${p.brand}</div>
+                <div class="price">${formatPrice(p.price_rsd)}</div>
+                <div class="stock">${stockLabel} (${p.stock})</div>
+                <button class="add-to-cart" data-id="${p.id}">${addLabel}</button>
+            </div>
+        `;
+    });
+    grid.innerHTML = html;
+
+    grid.querySelectorAll('.product-card').forEach(card => {
+        card.addEventListener('click', function(e) {
+            if (e.target.classList.contains('add-to-cart')) return;
+            const id = parseInt(this.dataset.id);
+            openProductDetail(id);
+        });
+    });
+    grid.querySelectorAll('.add-to-cart').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const id = parseInt(this.dataset.id);
+            addToCart(id, 1);
+        });
+    });
+}
+
+function renderModalCart() {
+    const container = document.getElementById('cartItemsModal');
+    const totalEl = document.getElementById('totalPriceModal');
+    if (!container) return;
+
+    if (state.cart.length === 0) {
+        container.innerHTML = `<p style="color:var(--text-secondary); text-align:center; padding:20px 0;">${getTranslation('cart_empty')}</p>`;
+        totalEl.textContent = formatPrice(0);
+        return;
+    }
+
+    let html = '';
+    state.cart.forEach(item => {
+        const product = PRODUCTS.find(p => p.id === item.productId);
+        if (!product) return;
+        const name = getProductName(product);
+        html += `
+            <div class="cart-item" style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--border-color);">
+                <div style="flex:1;">
+                    <h4 style="font-weight:500; font-size:15px;">${name}</h4>
+                    <p style="color:var(--text-secondary); font-size:13px;">${item.quantity} × ${formatPrice(product.price_rsd)}</p>
+                </div>
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <span style="font-weight:600;">${formatPrice(product.price_rsd * item.quantity)}</span>
+                    <button class="cart-item-remove" data-id="${item.productId}" aria-label="Удалить">✕</button>
+                </div>
+            </div>
+        `;
+    });
+    container.innerHTML = html;
+    totalEl.textContent = formatPrice(calculateTotal());
+
+    container.querySelectorAll('.cart-item-remove').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const id = parseInt(this.dataset.id);
+            removeFromCart(id);
+        });
+    });
+}
+
+function renderUserArea() {
+    const area = document.getElementById('userArea');
+    if (!area) return;
+    if (state.user) {
+        const initial = (state.user.firstName || 'U')[0].toUpperCase();
+        area.innerHTML = `
+            <div class="user-area" id="profileBtn" title="Личный кабинет">
+                <div class="avatar">${initial}</div>
+                <span class="user-name">${state.user.firstName || 'User'}</span>
+            </div>
+        `;
+        document.getElementById('profileBtn').addEventListener('click', openProfileModal);
+    } else {
+        area.innerHTML = `
+            <button class="login-btn" id="loginBtn" data-i18n="login_btn">Войти</button>
+        `;
+        document.getElementById('loginBtn').addEventListener('click', openAuthModal);
+    }
+}
+
+function updateUItexts() {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        el.textContent = getTranslation(key);
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        el.placeholder = getTranslation(key);
+    });
+    document.title = `ZooPet — ${getTranslation('search_placeholder')?.replace('...','') || 'зоомагазин'}`;
+}
+
+function updateCartBadge() {
+    const badge = document.getElementById('cartBadge');
+    if (badge) {
+        const count = getCartItemCount();
+        badge.textContent = count;
+    }
+}
+
+function renderAll() {
+    renderCatalog();
+    renderModalCart();
+    renderUserArea();
+    updateUItexts();
+    updateCartBadge();
+}
+
+// ------ 6. УПРАВЛЕНИЕ КОРЗИНОЙ ------
+function addToCart(productId, delta = 1) {
+    const existing = state.cart.find(item => item.productId === productId);
+    if (existing) {
+        existing.quantity = Math.max(0, existing.quantity + delta);
+        if (existing.quantity === 0) {
+            state.cart = state.cart.filter(item => item.productId !== productId);
+        }
+    } else {
+        if (delta > 0) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (product) {
+                state.cart.push({ productId, quantity: 1, price_rsd: product.price_rsd });
+            }
+        }
+    }
+    renderAll();
+}
+
+function removeFromCart(productId) {
+    state.cart = state.cart.filter(item => item.productId !== productId);
+    renderAll();
+    showToast('🗑️ Товар удалён из корзины');
+}
+
+// ------ 7. МОДАЛЬНЫЕ ОКНА ------
+function openModal(id) {
+    document.getElementById(id).classList.add('open');
+}
+function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+}
+
+// ------ 8. КАРТОЧКА ТОВАРА ------
+function openProductDetail(productId) {
+    const product = PRODUCTS.find(p => p.id === productId);
+    if (!product) return;
+
+    const container = document.getElementById('productDetail');
+    const name = getProductName(product);
+    const desc = getDescription(product);
+    const stockLabel = product.stock > 0 ? getTranslation('in_stock') : getTranslation('out_of_stock');
+    const addLabel = getTranslation('add_to_cart');
+    const weight = getAttrValue(product, 'weight');
+    const foodType = getAttrValue(product, 'food_type');
+    const age = getAttrValue(product, 'age');
+
+    container.innerHTML = `
+        <img class="detail-image" src="${product.image}" alt="${name}">
+        <div class="detail-header">
+            <div>
+                <div class="detail-title">${name}</div>
+                <div class="detail-brand">${product.brand}</div>
+            </div>
+            <div class="detail-price">${formatPrice(product.price_rsd)}</div>
+        </div>
+        <div class="detail-stock">${stockLabel} (${product.stock} шт.)</div>
+        <div class="detail-description">${desc}</div>
+        <div class="detail-attributes">
+            <div class="attr-item"><span class="attr-label">${getTranslation('weight')}</span><span class="attr-value">${weight}</span></div>
+            <div class="attr-item"><span class="attr-label">${getTranslation('food_type')}</span><span class="attr-value">${foodType}</span></div>
+            <div class="attr-item"><span class="attr-label">${getTranslation('age')}</span><span class="attr-value">${age}</span></div>
+        </div>
+        <button class="btn btn-primary detail-add-btn" data-id="${product.id}">${addLabel}</button>
+    `;
+
+    container.querySelector('.detail-add-btn').addEventListener('click', function() {
+        const id = parseInt(this.dataset.id);
+        addToCart(id, 1);
+    });
+
+    openModal('productModal');
+}
+
+document.getElementById('productCloseBtn').addEventListener('click', function() {
+    closeModal('productModal');
+});
+document.getElementById('productModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal('productModal');
+});
+
+// ------ 9. АВТОРИЗАЦИЯ ------
+function openAuthModal() {
+    document.getElementById('loginStatus').textContent = '';
+    document.getElementById('registerStatus').textContent = '';
+    document.querySelectorAll('#authTabs button').forEach(b => b.classList.remove('active'));
+    document.querySelector('[data-tab="login"]').classList.add('active');
+    document.querySelectorAll('#authModal .tab-content').forEach(t => t.classList.remove('active'));
+    document.getElementById('tabLogin').classList.add('active');
+    openModal('authModal');
+}
+
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value.trim();
+    const saved = localStorage.getItem('zooUser');
+    if (saved) {
+        try {
+            const user = JSON.parse(saved);
+            if (user.email === email && user.password === password) {
+                state.user = user;
+                saveUser();
+                closeModal('authModal');
+                renderAll();
+                showToast(getTranslation('toast_login'));
+                return;
+            }
+        } catch(e) {}
+    }
+    document.getElementById('loginStatus').textContent = getTranslation('login_failed');
+});
+
+document.getElementById('registerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('regEmail').value.trim();
+    const firstName = document.getElementById('regFirstName').value.trim();
+    const lastName = document.getElementById('regLastName').value.trim();
+    const phone = document.getElementById('regPhone').value.trim();
+    const password = document.getElementById('regPassword').value;
+    const consent = document.getElementById('consentPd').checked;
+
+    if (!consent) {
+        document.getElementById('registerStatus').textContent = getTranslation('consent_required');
+        return;
+    }
+    const phoneRegex = /^\+381[6][0-9]{7,8}$/;
+    if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
+        document.getElementById('registerStatus').textContent = getTranslation('phone_invalid');
+        return;
+    }
+
+    const newUser = {
+        id: Date.now(),
+        email,
+        firstName,
+        lastName,
+        phone,
+        password,
+        addresses: [],
+        pets: []
+    };
+    localStorage.setItem('zooUser', JSON.stringify(newUser));
+    state.user = newUser;
+    closeModal('authModal');
+    renderAll();
+    showToast(getTranslation('toast_success'));
+});
+
+document.querySelectorAll('#authTabs button').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const tab = this.dataset.tab;
+        document.querySelectorAll('#authTabs button').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        document.querySelectorAll('#authModal .tab-content').forEach(t => t.classList.remove('active'));
+        document.getElementById('tab' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('active');
+        document.getElementById('loginStatus').textContent = '';
+        document.getElementById('registerStatus').textContent = '';
+    });
+});
+
+document.getElementById('authCloseBtn').addEventListener('click', function() {
+    closeModal('authModal');
+});
+document.getElementById('authModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal('authModal');
+});
+
+// ------ 10. ПРОФИЛЬ ------
+function openProfileModal() {
+    if (!state.user) return;
+    document.getElementById('profFirstName').value = state.user.firstName || '';
+    document.getElementById('profLastName').value = state.user.lastName || '';
+    document.getElementById('profPhone').value = state.user.phone || '';
+    document.getElementById('profEmail').value = state.user.email || '';
+    renderProfileAddresses();
+    renderProfilePets();
+    document.getElementById('profileStatus').textContent = '';
+    document.getElementById('addAddressForm').classList.remove('open');
+    document.getElementById('addPetForm').classList.remove('open');
+    openModal('profileModal');
+}
+
+function renderProfileAddresses() {
+    const container = document.getElementById('profileAddresses');
+    container.innerHTML = '';
+    if (!state.user || !state.user.addresses) return;
+    state.user.addresses.forEach((addr, index) => {
+        const div = document.createElement('div');
+        div.className = 'address-card';
+        const badge = addr.isPrimary ? getTranslation('address_primary') : getTranslation('address_secondary');
+        div.innerHTML = `
+            <div style="flex:1;">
+                <strong>${addr.street}, ${addr.city}</strong>
+                <span class="primary-badge">${badge}</span>
+                <br><small>${addr.postal}</small>
+            </div>
+            <button class="remove-address" data-index="${index}" style="background:none; border:none; color:#c0392b; font-size:20px; cursor:pointer;">✕</button>
+        `;
+        container.appendChild(div);
+    });
+    container.querySelectorAll('.remove-address').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const idx = parseInt(this.dataset.index);
+            state.user.addresses.splice(idx, 1);
+            saveUser();
+            renderProfileAddresses();
+        });
+    });
+}
+
+function renderProfilePets() {
+    const container = document.getElementById('profilePets');
+    container.innerHTML = '';
+    if (!state.user || !state.user.pets) return;
+    state.user.pets.forEach((pet, index) => {
+        const div = document.createElement('div');
+        div.className = 'profile-item';
+        div.innerHTML = `
+            <div style="flex:1;">
+                <strong>${pet.name}</strong> (${pet.type || ''}) ${pet.birthday ? '— ' + pet.birthday : ''}
+            </div>
+            <button class="item-remove" data-index="${index}">✕</button>
+        `;
+        container.appendChild(div);
+    });
+    container.querySelectorAll('.item-remove').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const idx = parseInt(this.dataset.index);
+            state.user.pets.splice(idx, 1);
+            saveUser();
+            renderProfilePets();
+        });
+    });
+}
+
+document.getElementById('showAddressFormBtn').addEventListener('click', function() {
+    document.getElementById('addAddressForm').classList.toggle('open');
+});
+document.getElementById('cancelAddressBtn').addEventListener('click', function() {
+    document.getElementById('addAddressForm').classList.remove('open');
+});
+document.getElementById('saveAddressBtn').addEventListener('click', function() {
+    const street = document.getElementById('addrStreet').value.trim();
+    const city = document.getElementById('addrCity').value.trim();
+    const postal = document.getElementById('addrPostal').value.trim();
+    if (!street || !city || !postal) {
+        showToast('Заполните все поля');
+        return;
+    }
+    if (!state.user) return;
+    if (!state.user.addresses) state.user.addresses = [];
+    const isPrimary = state.user.addresses.length === 0;
+    state.user.addresses.push({ street, city, postal, isPrimary });
+    saveUser();
+    renderProfileAddresses();
+    document.getElementById('addAddressForm').classList.remove('open');
+    showToast(getTranslation('toast_profile_saved'));
+});
+
+document.getElementById('showPetFormBtn').addEventListener('click', function() {
+    document.getElementById('addPetForm').classList.toggle('open');
+});
+document.getElementById('cancelPetBtn').addEventListener('click', function() {
+    document.getElementById('addPetForm').classList.remove('open');
+});
+document.getElementById('savePetBtn').addEventListener('click', function() {
+    const name = document.getElementById('petName').value.trim();
+    const type = document.getElementById('petType').value.trim();
+    const birthday = document.getElementById('petBirthday').value;
+    if (!name) {
+        showToast('Введите имя питомца');
+        return;
+    }
+    if (!state.user) return;
+    if (!state.user.pets) state.user.pets = [];
+    state.user.pets.push({ name, type, birthday });
+    saveUser();
+    renderProfilePets();
+    document.getElementById('addPetForm').classList.remove('open');
+    showToast(getTranslation('toast_profile_saved'));
+});
+
+document.getElementById('profileForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    state.user.firstName = document.getElementById('profFirstName').value.trim();
+    state.user.lastName = document.getElementById('profLastName').value.trim();
+    state.user.phone = document.getElementById('profPhone').value.trim();
+    saveUser();
+    document.getElementById('profileStatus').textContent = getTranslation('toast_profile_saved');
+    showToast(getTranslation('toast_profile_saved'));
+    renderUserArea();
+});
+
+document.getElementById('profileCloseBtn').addEventListener('click', function() {
+    closeModal('profileModal');
+});
+document.getElementById('profileModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal('profileModal');
+});
+
+// ------ 11. ОФОРМЛЕНИЕ ЗАКАЗА ------
+function openCheckoutModal() {
+    if (state.cart.length === 0) {
+        showToast(getTranslation('cart_empty'));
+        return;
+    }
+    renderCheckoutAddresses();
+    document.getElementById('checkoutTotal').textContent = formatPrice(calculateTotal());
+    document.getElementById('checkoutStatus').textContent = '';
+    openModal('checkoutModal');
+}
+
+function renderCheckoutAddresses() {
+    const container = document.getElementById('checkoutAddresses');
+    container.innerHTML = '';
+    const addresses = state.user ? state.user.addresses : [];
+    if (addresses.length === 0) {
+        container.innerHTML = `<p style="color:var(--text-secondary);">${getTranslation('no_addresses')}</p>`;
+        return;
+    }
+    addresses.forEach(addr => {
+        const div = document.createElement('div');
+        div.className = 'address-card';
+        const badge = addr.isPrimary ? getTranslation('address_primary') : getTranslation('address_secondary');
+        div.innerHTML = `
+            <input type="radio" name="checkoutAddress" value="${addr.id}" ${addr.isPrimary ? 'checked' : ''}>
+            <div>
+                <strong>${addr.street}, ${addr.city}</strong>
+                <span class="primary-badge">${badge}</span>
+                <br><small>${addr.postal}</small>
+            </div>
+        `;
+        container.appendChild(div);
+    });
+}
+
+document.getElementById('checkoutAddAddressBtn').addEventListener('click', function() {
+    if (!state.user) {
+        showToast('Сначала войдите в аккаунт');
+        return;
+    }
+    closeModal('checkoutModal');
+    openProfileModal();
+    document.getElementById('addAddressForm').classList.add('open');
+});
+
+document.getElementById('confirmOrderBtn').addEventListener('click', function() {
+    if (state.cart.length === 0) {
+        showToast(getTranslation('cart_empty'));
+        return;
+    }
+    const selectedRadio = document.querySelector('input[name="checkoutAddress"]:checked');
+    if (!selectedRadio) {
+        document.getElementById('checkoutStatus').textContent = '⚠️ Выберите адрес доставки';
+        return;
+    }
+    const addrId = parseInt(selectedRadio.value);
+    const address = state.user.addresses.find(a => a.id === addrId);
+    const delivery = document.getElementById('deliveryMethod').value;
+    const payment = document.getElementById('paymentMethod').value;
+    closeModal('checkoutModal');
+    state.cart = [];
+    renderAll();
+    showToast(getTranslation('toast_order'));
+});
+
+document.getElementById('checkoutBtnModal').addEventListener('click', openCheckoutModal);
+document.getElementById('checkoutCloseBtn').addEventListener('click', function() {
+    closeModal('checkoutModal');
+});
+document.getElementById('checkoutModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal('checkoutModal');
+});
+
+// ------ 12. КОРЗИНА ------
+document.getElementById('cartOpenBtn').addEventListener('click', function() {
+    openModal('cartModal');
+    renderModalCart();
+});
+document.getElementById('cartCloseBtn').addEventListener('click', function() {
+    closeModal('cartModal');
+});
+document.getElementById('cartModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal('cartModal');
+});
+
+// ------ 13. ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА, ФИЛЬТРЫ, ПОИСК ------
+document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const lang = this.getAttribute('data-lang');
+        if (lang === state.currentLang) return;
+        state.currentLang = lang;
+        state.currentCurrency = CONFIG.currencies[lang].code;
+        state.exchangeRate = CONFIG.currencies[lang].rate;
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        renderAll();
+        showToast(`🌐 ${lang.toUpperCase()}, ${state.currentCurrency}`);
+    });
+});
+
+document.getElementById('applyFilters').addEventListener('click', renderCatalog);
+
+let searchTimeout;
+document.getElementById('searchInput').addEventListener('input', function() {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(renderCatalog, 300);
+});
+
+// ------ 14. ТОСТ ------
+let toastTimeout;
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
+}
+
+// ------ 15. ИНИЦИАЛИЗАЦИЯ ------
+function init() {
+    const savedLang = localStorage.getItem('zooLang') || 'ru';
+    state.currentLang = savedLang;
+    state.currentCurrency = CONFIG.currencies[savedLang].code;
+    state.exchangeRate = CONFIG.currencies[savedLang].rate;
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === savedLang);
+    });
+
+    loadUser();
+    renderAll();
+
+    window.addEventListener('beforeunload', function() {
+        localStorage.setItem('zooLang', state.currentLang);
+    });
+
+    console.log('🐾 ZooPet с 30 товарами загружен!');
+    console.log('Пользователь:', state.user ? state.user.email : 'не авторизован');
+}
+
+init();
+</script>
+</body>
+</html>
