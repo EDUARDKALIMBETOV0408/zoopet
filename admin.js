@@ -107,7 +107,6 @@ function closeAddProductModal() {
     const modal = document.getElementById('addProductModal');
     if (modal) {
         modal.classList.remove('open');
-        // очищаем статус
         const status = document.getElementById('addProductStatus');
         if (status) status.textContent = '';
     }
@@ -210,7 +209,7 @@ function initAdmin() {
         });
     }
 
-    // === ОТКРЫТИЕ МОДАЛЬНОГО ОКНА ===
+    // Открытие модального окна
     document.addEventListener('click', function(e) {
         const target = e.target.closest('#openAddProductBtn');
         if (target) {
@@ -220,7 +219,7 @@ function initAdmin() {
         }
     });
 
-    // === ЗАКРЫТИЕ ПО КРЕСТИКУ ===
+    // Закрытие по крестику
     const closeBtn = document.getElementById('addProductCloseBtn');
     if (closeBtn) {
         closeBtn.addEventListener('click', function() {
@@ -228,7 +227,7 @@ function initAdmin() {
         });
     }
 
-    // === ЗАКРЫТИЕ ПО КЛИКУ НА ФОН ===
+    // Закрытие по клику на фон
     const modalOverlay = document.getElementById('addProductModal');
     if (modalOverlay) {
         modalOverlay.addEventListener('click', function(e) {
@@ -238,7 +237,7 @@ function initAdmin() {
         });
     }
 
-    // === ЗАКРЫТИЕ ПО КНОПКЕ "ОТМЕНА" ===
+    // Закрытие по кнопке "Отмена"
     const cancelBtn = document.getElementById('addProductCancelBtn');
     if (cancelBtn) {
         cancelBtn.addEventListener('click', function() {
@@ -246,7 +245,7 @@ function initAdmin() {
         });
     }
 
-    // === ОБРАБОТЧИК ФОРМЫ ===
+    // Обработчик формы
     const addForm = document.getElementById('addProductForm');
     if (addForm) {
         addForm.removeEventListener('submit', handleAddProductSubmit);
