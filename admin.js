@@ -1,16 +1,13 @@
 /**
  * admin.js – административные функции и синхронизация с GitHub
- * Содержит всю логику добавления товара с валидацией.
  */
 
-// ===== КОНФИГУРАЦИЯ GITHUB =====
 const GITHUB_CONFIG = {
     owner: 'eduardkalimbetov0408',   // Замените на ваш GitHub username
     repo: 'zoopet',                   // Название репозитория
     path: 'products.json'             // Путь к файлу в репозитории
 };
 
-// ===== РАБОТА С ТОКЕНОМ =====
 function getGitHubToken() {
     return localStorage.getItem('github_token');
 }
@@ -37,11 +34,10 @@ function updateTokenStatus() {
     }
 }
 
-// ===== СИНХРОНИЗАЦИЯ JSON С GITHUB =====
 async function syncProductsToGitHub(products) {
     const token = getGitHubToken();
     if (!token) {
-        showToast('❌ GitHub токен не найден. Введите токен в поле и нажмите "Сохранить токен".');
+        showToast('❌ GitHub токен не найден.');
         return false;
     }
 
@@ -57,7 +53,7 @@ async function syncProductsToGitHub(products) {
         });
 
         if (!getResponse.ok) {
-            throw new Error(`Не удалось получить файл: ${getResponse.status} - ${getResponse.statusText}`);
+            throw new Error(`Не удалось получить файл: ${getResponse.status}`);
         }
 
         const fileData = await getResponse.json();
@@ -88,7 +84,6 @@ async function syncProductsToGitHub(products) {
             throw new Error(`Ошибка обновления: ${updateResponse.status} - ${errorData.message}`);
         }
 
-        console.log('✅ products.json обновлён на GitHub');
         showToast('✅ Товары синхронизированы с GitHub!');
         return true;
     } catch (error) {
@@ -98,7 +93,6 @@ async function syncProductsToGitHub(products) {
     }
 }
 
-// ===== ДОБАВЛЕНИЕ ТОВАРА (С ВАЛИДАЦИЕЙ) =====
 function openAddProductModal() {
     const modal = document.getElementById('addProductModal');
     const form = document.getElementById('addProductForm');
@@ -113,21 +107,18 @@ function openAddProductModal() {
 function handleAddProductSubmit(e) {
     e.preventDefault();
 
-    // Получаем значения полей
     const brand = document.getElementById('addBrand').value.trim();
     const category = document.getElementById('addCategory').value.trim();
     const price = parseFloat(document.getElementById('addPrice').value);
     const stock = parseInt(document.getElementById('addStock').value);
     const nameRu = document.getElementById('addNameRu').value.trim();
 
-    // Валидация обязательных полей
     if (!brand || !category || !price || !stock || !nameRu) {
         document.getElementById('addProductStatus').textContent =
             '⚠️ Заполните обязательные поля: Бренд, Категория, Цена, Количество, Название (RU)';
         return;
     }
 
-    // Собираем остальные данные
     const image = document.getElementById('addImage').value.trim() ||
         'https://placehold.co/300x300/ccc?text=Новый+товар';
     const nameSr = document.getElementById('addNameSr').value.trim() || nameRu;
@@ -139,7 +130,6 @@ function handleAddProductSubmit(e) {
     const foodRu = document.getElementById('addFoodRu').value.trim() || '—';
     const ageRu = document.getElementById('addAgeRu').value.trim() || '—';
 
-    // Создаём объект товара
     const newProduct = {
         id: Date.now(),
         brand,
@@ -157,29 +147,24 @@ function handleAddProductSubmit(e) {
         reviews: []
     };
 
-    // Проверяем доступность state
     if (typeof state === 'undefined' || !state.products) {
         showToast('❌ Ошибка: состояние не загружено');
         return;
     }
 
-    // Добавляем товар
     state.products.push(newProduct);
     if (typeof saveProducts === 'function') saveProducts();
     if (typeof renderAll === 'function') renderAll();
 
-    // Обновляем список товаров в админ-панели, если она открыта
     if (document.getElementById('profileModal').classList.contains('open')) {
         if (typeof renderAdminProducts === 'function') renderAdminProducts();
     }
 
-    // Закрываем модалку
     const modal = document.getElementById('addProductModal');
     if (modal) modal.classList.remove('open');
 
     showToast('✅ Товар добавлен!');
 
-    // Автоматическая синхронизация с GitHub (если токен установлен)
     const token = getGitHubToken();
     if (token) {
         syncProductsToGitHub(state.products).catch(err => {
@@ -189,9 +174,7 @@ function handleAddProductSubmit(e) {
     }
 }
 
-// ===== ИНИЦИАЛИЗАЦИЯ ОБРАБОТЧИКОВ =====
 function initAdmin() {
-    // 1. GitHub токен
     const inputEl = document.getElementById('githubTokenInput');
     const saveBtn = document.getElementById('saveGitHubTokenBtn');
     const syncBtn = document.getElementById('syncToGitHubBtn');
@@ -219,7 +202,7 @@ function initAdmin() {
         });
     }
 
-    // 2. Открытие формы добавления (делегирование)
+    // Делегирование для кнопки открытия формы
     document.addEventListener('click', function(e) {
         const target = e.target.closest('#openAddProductBtn');
         if (target) {
@@ -228,25 +211,21 @@ function initAdmin() {
         }
     });
 
-    // 3. Обработчик отправки формы добавления
     const addForm = document.getElementById('addProductForm');
     if (addForm) {
         addForm.removeEventListener('submit', handleAddProductSubmit);
         addForm.addEventListener('submit', handleAddProductSubmit);
     }
 
-    // 4. Обновляем статус токена
     updateTokenStatus();
 }
 
-// Запускаем инициализацию
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initAdmin);
 } else {
     initAdmin();
 }
 
-// Делаем функции доступными глобально
 window.updateTokenStatus = updateTokenStatus;
 window.syncProductsToGitHub = syncProductsToGitHub;
 window.openAddProductModal = openAddProductModal;
