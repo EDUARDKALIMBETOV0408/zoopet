@@ -2080,8 +2080,7 @@
             }
             try {
                 const baseUrl = window.location.pathname.replace(/\/[^/]*$/, '/');
-                const jsonUrl = baseUrl + 'products.json';
-                const response = await fetch(jsonUrl);
+                const response = await fetch(baseUrl + 'products.json');
                 if (response.ok) {
                     const data = await response.json();
                     if (Array.isArray(data) && data.length > 0) {
