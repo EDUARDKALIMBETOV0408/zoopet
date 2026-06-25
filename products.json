@@ -17,9 +17,21 @@
       "en": "Premium grain-free food from free-range lamb. Rich in protein and natural fats."
     },
     "attributes": {
-      "weight": { "ru": "2.5 кг", "sr": "2.5 кг", "en": "2.5 kg" },
-      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "2.5 кг",
+        "sr": "2.5 кг",
+        "en": "2.5 kg"
+      },
+      "food_type": {
+        "ru": "Сухой",
+        "sr": "Сува",
+        "en": "Dry"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -41,9 +53,21 @@
       "en": "Wet food in chunks for adult large breed dogs."
     },
     "attributes": {
-      "weight": { "ru": "400 г", "sr": "400 г", "en": "400 g" },
-      "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "400 г",
+        "sr": "400 г",
+        "en": "400 g"
+      },
+      "food_type": {
+        "ru": "Влажный",
+        "sr": "Влажна",
+        "en": "Wet"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -65,9 +89,21 @@
       "en": "Science developed food for adult medium breed dogs."
     },
     "attributes": {
-      "weight": { "ru": "3 кг", "sr": "3 кг", "en": "3 kg" },
-      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "3 кг",
+        "sr": "3 кг",
+        "en": "3 kg"
+      },
+      "food_type": {
+        "ru": "Сухой",
+        "sr": "Сува",
+        "en": "Dry"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -89,9 +125,21 @@
       "en": "Food for dogs with Sensitive skin and digestion."
     },
     "attributes": {
-      "weight": { "ru": "2.5 кг", "sr": "2.5 кг", "en": "2.5 kg" },
-      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "2.5 кг",
+        "sr": "2.5 кг",
+        "en": "2.5 kg"
+      },
+      "food_type": {
+        "ru": "Сухой",
+        "sr": "Сува",
+        "en": "Dry"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -113,9 +161,21 @@
       "en": "Grain-free food with high meat content."
     },
     "attributes": {
-      "weight": { "ru": "2.5 кг", "sr": "2.5 кг", "en": "2.5 kg" },
-      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "2.5 кг",
+        "sr": "2.5 кг",
+        "en": "2.5 kg"
+      },
+      "food_type": {
+        "ru": "Сухой",
+        "sr": "Сува",
+        "en": "Dry"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -137,9 +197,21 @@
       "en": "Grain-free food based on ancient recipe, enriched with pomegranate."
     },
     "attributes": {
-      "weight": { "ru": "2.5 кг", "sr": "2.5 кг", "en": "2.5 kg" },
-      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "2.5 кг",
+        "sr": "2.5 кг",
+        "en": "2.5 kg"
+      },
+      "food_type": {
+        "ru": "Сухой",
+        "sr": "Сува",
+        "en": "Dry"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -161,9 +233,21 @@
       "en": "Biologically appropriate food with 85% meat."
     },
     "attributes": {
-      "weight": { "ru": "2.5 кг", "sr": "2.5 кг", "en": "2.5 kg" },
-      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "2.5 кг",
+        "sr": "2.5 кг",
+        "en": "2.5 kg"
+      },
+      "food_type": {
+        "ru": "Сухой",
+        "sr": "Сува",
+        "en": "Dry"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -185,9 +269,21 @@
       "en": "Grain-free food for small breed dogs with Sensitive digestion."
     },
     "attributes": {
-      "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" },
-      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "2 кг",
+        "sr": "2 кг",
+        "en": "2 kg"
+      },
+      "food_type": {
+        "ru": "Сухой",
+        "sr": "Сува",
+        "en": "Dry"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -209,9 +305,21 @@
       "en": "Balanced food for adult medium breed dogs."
     },
     "attributes": {
-      "weight": { "ru": "2.5 кг", "sr": "2.5 кг", "en": "2.5 kg" },
-      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "2.5 кг",
+        "sr": "2.5 кг",
+        "en": "2.5 kg"
+      },
+      "food_type": {
+        "ru": "Сухой",
+        "sr": "Сува",
+        "en": "Dry"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -233,9 +341,21 @@
       "en": "Food for small breed dogs with high protein content."
     },
     "attributes": {
-      "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" },
-      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "2 кг",
+        "sr": "2 кг",
+        "en": "2 kg"
+      },
+      "food_type": {
+        "ru": "Сухой",
+        "sr": "Сува",
+        "en": "Dry"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -257,9 +377,21 @@
       "en": "Wet food with chicken in its own juice, grain-free."
     },
     "attributes": {
-      "weight": { "ru": "400 г", "sr": "400 г", "en": "400 g" },
-      "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "400 г",
+        "sr": "400 г",
+        "en": "400 g"
+      },
+      "food_type": {
+        "ru": "Влажный",
+        "sr": "Влажна",
+        "en": "Wet"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -281,9 +413,21 @@
       "en": "Natural wet food with beef, no preservatives."
     },
     "attributes": {
-      "weight": { "ru": "400 г", "sr": "400 г", "en": "400 g" },
-      "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "400 г",
+        "sr": "400 г",
+        "en": "400 g"
+      },
+      "food_type": {
+        "ru": "Влажный",
+        "sr": "Влажна",
+        "en": "Wet"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -305,9 +449,21 @@
       "en": "Grain-free food with Venison, for urinary health."
     },
     "attributes": {
-      "weight": { "ru": "2.5 кг", "sr": "2.5 кг", "en": "2.5 kg" },
-      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "2.5 кг",
+        "sr": "2.5 кг",
+        "en": "2.5 kg"
+      },
+      "food_type": {
+        "ru": "Сухой",
+        "sr": "Сува",
+        "en": "Dry"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -329,9 +485,21 @@
       "en": "Specialized veterinary food for dogs with gastrointestinal disorders."
     },
     "attributes": {
-      "weight": { "ru": "3 кг", "sr": "3 кг", "en": "3 kg" },
-      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "3 кг",
+        "sr": "3 кг",
+        "en": "3 kg"
+      },
+      "food_type": {
+        "ru": "Сухой",
+        "sr": "Сува",
+        "en": "Dry"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -353,9 +521,21 @@
       "en": "Veterinary food for joint support."
     },
     "attributes": {
-      "weight": { "ru": "3 кг", "sr": "3 кг", "en": "3 kg" },
-      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "3 кг",
+        "sr": "3 кг",
+        "en": "3 kg"
+      },
+      "food_type": {
+        "ru": "Сухой",
+        "sr": "Сува",
+        "en": "Dry"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -377,9 +557,21 @@
       "en": "Wet food in gravy for adult cats."
     },
     "attributes": {
-      "weight": { "ru": "85 г", "sr": "85 г", "en": "85 g" },
-      "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "85 г",
+        "sr": "85 г",
+        "en": "85 g"
+      },
+      "food_type": {
+        "ru": "Влажный",
+        "sr": "Влажна",
+        "en": "Wet"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -401,9 +593,21 @@
       "en": "Veterinary food for cats with Sensitive digestion."
     },
     "attributes": {
-      "weight": { "ru": "1.5 кг", "sr": "1.5 кг", "en": "1.5 kg" },
-      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "1.5 кг",
+        "sr": "1.5 кг",
+        "en": "1.5 kg"
+      },
+      "food_type": {
+        "ru": "Сухой",
+        "sr": "Сува",
+        "en": "Dry"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -425,9 +629,21 @@
       "en": "Crunchy treats with a filling that cats love."
     },
     "attributes": {
-      "weight": { "ru": "60 г", "sr": "60 г", "en": "60 g" },
-      "food_type": { "ru": "Лакомство", "sr": "Посластица", "en": "Treat" },
-      "age": { "ru": "Для всех возрастов", "sr": "За све узрасте", "en": "All ages" }
+      "weight": {
+        "ru": "60 г",
+        "sr": "60 г",
+        "en": "60 g"
+      },
+      "food_type": {
+        "ru": "Лакомство",
+        "sr": "Посластица",
+        "en": "Treat"
+      },
+      "age": {
+        "ru": "Для всех возрастов",
+        "sr": "За све узрасте",
+        "en": "All ages"
+      }
     },
     "reviews": []
   },
@@ -449,9 +665,21 @@
       "en": "Grain-free food with Pacific fish."
     },
     "attributes": {
-      "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" },
-      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "2 кг",
+        "sr": "2 кг",
+        "en": "2 kg"
+      },
+      "food_type": {
+        "ru": "Сухой",
+        "sr": "Сува",
+        "en": "Dry"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -473,9 +701,21 @@
       "en": "Dry food for sterilized cats, controls weight."
     },
     "attributes": {
-      "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" },
-      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "2 кг",
+        "sr": "2 кг",
+        "en": "2 kg"
+      },
+      "food_type": {
+        "ru": "Сухой",
+        "sr": "Сува",
+        "en": "Dry"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -497,9 +737,21 @@
       "en": "Grain-free food with pumpkin and chicken."
     },
     "attributes": {
-      "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" },
-      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "2 кг",
+        "sr": "2 кг",
+        "en": "2 kg"
+      },
+      "food_type": {
+        "ru": "Сухой",
+        "sr": "Сува",
+        "en": "Dry"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -521,9 +773,21 @@
       "en": "Biologically appropriate food for cats of all ages."
     },
     "attributes": {
-      "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" },
-      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
-      "age": { "ru": "Для всех возрастов", "sr": "За све узрасте", "en": "All ages" }
+      "weight": {
+        "ru": "2 кг",
+        "sr": "2 кг",
+        "en": "2 kg"
+      },
+      "food_type": {
+        "ru": "Сухой",
+        "sr": "Сува",
+        "en": "Dry"
+      },
+      "age": {
+        "ru": "Для всех возрастов",
+        "sr": "За све узрасте",
+        "en": "All ages"
+      }
     },
     "reviews": []
   },
@@ -545,9 +809,21 @@
       "en": "Dry food for sterilized cats with reduced fat."
     },
     "attributes": {
-      "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" },
-      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "2 кг",
+        "sr": "2 кг",
+        "en": "2 kg"
+      },
+      "food_type": {
+        "ru": "Сухой",
+        "sr": "Сува",
+        "en": "Dry"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -569,9 +845,21 @@
       "en": "Wet food in pouches, grain-free."
     },
     "attributes": {
-      "weight": { "ru": "100 г", "sr": "100 г", "en": "100 g" },
-      "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "100 г",
+        "sr": "100 г",
+        "en": "100 g"
+      },
+      "food_type": {
+        "ru": "Влажный",
+        "sr": "Влажна",
+        "en": "Wet"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -593,9 +881,21 @@
       "en": "Natural wet food with tuna in jelly."
     },
     "attributes": {
-      "weight": { "ru": "85 г", "sr": "85 г", "en": "85 g" },
-      "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "85 г",
+        "sr": "85 г",
+        "en": "85 g"
+      },
+      "food_type": {
+        "ru": "Влажный",
+        "sr": "Влажна",
+        "en": "Wet"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -617,9 +917,21 @@
       "en": "Wet food with chicken breast in broth."
     },
     "attributes": {
-      "weight": { "ru": "85 г", "sr": "85 г", "en": "85 g" },
-      "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "85 г",
+        "sr": "85 г",
+        "en": "85 g"
+      },
+      "food_type": {
+        "ru": "Влажный",
+        "sr": "Влажна",
+        "en": "Wet"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -641,9 +953,21 @@
       "en": "Premium wet food with beef and chicken."
     },
     "attributes": {
-      "weight": { "ru": "85 г", "sr": "85 г", "en": "85 g" },
-      "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "85 г",
+        "sr": "85 г",
+        "en": "85 g"
+      },
+      "food_type": {
+        "ru": "Влажный",
+        "sr": "Влажна",
+        "en": "Wet"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -665,9 +989,21 @@
       "en": "Balanced dry food for adult cats."
     },
     "attributes": {
-      "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" },
-      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "2 кг",
+        "sr": "2 кг",
+        "en": "2 kg"
+      },
+      "food_type": {
+        "ru": "Сухой",
+        "sr": "Сува",
+        "en": "Dry"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -689,9 +1025,21 @@
       "en": "Budget wet food in gravy with chicken and vegetables."
     },
     "attributes": {
-      "weight": { "ru": "100 г", "sr": "100 г", "en": "100 g" },
-      "food_type": { "ru": "Влажный", "sr": "Влажна", "en": "Wet" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "100 г",
+        "sr": "100 г",
+        "en": "100 g"
+      },
+      "food_type": {
+        "ru": "Влажный",
+        "sr": "Влажна",
+        "en": "Wet"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
     },
     "reviews": []
   },
@@ -713,9 +1061,57 @@
       "en": "Dry food for adult cats with chicken and grains."
     },
     "attributes": {
-      "weight": { "ru": "2 кг", "sr": "2 кг", "en": "2 kg" },
-      "food_type": { "ru": "Сухой", "sr": "Сува", "en": "Dry" },
-      "age": { "ru": "Взрослый", "sr": "Одрасли", "en": "Adult" }
+      "weight": {
+        "ru": "2 кг",
+        "sr": "2 кг",
+        "en": "2 kg"
+      },
+      "food_type": {
+        "ru": "Сухой",
+        "sr": "Сува",
+        "en": "Dry"
+      },
+      "age": {
+        "ru": "Взрослый",
+        "sr": "Одрасли",
+        "en": "Adult"
+      }
+    },
+    "reviews": []
+  },
+  {
+    "id": 1782420490327,
+    "brand": "Avard",
+    "category": "dog",
+    "price_rsd": 700,
+    "stock": 20,
+    "image": "https://placehold.co/300x300/770c8a/white?text=Avard",
+    "name": {
+      "ru": "Сухой корм для собак",
+      "sr": "Сува храна за псе",
+      "en": "Dry dog ​​food"
+    },
+    "description": {
+      "ru": "Сухой корм AWARD HYPO для взрослых собак всех пород с белой рыбой с добавлением брокколи, сельдерея и семян льна 12 кг.\n\n \n\nКорм изготовлен из 100% натуральных ингредиентов по инновационной формуле — это обеспечивает комплексную нутрицевтическую поддержку организма питомца. Подойдет для для собак всех пород с повышенной чувствительностью к компонентам корма. Источник белка — белая рыба, источник углеводов — рис.",
+      "sr": "AWARD HYPO сува храна за одрасле псе свих раса: бела риба са додатком броколија, целера и ланеног семена (12 кг).\n\nНаправљена од 100% природних састојака користећи иновативну формулу, ова храна пружа свеобухватну нутритивну подршку организму вашег љубимца. Погодна је за псе свих раса са осетљивошћу на састојке хране. Бела риба служи као извор протеина, док пиринач обезбеђује угљене хидрате.",
+      "en": "AWARD HYPO dry food for adult dogs of all breeds: white fish with added broccoli, celery, and flaxseed (12 kg).\n\n \n\nMade from 100% natural ingredients using an innovative formula, this food provides comprehensive nutraceutical support for your pet's body. It is suitable for dogs of all breeds with sensitivities to food ingredients. White fish serves as the protein source, while rice provides the carbohydrates."
+    },
+    "attributes": {
+      "weight": {
+        "ru": "0,7",
+        "sr": "0,7",
+        "en": "0,7"
+      },
+      "food_type": {
+        "ru": "Сухой",
+        "sr": "Сухой",
+        "en": "Сухой"
+      },
+      "age": {
+        "ru": "1",
+        "sr": "1",
+        "en": "1"
+      }
     },
     "reviews": []
   }
