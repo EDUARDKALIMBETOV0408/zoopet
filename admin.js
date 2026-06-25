@@ -3,19 +3,17 @@
  */
 
 const GITHUB_CONFIG = {
-    owner: 'eduardkalimbetov0408',   // Замените на ваш GitHub username
-    repo: 'zoopet',                   // Название репозитория
-    path: 'products.json'             // Путь к файлу в репозитории
+    owner: 'eduardkalimbetov0408',
+    repo: 'zoopet',
+    path: 'products.json'
 };
 
 function getGitHubToken() {
     return localStorage.getItem('github_token');
 }
-
 function setGitHubToken(token) {
     localStorage.setItem('github_token', token);
 }
-
 function hasGitHubToken() {
     return !!getGitHubToken();
 }
@@ -29,8 +27,7 @@ function updateTokenStatus() {
         statusEl.style.color = hasToken ? 'var(--accent-green)' : 'var(--accent-orange)';
     }
     if (inputEl) {
-        const token = getGitHubToken();
-        inputEl.value = token || '';
+        inputEl.value = getGitHubToken() || '';
     }
 }
 
@@ -42,7 +39,6 @@ async function syncProductsToGitHub(products) {
     }
 
     const { owner, repo, path } = GITHUB_CONFIG;
-
     try {
         const getUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
         const getResponse = await fetch(getUrl, {
@@ -51,11 +47,9 @@ async function syncProductsToGitHub(products) {
                 'Accept': 'application/vnd.github.v3+json'
             }
         });
-
         if (!getResponse.ok) {
             throw new Error(`Не удалось получить файл: ${getResponse.status}`);
         }
-
         const fileData = await getResponse.json();
         const sha = fileData.sha;
 
@@ -78,7 +72,6 @@ async function syncProductsToGitHub(products) {
                 sha: sha
             })
         });
-
         if (!updateResponse.ok) {
             const errorData = await updateResponse.json();
             throw new Error(`Ошибка обновления: ${updateResponse.status} - ${errorData.message}`);
@@ -95,12 +88,8 @@ async function syncProductsToGitHub(products) {
 
 function openAddProductModal() {
     const modal = document.getElementById('addProductModal');
-    if (modal) {
-        modal.classList.add('open');
-    } else {
-        console.error('Модальное окно #addProductModal не найдено');
-        showToast('❌ Ошибка: модальное окно не найдено');
-    }
+    if (modal) modal.classList.add('open');
+    else showToast('❌ Ошибка: модальное окно не найдено');
 }
 
 function closeAddProductModal() {
@@ -169,7 +158,6 @@ function handleAddProductSubmit(e) {
     }
 
     closeAddProductModal();
-
     showToast('✅ Товар добавлен!');
 
     const token = getGitHubToken();
@@ -178,6 +166,45 @@ function handleAddProductSubmit(e) {
             console.warn('Ошибка синхронизации с GitHub:', err);
             showToast('⚠️ Товар добавлен, но синхронизация с GitHub не удалась');
         });
+    }
+}
+
+function exportJsonData() {
+    if (typeof state === 'undefined' || !state.products) {
+        showToast('❌ Товары не загружены');
+        return;
+    }
+    const dataStr = JSON.stringify(state.products, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'products.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('📥 JSON скачан!');
+}
+
+async function loadJsonData() {
+    const status = document.getElementById('loadJsonStatus');
+    if (!status) return;
+    try {
+        const baseUrl = window.location.pathname.replace(/\/[^/]*$/, '/');
+        const response = await fetch(baseUrl + 'products.json');
+        if (!response.ok) throw new Error('Файл products.json не найден');
+        const data = await response.json();
+        if (!Array.isArray(data) || data.length === 0) throw new Error('Файл пуст или невалиден');
+        if (typeof state !== 'undefined') {
+            state.products = data;
+            if (typeof saveProducts === 'function') saveProducts();
+            if (typeof applyFiltersAndPagination === 'function') applyFiltersAndPagination();
+            if (typeof updateAdminProducts === 'function') updateAdminProducts();
+            status.textContent = '✅ Загружено ' + data.length + ' товаров!';
+            status.style.color = 'var(--accent-green)';
+        }
+    } catch (error) {
+        status.textContent = '⚠️ Ошибка: ' + error.message;
+        status.style.color = 'var(--accent-orange)';
     }
 }
 
@@ -219,33 +246,29 @@ function initAdmin() {
     });
 
     const closeBtn = document.getElementById('addProductCloseBtn');
-    if (closeBtn) {
-        closeBtn.addEventListener('click', function() {
-            closeAddProductModal();
-        });
-    }
+    if (closeBtn) closeBtn.addEventListener('click', closeAddProductModal);
 
     const modalOverlay = document.getElementById('addProductModal');
     if (modalOverlay) {
         modalOverlay.addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeAddProductModal();
-            }
+            if (e.target === this) closeAddProductModal();
         });
     }
 
     const cancelBtn = document.getElementById('addProductCancelBtn');
-    if (cancelBtn) {
-        cancelBtn.addEventListener('click', function() {
-            closeAddProductModal();
-        });
-    }
+    if (cancelBtn) cancelBtn.addEventListener('click', closeAddProductModal);
 
     const addForm = document.getElementById('addProductForm');
     if (addForm) {
         addForm.removeEventListener('submit', handleAddProductSubmit);
         addForm.addEventListener('submit', handleAddProductSubmit);
     }
+
+    const exportBtn = document.getElementById('exportJsonBtn');
+    if (exportBtn) exportBtn.addEventListener('click', exportJsonData);
+
+    const loadBtn = document.getElementById('loadJsonBtn');
+    if (loadBtn) loadBtn.addEventListener('click', loadJsonData);
 
     updateTokenStatus();
 }
@@ -260,3 +283,5 @@ window.updateTokenStatus = updateTokenStatus;
 window.syncProductsToGitHub = syncProductsToGitHub;
 window.openAddProductModal = openAddProductModal;
 window.closeAddProductModal = closeAddProductModal;
+window.exportJsonData = exportJsonData;
+window.loadJsonData = loadJsonData;
