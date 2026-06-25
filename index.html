@@ -1286,11 +1286,13 @@
             const phoneGroup = document.getElementById('phoneFieldGroup');
             const addressesSection = document.getElementById('addressesSection');
             const petsSection = document.getElementById('petsSection');
+            const emailGroup = document.getElementById('emailFieldGroup');
 
             if (nameGroup) nameGroup.style.display = isAdmin ? 'none' : 'block';
             if (phoneGroup) phoneGroup.style.display = isAdmin ? 'none' : 'block';
             if (addressesSection) addressesSection.style.display = isAdmin ? 'none' : 'block';
             if (petsSection) petsSection.style.display = isAdmin ? 'none' : 'block';
+            if (emailGroup) emailGroup.style.display = isAdmin ? 'none' : 'block';
 
             const adminPanel = document.getElementById('adminPanel');
             if (isAdmin) {
