@@ -1,6 +1,6 @@
 /**
  * admin.js – административные функции и синхронизация с GitHub
- * Содержит обработку поля ввода токена и кнопок.
+ * Исправлена инициализация (работает независимо от времени загрузки).
  */
 
 // ===== КОНФИГУРАЦИЯ GITHUB =====
@@ -33,11 +33,7 @@ function updateTokenStatus() {
     }
     if (inputEl) {
         const token = getGitHubToken();
-        if (token) {
-            inputEl.value = token;
-        } else {
-            inputEl.value = '';
-        }
+        inputEl.value = token || '';
     }
 }
 
@@ -106,8 +102,7 @@ async function syncProductsToGitHub(products) {
 }
 
 // ===== ИНИЦИАЛИЗАЦИЯ ОБРАБОТЧИКОВ =====
-document.addEventListener('DOMContentLoaded', function() {
-    // Поле ввода токена и кнопка сохранения
+function initAdmin() {
     const inputEl = document.getElementById('githubTokenInput');
     const saveBtn = document.getElementById('saveGitHubTokenBtn');
     const syncBtn = document.getElementById('syncToGitHubBtn');
@@ -135,6 +130,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Обновляем статус при загрузке
+    // Обновляем статус при инициализации
     updateTokenStatus();
-});
+
+    // Также обновляем статус при каждом открытии профиля (через вызов извне)
+    // Для этого делаем функцию доступной глобально
+    window.updateTokenStatus = updateTokenStatus;
+}
+
+// Запускаем инициализацию сразу, если DOM уже загружен, иначе ждём
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAdmin);
+} else {
+    initAdmin();
+}
