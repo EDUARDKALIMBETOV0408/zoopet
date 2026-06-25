@@ -1126,29 +1126,27 @@
 
             const adminPanel = document.getElementById('adminPanel');
             if (state.isAdmin) {
-                adminPanel.style.display = 'block';
-                // Принудительно показываем вкладку "Добавить товар"
-                if (!adminTabsInitialized) {
-                    initAdminTabs();
-                    adminTabsInitialized = true;
-                }
-                // Активируем вкладку "add"
-                const addTab = document.querySelector('.admin-tabs button[data-admin-tab="add"]');
-                if (addTab) {
-                    addTab.classList.add('active');
-                    handleTabClick.call(addTab);
-                }
-                // Явно показываем контейнер с кнопками
-                const addContainer = document.getElementById('adminAddProduct');
-                if (addContainer) addContainer.style.display = 'block';
-                updateAdminProducts();
-                updateAdminOrders();
-                if (typeof updateTokenStatus === 'function') {
-                    updateTokenStatus();
-                }
-            } else {
-                adminPanel.style.display = 'none';
-            }
+    adminPanel.style.display = 'block';
+    if (!adminTabsInitialized) {
+        initAdminTabs();
+        adminTabsInitialized = true;
+    } else {
+        // Если уже инициализированы, активируем вкладку "add"
+        const addTab = document.querySelector('.admin-tabs button[data-admin-tab="add"]');
+        if (addTab) {
+            addTab.classList.add('active');
+            handleTabClick.call(addTab);
+        }
+    }
+    // Убираем принудительное управление display – доверяем CSS-классам
+    updateAdminProducts();
+    updateAdminOrders();
+    if (typeof updateTokenStatus === 'function') {
+        updateTokenStatus();
+    }
+} else {
+    adminPanel.style.display = 'none';
+}
             openModal('profileModal');
         }
 
@@ -1276,41 +1274,38 @@
         document.getElementById('profileModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeModal('profileModal'); });
 
         // ---- АДМИН-ПАНЕЛЬ (ВКЛАДКИ) ----
-        function initAdminTabs() {
-            const tabs = document.querySelectorAll('.admin-tabs button');
-            tabs.forEach(btn => {
-                btn.removeEventListener('click', handleTabClick);
-                btn.addEventListener('click', handleTabClick);
-            });
-            // Активируем вкладку "add" принудительно
-            const addTab = document.querySelector('.admin-tabs button[data-admin-tab="add"]');
-            if (addTab) {
-                addTab.classList.add('active');
-                handleTabClick.call(addTab);
-            } else {
-                // Если вдруг нет, активируем первую
-                const firstTab = document.querySelector('.admin-tabs button');
-                if (firstTab) {
-                    firstTab.classList.add('active');
-                    handleTabClick.call(firstTab);
-                }
-            }
-            // Убедимся, что контейнер с кнопками видим
-            const addContainer = document.getElementById('adminAddProduct');
-            if (addContainer) addContainer.style.display = 'block';
+        ffunction initAdminTabs() {
+    const tabs = document.querySelectorAll('.admin-tabs button');
+    tabs.forEach(btn => {
+        btn.removeEventListener('click', handleTabClick);
+        btn.addEventListener('click', handleTabClick);
+    });
+    // Активируем вкладку "add" по умолчанию
+    const addTab = document.querySelector('.admin-tabs button[data-admin-tab="add"]');
+    if (addTab) {
+        addTab.classList.add('active');
+        handleTabClick.call(addTab);
+    } else {
+        const firstTab = document.querySelector('.admin-tabs button');
+        if (firstTab) {
+            firstTab.classList.add('active');
+            handleTabClick.call(firstTab);
         }
+    }
+    // Убираем принудительное управление display – доверяем CSS-классам
+}
 
         function handleTabClick(e) {
-            const tab = this.dataset.adminTab;
-            document.querySelectorAll('.admin-tab-content').forEach(t => t.classList.remove('active'));
-            const target = document.getElementById('admin' + tab.charAt(0).toUpperCase() + tab.slice(1));
-            if (target) {
-                target.classList.add('active');
-                target.style.display = 'block';
-            }
-            document.querySelectorAll('.admin-tabs button').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-        }
+    const tab = this.dataset.adminTab;
+    // Скрываем все контенты
+    document.querySelectorAll('.admin-tab-content').forEach(t => t.classList.remove('active'));
+    // Показываем выбранный (только через класс)
+    const target = document.getElementById('admin' + tab.charAt(0).toUpperCase() + tab.slice(1));
+    if (target) target.classList.add('active');
+    // Обновляем активный класс на кнопках
+    document.querySelectorAll('.admin-tabs button').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+}
 
         // ---- ОБНОВЛЕНИЕ СПИСКОВ ----
         function updateAdminProducts() {
