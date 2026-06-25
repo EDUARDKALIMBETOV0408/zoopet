@@ -185,8 +185,8 @@
             .modal .inline-add-form .form-row { grid-template-columns: 1fr; }
             .product-detail .detail-attributes { grid-template-columns: 1fr; }
         }
-        /* Принудительное отображение вкладки добавления товара */
-        #adminAddProduct.active { display: block !important; }
+       
+         }
     </style>
 </head>
 <body>
@@ -358,7 +358,7 @@
                     <div id="adminProducts" class="admin-tab-content">
                         <div id="adminProductsList"></div>
                     </div>
-                    <div id="adminAddProduct" class="admin-tab-content active" style="display:block;">
+                    <div id="adminAddProduct" class="admin-tab-content active">
                         <h5>Добавление нового товара</h5>
                         <p>Нажмите кнопку ниже, чтобы открыть форму добавления.</p>
                         <div class="admin-btn-group">
@@ -1296,12 +1296,9 @@ function initAdminTabs() {
 
 function handleTabClick(e) {
     const tab = this.dataset.adminTab;
-    // Скрываем все контенты
     document.querySelectorAll('.admin-tab-content').forEach(t => t.classList.remove('active'));
-    // Показываем выбранный (только через класс)
     const target = document.getElementById('admin' + tab.charAt(0).toUpperCase() + tab.slice(1));
     if (target) target.classList.add('active');
-    // Обновляем активный класс на кнопках
     document.querySelectorAll('.admin-tabs button').forEach(b => b.classList.remove('active'));
     this.classList.add('active');
 }
