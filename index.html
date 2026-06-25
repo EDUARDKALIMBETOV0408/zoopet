@@ -1719,31 +1719,7 @@
                 closeModal('addProductModal'); });
         document.getElementById('openAddProductBtn').addEventListener('click', openAddProductModal);
 
-        document.getElementById('addProductForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            const brand = document.getElementById('addBrand').value.trim();
-            const category = document.getElementById('addCategory').value.trim();
-            const price = parseFloat(document.getElementById('addPrice').value);
-            const stock = parseInt(document.getElementById('addStock').value);
-            const image = document.getElementById('addImage').value.trim() ||
-                'https://placehold.co/300x300/ccc?text=Новый+товар';
-            const nameRu = document.getElementById('addNameRu').value.trim();
-            const nameSr = document.getElementById('addNameSr').value.trim() || nameRu;
-            const nameEn = document.getElementById('addNameEn').value.trim() || nameRu;
-            const descRu = document.getElementById('addDescRu').value.trim();
-            const descSr = document.getElementById('addDescSr').value.trim() || descRu;
-            const descEn = document.getElementById('addDescEn').value.trim() || descRu;
-            const weightRu = document.getElementById('addWeightRu').value.trim() || '—';
-            const foodRu = document.getElementById('addFoodRu').value.trim() || '—';
-            const ageRu = document.getElementById('addAgeRu').value.trim() || '—';
-
-            if (!brand || !category || !price || !stock || !nameRu) {
-                document.getElementById('addProductStatus').textContent =
-                    '⚠️ Заполните обязательные поля (бренд, категория, цена, кол-во, название RU)';
-                return;
-            }
-
+       
             const newProduct = {
                 id: Date.now(),
                 brand,
