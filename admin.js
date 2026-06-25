@@ -1,17 +1,16 @@
 /**
- * admin.js – функции для администрирования и синхронизации с GitHub
- * Подключается к основному файлу index.html
+ * admin.js – административные функции и синхронизация с GitHub
+ * Содержит обработку поля ввода токена и кнопок.
  */
 
 // ===== КОНФИГУРАЦИЯ GITHUB =====
-// Замените на свои данные (они не секретные, их можно публиковать)
 const GITHUB_CONFIG = {
-    owner: 'eduardkalimbetov0408',   // Ваш username на GitHub
+    owner: 'eduardkalimbetov0408',   // Замените на ваш GitHub username
     repo: 'zoopet',                   // Название репозитория
     path: 'products.json'             // Путь к файлу в репозитории
 };
 
-// ===== ПОЛУЧЕНИЕ / СОХРАНЕНИЕ ТОКЕНА =====
+// ===== РАБОТА С ТОКЕНОМ =====
 function getGitHubToken() {
     return localStorage.getItem('github_token');
 }
@@ -24,18 +23,36 @@ function hasGitHubToken() {
     return !!getGitHubToken();
 }
 
+function updateTokenStatus() {
+    const statusEl = document.getElementById('tokenStatus');
+    const inputEl = document.getElementById('githubTokenInput');
+    if (statusEl) {
+        const hasToken = hasGitHubToken();
+        statusEl.textContent = hasToken ? '✅ Токен установлен' : '❌ Токен не установлен';
+        statusEl.style.color = hasToken ? 'var(--accent-green)' : 'var(--accent-orange)';
+    }
+    if (inputEl) {
+        const token = getGitHubToken();
+        if (token) {
+            inputEl.value = token;
+        } else {
+            inputEl.value = '';
+        }
+    }
+}
+
 // ===== СИНХРОНИЗАЦИЯ JSON С GITHUB =====
 async function syncProductsToGitHub(products) {
     const token = getGitHubToken();
     if (!token) {
-        showToast('❌ GitHub токен не найден. Установите токен через кнопку "Установить токен".');
+        showToast('❌ GitHub токен не найден. Введите токен в поле и нажмите "Сохранить токен".');
         return false;
     }
 
     const { owner, repo, path } = GITHUB_CONFIG;
 
     try {
-        // 1. Получаем текущий SHA файла (обязательно для обновления)
+        // 1. Получаем текущий SHA файла
         const getUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
         const getResponse = await fetch(getUrl, {
             headers: {
@@ -51,9 +68,8 @@ async function syncProductsToGitHub(products) {
         const fileData = await getResponse.json();
         const sha = fileData.sha;
 
-        // 2. Кодируем новое содержимое в Base64
+        // 2. Кодируем новое содержимое в Base64 (UTF-8)
         const newContent = JSON.stringify(products, null, 2);
-        // Используем TextEncoder для корректной работы с UTF-8
         const encoder = new TextEncoder();
         const data = encoder.encode(newContent);
         const encodedContent = btoa(String.fromCharCode(...data));
@@ -89,29 +105,28 @@ async function syncProductsToGitHub(products) {
     }
 }
 
-// ===== ОБРАБОТЧИКИ ДЛЯ АДМИН-ПАНЕЛИ =====
-// Эти функции нужно вызвать после загрузки DOM, когда элементы уже существуют.
+// ===== ИНИЦИАЛИЗАЦИЯ ОБРАБОТЧИКОВ =====
+document.addEventListener('DOMContentLoaded', function() {
+    // Поле ввода токена и кнопка сохранения
+    const inputEl = document.getElementById('githubTokenInput');
+    const saveBtn = document.getElementById('saveGitHubTokenBtn');
+    const syncBtn = document.getElementById('syncToGitHubBtn');
 
-function initAdminHandlers() {
-    // Кнопка установки токена
-    const setTokenBtn = document.getElementById('setGitHubTokenBtn');
-    if (setTokenBtn) {
-        setTokenBtn.addEventListener('click', function() {
-            const token = prompt('Введите ваш GitHub Personal Access Token:');
+    if (saveBtn && inputEl) {
+        saveBtn.addEventListener('click', function() {
+            const token = inputEl.value.trim();
             if (token) {
                 setGitHubToken(token);
-                showToast('✅ Токен сохранён!');
-                // Обновляем статус
                 updateTokenStatus();
+                showToast('✅ Токен сохранён!');
+            } else {
+                showToast('⚠️ Введите токен');
             }
         });
     }
 
-    // Кнопка ручной синхронизации
-    const syncBtn = document.getElementById('syncToGitHubBtn');
     if (syncBtn) {
         syncBtn.addEventListener('click', async function() {
-            // Предполагается, что state.products доступен глобально
             if (typeof state !== 'undefined' && state.products) {
                 await syncProductsToGitHub(state.products);
             } else {
@@ -120,18 +135,6 @@ function initAdminHandlers() {
         });
     }
 
-    // Обновляем статус токена при загрузке
+    // Обновляем статус при загрузке
     updateTokenStatus();
-}
-
-function updateTokenStatus() {
-    const statusEl = document.getElementById('tokenStatus');
-    if (statusEl) {
-        const hasToken = hasGitHubToken();
-        statusEl.textContent = hasToken ? '✅ Токен установлен' : '❌ Токен не установлен';
-        statusEl.style.color = hasToken ? 'var(--accent-green)' : 'var(--accent-orange)';
-    }
-}
-
-// Вызываем инициализацию после загрузки DOM
-document.addEventListener('DOMContentLoaded', initAdminHandlers);
+});
