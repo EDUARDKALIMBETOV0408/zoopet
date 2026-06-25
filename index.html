@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
     <style>
-        /* ===== ВСЕ СТИЛИ (полная версия) ===== */
+        /* ===== ВСЕ СТИЛИ (полная версия, без сокращений) ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --bg-primary: #F7F5F0;
@@ -201,9 +201,7 @@
                     <button class="lang-btn" data-lang="sr">SR</button>
                     <button class="lang-btn" data-lang="en">EN</button>
                 </div>
-                <div class="user-area" id="userArea">
-                    <!-- Сюда рендерится кнопка "Войти" или аватар -->
-                </div>
+                <div class="user-area" id="userArea"></div>
                 <button class="cart-icon" id="cartOpenBtn" aria-label="Корзина">
                     🛒<span class="cart-badge" id="cartBadge">0</span>
                 </button>
@@ -511,7 +509,7 @@
         </div>
     </div>
 
-    <!-- ДОБАВЛЕНИЕ ТОВАРА -->
+    <!-- ДОБАВЛЕНИЕ ТОВАРА (ОТДЕЛЬНОЕ МОДАЛЬНОЕ ОКНО) -->
     <div class="modal-overlay" id="addProductModal">
         <div class="modal">
             <button class="modal-close" id="addProductCloseBtn">&times;</button>
@@ -583,8 +581,7 @@
         /**
          * ============================================================
          *  ОСНОВНОЙ КОД (без обработчика submit формы добавления)
-         *  Все функции, кроме добавления товара, остаются без изменений.
-         *  Добавление товара теперь полностью управляется из admin.js.
+         *  Добавление товара полностью управляется из admin.js
          * ============================================================
          */
 
@@ -1705,8 +1702,8 @@
         document.getElementById('editProductModal').addEventListener('click', (e) => { if (e.target === e.currentTarget)
                 closeModal('editProductModal'); });
 
-        // ------ 17. ДОБАВЛЕНИЕ ТОВАРА (ОТКЛЮЧЕНО – ВЕСЬ КОД В ADMIN.JS) ------
-        // Функция openAddProductModal теперь в admin.js, здесь не дублируем.
+        // ------ 17. ДОБАВЛЕНИЕ ТОВАРА (ВЕСЬ КОД В ADMIN.JS) ------
+        // Здесь функция openAddProductModal отсутствует – она в admin.js
 
         // ------ 18. ОФОРМЛЕНИЕ ЗАКАЗА ------
         function openCheckoutModal() {
