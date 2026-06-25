@@ -209,7 +209,6 @@ function initAdmin() {
         });
     }
 
-    // Открытие модального окна
     document.addEventListener('click', function(e) {
         const target = e.target.closest('#openAddProductBtn');
         if (target) {
@@ -219,7 +218,6 @@ function initAdmin() {
         }
     });
 
-    // Закрытие по крестику
     const closeBtn = document.getElementById('addProductCloseBtn');
     if (closeBtn) {
         closeBtn.addEventListener('click', function() {
@@ -227,7 +225,6 @@ function initAdmin() {
         });
     }
 
-    // Закрытие по клику на фон
     const modalOverlay = document.getElementById('addProductModal');
     if (modalOverlay) {
         modalOverlay.addEventListener('click', function(e) {
@@ -237,7 +234,6 @@ function initAdmin() {
         });
     }
 
-    // Закрытие по кнопке "Отмена"
     const cancelBtn = document.getElementById('addProductCancelBtn');
     if (cancelBtn) {
         cancelBtn.addEventListener('click', function() {
@@ -245,7 +241,6 @@ function initAdmin() {
         });
     }
 
-    // Обработчик формы
     const addForm = document.getElementById('addProductForm');
     if (addForm) {
         addForm.removeEventListener('submit', handleAddProductSubmit);
