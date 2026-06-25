@@ -1,9 +1,6 @@
 /**
  * admin.js – административные функции и синхронизация с GitHub
- * Содержит:
- * - управление GitHub токеном
- * - синхронизацию товаров с репозиторием
- * - открытие формы добавления товара (с валидацией)
+ * Содержит всю логику добавления товара с валидацией.
  */
 
 // ===== КОНФИГУРАЦИЯ GITHUB =====
@@ -51,7 +48,6 @@ async function syncProductsToGitHub(products) {
     const { owner, repo, path } = GITHUB_CONFIG;
 
     try {
-        // 1. Получаем текущий SHA файла
         const getUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
         const getResponse = await fetch(getUrl, {
             headers: {
@@ -67,13 +63,11 @@ async function syncProductsToGitHub(products) {
         const fileData = await getResponse.json();
         const sha = fileData.sha;
 
-        // 2. Кодируем новое содержимое в Base64 (UTF-8)
         const newContent = JSON.stringify(products, null, 2);
         const encoder = new TextEncoder();
         const data = encoder.encode(newContent);
         const encodedContent = btoa(String.fromCharCode(...data));
 
-        // 3. Отправляем PUT-запрос на обновление
         const updateUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
         const updateResponse = await fetch(updateUrl, {
             method: 'PUT',
@@ -104,7 +98,7 @@ async function syncProductsToGitHub(products) {
     }
 }
 
-// ===== ОТКРЫТИЕ ФОРМЫ ДОБАВЛЕНИЯ ТОВАРА (С ВАЛИДАЦИЕЙ) =====
+// ===== ДОБАВЛЕНИЕ ТОВАРА (С ВАЛИДАЦИЕЙ) =====
 function openAddProductModal() {
     const modal = document.getElementById('addProductModal');
     const form = document.getElementById('addProductForm');
@@ -116,40 +110,24 @@ function openAddProductModal() {
     }
 }
 
-// Валидация и отправка формы добавления товара
 function handleAddProductSubmit(e) {
     e.preventDefault();
 
+    // Получаем значения полей
     const brand = document.getElementById('addBrand').value.trim();
     const category = document.getElementById('addCategory').value.trim();
     const price = parseFloat(document.getElementById('addPrice').value);
     const stock = parseInt(document.getElementById('addStock').value);
     const nameRu = document.getElementById('addNameRu').value.trim();
 
-    // Проверка обязательных полей
+    // Валидация обязательных полей
     if (!brand || !category || !price || !stock || !nameRu) {
         document.getElementById('addProductStatus').textContent =
             '⚠️ Заполните обязательные поля: Бренд, Категория, Цена, Количество, Название (RU)';
         return;
     }
 
-    // Если поля заполнены, вызываем основную логику из глобальной области (она уже есть в index.html)
-    // Но чтобы не дублировать код, можно просто вызвать событие submit основной формы,
-    // однако проще выполнить добавление здесь и синхронизировать.
-    // Мы можем использовать существующий обработчик из основного скрипта, если он доступен.
-    // Так как основной скрипт уже содержит всю логику, просто вызовем его через dispatchEvent.
-    const form = document.getElementById('addProductForm');
-    // Если у формы есть атрибут data-submit-handler, мы можем вызвать его.
-    // Но проще: мы уже знаем, что в основном коде есть обработчик, который сработает при submit.
-    // Поэтому мы просто позволяем событию submit продолжиться, но мы уже остановили его preventDefault.
-    // Значит, нам нужно самим выполнить добавление.
-    // Для простоты скопируем логику добавления из основного скрипта сюда (она уже есть, но продублируем).
-    // Но чтобы избежать дублирования, лучше вызвать функцию из основного скрипта.
-    // Предположим, что в основном скрипте определена глобальная функция addProductFromForm,
-    // или мы можем получить доступ к state и выполнить добавление напрямую.
-    // Поскольку мы не можем полагаться на глобальные функции, продублируем логику здесь (это безопасно).
-
-    // Собираем все данные
+    // Собираем остальные данные
     const image = document.getElementById('addImage').value.trim() ||
         'https://placehold.co/300x300/ccc?text=Новый+товар';
     const nameSr = document.getElementById('addNameSr').value.trim() || nameRu;
@@ -161,6 +139,7 @@ function handleAddProductSubmit(e) {
     const foodRu = document.getElementById('addFoodRu').value.trim() || '—';
     const ageRu = document.getElementById('addAgeRu').value.trim() || '—';
 
+    // Создаём объект товара
     const newProduct = {
         id: Date.now(),
         brand,
@@ -178,33 +157,35 @@ function handleAddProductSubmit(e) {
         reviews: []
     };
 
-    // Добавляем в глобальный state (если доступен)
-    if (typeof state !== 'undefined' && state.products) {
-        state.products.push(newProduct);
-        if (typeof saveProducts === 'function') saveProducts();
-        if (typeof renderAll === 'function') renderAll();
-        // Обновляем админ-список, если открыт
-        if (document.getElementById('profileModal').classList.contains('open')) {
-            if (typeof renderAdminProducts === 'function') renderAdminProducts();
-        }
-        showToast('✅ Товар добавлен!');
+    // Проверяем доступность state
+    if (typeof state === 'undefined' || !state.products) {
+        showToast('❌ Ошибка: состояние не загружено');
+        return;
+    }
 
-        // Закрываем модалку
-        const modal = document.getElementById('addProductModal');
-        if (modal) modal.classList.remove('open');
+    // Добавляем товар
+    state.products.push(newProduct);
+    if (typeof saveProducts === 'function') saveProducts();
+    if (typeof renderAll === 'function') renderAll();
 
-        // Синхронизация с GitHub
-        if (typeof syncProductsToGitHub === 'function') {
-            const token = getGitHubToken();
-            if (token) {
-                syncProductsToGitHub(state.products).catch(err => {
-                    console.warn('Ошибка синхронизации с GitHub:', err);
-                    showToast('⚠️ Товар добавлен, но синхронизация с GitHub не удалась');
-                });
-            }
-        }
-    } else {
-        showToast('❌ Ошибка: состояние не найдено');
+    // Обновляем список товаров в админ-панели, если она открыта
+    if (document.getElementById('profileModal').classList.contains('open')) {
+        if (typeof renderAdminProducts === 'function') renderAdminProducts();
+    }
+
+    // Закрываем модалку
+    const modal = document.getElementById('addProductModal');
+    if (modal) modal.classList.remove('open');
+
+    showToast('✅ Товар добавлен!');
+
+    // Автоматическая синхронизация с GitHub (если токен установлен)
+    const token = getGitHubToken();
+    if (token) {
+        syncProductsToGitHub(state.products).catch(err => {
+            console.warn('Ошибка синхронизации с GitHub:', err);
+            showToast('⚠️ Товар добавлен, но синхронизация с GitHub не удалась');
+        });
     }
 }
 
@@ -238,7 +219,7 @@ function initAdmin() {
         });
     }
 
-    // 2. Добавление товара – используем делегирование для кнопки открытия формы
+    // 2. Открытие формы добавления (делегирование)
     document.addEventListener('click', function(e) {
         const target = e.target.closest('#openAddProductBtn');
         if (target) {
@@ -247,10 +228,9 @@ function initAdmin() {
         }
     });
 
-    // 3. Обработчик отправки формы добавления (перехватываем submit)
+    // 3. Обработчик отправки формы добавления
     const addForm = document.getElementById('addProductForm');
     if (addForm) {
-        // Удаляем предыдущие обработчики (если есть) и добавляем свой
         addForm.removeEventListener('submit', handleAddProductSubmit);
         addForm.addEventListener('submit', handleAddProductSubmit);
     }
@@ -259,14 +239,14 @@ function initAdmin() {
     updateTokenStatus();
 }
 
-// Запускаем инициализацию после загрузки DOM
+// Запускаем инициализацию
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initAdmin);
 } else {
     initAdmin();
 }
 
-// Делаем функции доступными глобально для вызова из основного кода (если нужно)
+// Делаем функции доступными глобально
 window.updateTokenStatus = updateTokenStatus;
 window.syncProductsToGitHub = syncProductsToGitHub;
 window.openAddProductModal = openAddProductModal;
