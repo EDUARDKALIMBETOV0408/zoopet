@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
     <style>
-        /* ===== ВСЕ СТИЛИ (полная версия, без сокращений) ===== */
+        /* ===== ВСЕ СТИЛИ (без изменений) ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --bg-primary: #F7F5F0;
@@ -404,16 +404,21 @@
                 </div>
                 <button type="button" class="btn btn-outline" id="showPetFormBtn" style="margin-top:8px;" data-i18n="add_pet">+ Добавить питомца</button>
 
-                <!-- АДМИН-ПАНЕЛЬ -->
+                <!-- ===== АДМИН-ПАНЕЛЬ (ИСПРАВЛЕНА) ===== -->
                 <div id="adminPanel" style="display:none;" class="admin-section">
                     <h4>🔧 Администрирование</h4>
                     <div class="admin-tabs">
-                        <button class="active" data-admin-tab="products">Товары</button>
-                        <button data-admin-tab="add">Добавить товар</button>
+                        <button data-admin-tab="products">Товары</button>
+                        <button class="active" data-admin-tab="add">Добавить товар</button>
                         <button data-admin-tab="orders">Заказы</button>
                     </div>
-                    <div id="adminProducts" class="admin-tab-content active"></div>
-                    <div id="adminAddProduct" class="admin-tab-content">
+
+                    <div id="adminProducts" class="admin-tab-content">
+                        <h5>Список товаров</h5>
+                        <div id="adminProductsList"></div>
+                    </div>
+
+                    <div id="adminAddProduct" class="admin-tab-content active">
                         <h5>Добавление нового товара</h5>
                         <p>Нажмите кнопку ниже, чтобы открыть форму добавления.</p>
                         <button type="button" class="btn btn-primary" id="openAddProductBtn" data-i18n="open_add_form">Открыть форму добавления</button>
@@ -421,14 +426,17 @@
                             <button class="btn btn-outline" id="exportJsonBtn">📥 Скачать JSON</button>
                         </div>
                     </div>
+
                     <div id="adminOrders" class="admin-tab-content">
                         <h5>Заказы</h5>
                         <div id="adminOrdersList"></div>
                     </div>
+
                     <div style="margin-top: 16px;">
                         <button class="btn btn-outline" id="loadJsonBtn">📂 Загрузить товары из JSON</button>
                         <div id="loadJsonStatus" class="status-msg"></div>
                     </div>
+
                     <!-- GitHub синхронизация -->
                     <div style="margin-top: 16px; border-top: 1px solid var(--border-color); padding-top: 16px;">
                         <h5>🔐 GitHub синхронизация</h5>
@@ -440,6 +448,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- ===== КОНЕЦ АДМИН-ПАНЕЛИ ===== -->
 
                 <div class="divider"></div>
                 <button type="submit" class="btn btn-primary" data-i18n="save_profile">Сохранить изменения</button>
@@ -581,7 +590,6 @@
         /**
          * ============================================================
          *  ОСНОВНОЙ КОД (без обработчика submit формы добавления)
-         *  Добавление товара полностью управляется из admin.js
          * ============================================================
          */
 
@@ -1564,23 +1572,26 @@
 
         // ------ 14. АДМИН-ПАНЕЛЬ (рендеринг) ------
         function renderAdminPanel() {
+            // Вкладки уже имеют классы активной в HTML, но для переключения навешиваем обработчики
             const tabs = document.querySelectorAll('.admin-tabs button');
             tabs.forEach(btn => {
                 btn.addEventListener('click', function() {
                     const tab = this.dataset.adminTab;
                     document.querySelectorAll('.admin-tab-content').forEach(t => t.classList.remove('active'));
-                    document.getElementById('admin' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add(
-                        'active');
+                    document.getElementById('admin' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('active');
                     tabs.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
                 });
             });
+
+            // Рендерим список товаров (если нужно)
             renderAdminProducts();
             renderAdminOrders();
         }
 
         function renderAdminProducts() {
-            const container = document.getElementById('adminProducts');
+            const container = document.getElementById('adminProductsList');
+            if (!container) return;
             let html = '<h5>Список товаров</h5>';
             state.products.forEach(p => {
                 const name = getProductName(p);
@@ -1602,6 +1613,7 @@
 
         function renderAdminOrders() {
             const container = document.getElementById('adminOrdersList');
+            if (!container) return;
             if (state.orders.length === 0) {
                 container.innerHTML = '<p>Заказов пока нет.</p>';
                 return;
@@ -1702,10 +1714,7 @@
         document.getElementById('editProductModal').addEventListener('click', (e) => { if (e.target === e.currentTarget)
                 closeModal('editProductModal'); });
 
-        // ------ 17. ДОБАВЛЕНИЕ ТОВАРА (ВЕСЬ КОД В ADMIN.JS) ------
-        // Здесь функция openAddProductModal отсутствует – она в admin.js
-
-        // ------ 18. ОФОРМЛЕНИЕ ЗАКАЗА ------
+        // ------ 17. ОФОРМЛЕНИЕ ЗАКАЗА ------
         function openCheckoutModal() {
             if (state.cart.length === 0) {
                 showToast(getTranslation('cart_empty'));
@@ -1790,7 +1799,7 @@
         document.getElementById('checkoutModal').addEventListener('click', (e) => { if (e.target === e.currentTarget)
                 closeModal('checkoutModal'); });
 
-        // ------ 19. UI ФУНКЦИИ ------
+        // ------ 18. UI ФУНКЦИИ ------
         function renderUserArea() {
             const area = document.getElementById('userArea');
             if (!area) return;
@@ -1846,7 +1855,7 @@
             }
         }
 
-        // ------ 20. ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА, ФИЛЬТРЫ, ПОИСК ------
+        // ------ 19. ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА, ФИЛЬТРЫ, ПОИСК ------
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const lang = this.getAttribute('data-lang');
@@ -1869,7 +1878,7 @@
             searchTimeout = setTimeout(applyFiltersAndPagination, 300);
         });
 
-        // ------ 21. КОРЗИНА (ОТКРЫТИЕ) ------
+        // ------ 20. КОРЗИНА (ОТКРЫТИЕ) ------
         document.getElementById('cartOpenBtn').addEventListener('click', function() {
             openModal('cartModal');
             renderModalCart();
@@ -1878,7 +1887,7 @@
         document.getElementById('cartModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeModal(
                 'cartModal'); });
 
-        // ------ 22. ТОСТ ------
+        // ------ 21. ТОСТ ------
         let toastTimeout;
 
         function showToast(message) {
@@ -1891,12 +1900,12 @@
             }, 3000);
         }
 
-        // ------ 23. ЗАКРЫТИЕ МОДАЛОК (ПРОДУКТ) ------
+        // ------ 22. ЗАКРЫТИЕ МОДАЛОК (ПРОДУКТ) ------
         document.getElementById('productCloseBtn').addEventListener('click', () => closeModal('productModal'));
         document.getElementById('productModal').addEventListener('click', (e) => { if (e.target === e.currentTarget)
                 closeModal('productModal'); });
 
-        // ------ 24. ИНИЦИАЛИЗАЦИЯ ------
+        // ------ 23. ИНИЦИАЛИЗАЦИЯ ------
         async function init() {
             const savedLang = localStorage.getItem('zooLang') || 'ru';
             state.currentLang = savedLang;
