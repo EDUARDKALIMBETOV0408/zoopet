@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
     <style>
+        /* ===== ВСЕ СТИЛИ (полная версия) ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --bg-primary: #F7F5F0;
@@ -172,6 +173,8 @@
         .order-item .order-details { margin-top: 8px; font-size: 14px; color: var(--text-secondary); }
         .toast { background: var(--accent-green); color: white; padding: 12px 24px; border-radius: 40px; font-weight: 500; position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); opacity: 0; transition: opacity 0.3s, transform 0.3s; pointer-events: none; box-shadow: var(--shadow); z-index: 1000; }
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        .admin-btn-group { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+        .admin-btn-group .btn { width: auto; padding: 8px 24px; }
         @media (max-width: 640px) {
             .app-container { padding: 16px; }
             .product-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
@@ -189,6 +192,7 @@
 
     <div class="app-container" id="app">
         <div id="toast" class="toast">✅ Успешно!</div>
+        <!-- ШАПКА -->
         <header class="header">
             <div class="logo">🐾 Zoo<span>Pet</span></div>
             <div class="header-controls">
@@ -203,6 +207,7 @@
                 </button>
             </div>
         </header>
+        <!-- БАННЕР -->
         <div class="banner">
             <div class="banner-content">
                 <h2 data-i18n="banner_title">🐶 Специальное предложение!</h2>
@@ -210,6 +215,7 @@
             </div>
             <div class="banner-emoji">🎉</div>
         </div>
+        <!-- ПОИСК И ФИЛЬТРЫ -->
         <div class="search-bar">
             <input type="text" id="searchInput" data-i18n-placeholder="search_placeholder" placeholder="Поиск товаров..." />
         </div>
@@ -240,11 +246,15 @@
             </div>
             <button class="btn-apply" id="applyFilters" data-i18n="apply_filters">Применить</button>
         </div>
+        <!-- КАТАЛОГ -->
         <div class="product-grid" id="productGrid"></div>
+        <!-- ПАГИНАЦИЯ -->
         <div class="pagination-controls" id="paginationControls"></div>
     </div>
 
-    <!-- Модальные окна -->
+    <!-- ===== МОДАЛЬНЫЕ ОКНА ===== -->
+
+    <!-- КОРЗИНА -->
     <div class="modal-overlay" id="cartModal">
         <div class="modal">
             <button class="modal-close" id="cartCloseBtn">&times;</button>
@@ -258,6 +268,7 @@
         </div>
     </div>
 
+    <!-- АВТОРИЗАЦИЯ -->
     <div class="modal-overlay" id="authModal">
         <div class="modal">
             <button class="modal-close" id="authCloseBtn">&times;</button>
@@ -268,45 +279,20 @@
             </div>
             <div class="tab-content active" id="tabLogin">
                 <form id="loginForm">
-                    <div class="form-group">
-                        <label data-i18n="email">Email</label>
-                        <input type="email" id="loginEmail" placeholder="petlover@example.com" required />
-                    </div>
-                    <div class="form-group">
-                        <label data-i18n="password">Пароль</label>
-                        <input type="password" id="loginPassword" placeholder="••••••••" required />
-                    </div>
+                    <div class="form-group"><label data-i18n="email">Email</label><input type="email" id="loginEmail" placeholder="petlover@example.com" required /></div>
+                    <div class="form-group"><label data-i18n="password">Пароль</label><input type="password" id="loginPassword" placeholder="••••••••" required /></div>
                     <button type="submit" class="btn btn-primary" data-i18n="login_btn">Войти</button>
                     <div id="loginStatus" class="status-msg"></div>
                 </form>
             </div>
             <div class="tab-content" id="tabRegister">
                 <form id="registerForm">
-                    <div class="form-group">
-                        <label data-i18n="email">Email</label>
-                        <input type="email" id="regEmail" placeholder="petlover@example.com" required />
-                    </div>
-                    <div class="form-group">
-                        <label data-i18n="first_name">Имя</label>
-                        <input type="text" id="regFirstName" placeholder="Анна" required />
-                    </div>
-                    <div class="form-group">
-                        <label data-i18n="last_name">Фамилия</label>
-                        <input type="text" id="regLastName" placeholder="Иванова" />
-                    </div>
-                    <div class="form-group">
-                        <label data-i18n="phone">Телефон (сербский формат)</label>
-                        <input type="text" id="regPhone" placeholder="+381 63 123 4567" required />
-                        <small>Пример: +381 63 123 4567</small>
-                    </div>
-                    <div class="form-group">
-                        <label data-i18n="password">Пароль</label>
-                        <input type="password" id="regPassword" placeholder="••••••••" required minlength="6" />
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="consentPd" required />
-                        <label for="consentPd" data-i18n="consent_pd">Я согласен на <a href="#">обработку персональных данных</a></label>
-                    </div>
+                    <div class="form-group"><label data-i18n="email">Email</label><input type="email" id="regEmail" placeholder="petlover@example.com" required /></div>
+                    <div class="form-group"><label data-i18n="first_name">Имя</label><input type="text" id="regFirstName" placeholder="Анна" required /></div>
+                    <div class="form-group"><label data-i18n="last_name">Фамилия</label><input type="text" id="regLastName" placeholder="Иванова" /></div>
+                    <div class="form-group"><label data-i18n="phone">Телефон (сербский формат)</label><input type="text" id="regPhone" placeholder="+381 63 123 4567" required /><small>Пример: +381 63 123 4567</small></div>
+                    <div class="form-group"><label data-i18n="password">Пароль</label><input type="password" id="regPassword" placeholder="••••••••" required minlength="6" /></div>
+                    <div class="checkbox-group"><input type="checkbox" id="consentPd" required /><label for="consentPd" data-i18n="consent_pd">Я согласен на <a href="#">обработку персональных данных</a></label></div>
                     <button type="submit" class="btn btn-primary" data-i18n="register_btn">Зарегистрироваться</button>
                     <div id="registerStatus" class="status-msg"></div>
                 </form>
@@ -314,28 +300,21 @@
         </div>
     </div>
 
+    <!-- ПРОФИЛЬ -->
     <div class="modal-overlay" id="profileModal">
         <div class="modal">
             <button class="modal-close" id="profileCloseBtn">&times;</button>
             <h2 data-i18n="profile_title">👤 Личный кабинет</h2>
             <form id="profileForm">
                 <div id="nameFieldsGroup">
-                    <div class="form-group">
-                        <label data-i18n="first_name">Имя</label>
-                        <input type="text" id="profFirstName" required />
-                    </div>
-                    <div class="form-group">
-                        <label data-i18n="last_name">Фамилия</label>
-                        <input type="text" id="profLastName" />
-                    </div>
+                    <div class="form-group"><label data-i18n="first_name">Имя</label><input type="text" id="profFirstName" required /></div>
+                    <div class="form-group"><label data-i18n="last_name">Фамилия</label><input type="text" id="profLastName" /></div>
                 </div>
                 <div class="form-group" id="phoneFieldGroup">
-                    <label data-i18n="phone">Телефон</label>
-                    <input type="text" id="profPhone" required />
+                    <label data-i18n="phone">Телефон</label><input type="text" id="profPhone" required />
                 </div>
                 <div id="emailFieldGroup" class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="profEmail" disabled style="background:#f0f0f0;" />
+                    <label>Email</label><input type="email" id="profEmail" disabled style="background:#f0f0f0;" />
                 </div>
                 <div id="addressesSection">
                     <div class="divider"></div>
@@ -343,18 +322,9 @@
                     <div id="profileAddresses"></div>
                     <div class="inline-add-form" id="addAddressForm">
                         <div class="form-row">
-                            <div class="full-width form-group">
-                                <label data-i18n="address_street">Улица, дом</label>
-                                <input type="text" id="addrStreet" placeholder="Булевар ослобођења 10" />
-                            </div>
-                            <div class="form-group">
-                                <label data-i18n="address_city">Город</label>
-                                <input type="text" id="addrCity" placeholder="Нови Сад" />
-                            </div>
-                            <div class="form-group">
-                                <label data-i18n="address_postal">Индекс</label>
-                                <input type="text" id="addrPostal" placeholder="21000" />
-                            </div>
+                            <div class="full-width form-group"><label data-i18n="address_street">Улица, дом</label><input type="text" id="addrStreet" placeholder="Булевар ослобођења 10" /></div>
+                            <div class="form-group"><label data-i18n="address_city">Город</label><input type="text" id="addrCity" placeholder="Нови Сад" /></div>
+                            <div class="form-group"><label data-i18n="address_postal">Индекс</label><input type="text" id="addrPostal" placeholder="21000" /></div>
                         </div>
                         <div style="display:flex; gap:8px; margin-top:8px;">
                             <button type="button" class="btn-sm btn-primary" id="saveAddressBtn" data-i18n="save">Сохранить</button>
@@ -369,18 +339,9 @@
                     <div id="profilePets"></div>
                     <div class="inline-add-form" id="addPetForm">
                         <div class="form-row">
-                            <div class="form-group">
-                                <label data-i18n="pet_name">Имя питомца</label>
-                                <input type="text" id="petName" placeholder="Барсик" />
-                            </div>
-                            <div class="form-group">
-                                <label data-i18n="pet_type">Вид</label>
-                                <input type="text" id="petType" placeholder="Кошка" />
-                            </div>
-                            <div class="full-width form-group">
-                                <label data-i18n="pet_birthday">Дата рождения</label>
-                                <input type="date" id="petBirthday" />
-                            </div>
+                            <div class="form-group"><label data-i18n="pet_name">Имя питомца</label><input type="text" id="petName" placeholder="Барсик" /></div>
+                            <div class="form-group"><label data-i18n="pet_type">Вид</label><input type="text" id="petType" placeholder="Кошка" /></div>
+                            <div class="full-width form-group"><label data-i18n="pet_birthday">Дата рождения</label><input type="date" id="petBirthday" /></div>
                         </div>
                         <div style="display:flex; gap:8px; margin-top:8px;">
                             <button type="button" class="btn-sm btn-primary" id="savePetBtn" data-i18n="save">Сохранить</button>
@@ -389,6 +350,8 @@
                     </div>
                     <button type="button" class="btn btn-outline" id="showPetFormBtn" style="margin-top:8px;" data-i18n="add_pet">+ Добавить питомца</button>
                 </div>
+
+                <!-- АДМИН-ПАНЕЛЬ -->
                 <div id="adminPanel" style="display:none;" class="admin-section">
                     <h4>🔧 Администрирование</h4>
                     <div class="admin-tabs">
@@ -402,17 +365,15 @@
                     <div id="adminAddProduct" class="admin-tab-content active">
                         <h5>Добавление нового товара</h5>
                         <p>Нажмите кнопку ниже, чтобы открыть форму добавления.</p>
-                        <button type="button" class="btn btn-primary" id="openAddProductBtn" data-i18n="open_add_form">Открыть форму добавления</button>
-                        <div style="margin-top: 16px;">
+                        <div class="admin-btn-group">
+                            <button type="button" class="btn btn-primary" id="openAddProductBtn" data-i18n="open_add_form">Открыть форму добавления</button>
                             <button class="btn btn-outline" id="exportJsonBtn">📥 Скачать JSON</button>
+                            <button class="btn btn-outline" id="loadJsonBtn">📂 Загрузить товары из JSON</button>
                         </div>
+                        <div id="loadJsonStatus" class="status-msg"></div>
                     </div>
                     <div id="adminOrders" class="admin-tab-content">
                         <div id="adminOrdersList"></div>
-                    </div>
-                    <div style="margin-top: 16px;">
-                        <button class="btn btn-outline" id="loadJsonBtn">📂 Загрузить товары из JSON</button>
-                        <div id="loadJsonStatus" class="status-msg"></div>
                     </div>
                     <div style="margin-top: 16px; border-top: 1px solid var(--border-color); padding-top: 16px;">
                         <h5>🔐 GitHub синхронизация</h5>
@@ -424,16 +385,16 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="divider"></div>
                 <button type="submit" class="btn btn-primary" data-i18n="save_profile">Сохранить изменения</button>
-                <div style="margin-top: 16px;">
-                    <button type="button" class="btn btn-outline" id="logoutBtn" data-i18n="logout">Выйти из аккаунта</button>
-                </div>
+                <div style="margin-top: 16px;"><button type="button" class="btn btn-outline" id="logoutBtn" data-i18n="logout">Выйти из аккаунта</button></div>
                 <div id="profileStatus" class="status-msg"></div>
             </form>
         </div>
     </div>
 
+    <!-- ОФОРМЛЕНИЕ ЗАКАЗА -->
     <div class="modal-overlay" id="checkoutModal">
         <div class="modal">
             <button class="modal-close" id="checkoutCloseBtn">&times;</button>
@@ -463,6 +424,7 @@
         </div>
     </div>
 
+    <!-- КАРТОЧКА ТОВАРА -->
     <div class="modal-overlay" id="productModal">
         <div class="modal">
             <button class="modal-close" id="productCloseBtn">&times;</button>
@@ -470,6 +432,7 @@
         </div>
     </div>
 
+    <!-- РЕДАКТИРОВАНИЕ ТОВАРА -->
     <div class="modal-overlay" id="editProductModal">
         <div class="modal">
             <button class="modal-close" id="editProductCloseBtn">&times;</button>
@@ -489,67 +452,26 @@
         </div>
     </div>
 
+    <!-- ДОБАВЛЕНИЕ ТОВАРА -->
     <div class="modal-overlay" id="addProductModal">
         <div class="modal">
             <button class="modal-close" id="addProductCloseBtn">&times;</button>
             <h2 data-i18n="add_product_title">➕ Добавление товара</h2>
             <form id="addProductForm">
-                <div class="form-group">
-                    <label data-i18n="brand">Бренд</label>
-                    <input type="text" id="addBrand" required />
-                </div>
-                <div class="form-group">
-                    <label data-i18n="category">Категория (dog/cat)</label>
-                    <input type="text" id="addCategory" required />
-                </div>
-                <div class="form-group">
-                    <label data-i18n="price">Цена (RSD)</label>
-                    <input type="number" id="addPrice" required />
-                </div>
-                <div class="form-group">
-                    <label data-i18n="stock">Количество</label>
-                    <input type="number" id="addStock" required />
-                </div>
-                <div class="form-group">
-                    <label data-i18n="image_url">URL изображения</label>
-                    <input type="text" id="addImage" placeholder="https://placehold.co/300x300/..." />
-                </div>
-                <div class="form-group">
-                    <label data-i18n="name_ru">Название (RU)</label>
-                    <input type="text" id="addNameRu" required />
-                </div>
-                <div class="form-group">
-                    <label data-i18n="name_sr">Название (SR)</label>
-                    <input type="text" id="addNameSr" />
-                </div>
-                <div class="form-group">
-                    <label data-i18n="name_en">Название (EN)</label>
-                    <input type="text" id="addNameEn" />
-                </div>
-                <div class="form-group">
-                    <label data-i18n="desc_ru">Описание (RU)</label>
-                    <textarea id="addDescRu"></textarea>
-                </div>
-                <div class="form-group">
-                    <label data-i18n="desc_sr">Описание (SR)</label>
-                    <textarea id="addDescSr"></textarea>
-                </div>
-                <div class="form-group">
-                    <label data-i18n="desc_en">Описание (EN)</label>
-                    <textarea id="addDescEn"></textarea>
-                </div>
-                <div class="form-group">
-                    <label data-i18n="weight_ru">Вес (RU)</label>
-                    <input type="text" id="addWeightRu" />
-                </div>
-                <div class="form-group">
-                    <label data-i18n="food_type_ru">Тип корма (RU)</label>
-                    <input type="text" id="addFoodRu" />
-                </div>
-                <div class="form-group">
-                    <label data-i18n="age_ru">Возраст (RU)</label>
-                    <input type="text" id="addAgeRu" />
-                </div>
+                <div class="form-group"><label data-i18n="brand">Бренд</label><input type="text" id="addBrand" required /></div>
+                <div class="form-group"><label data-i18n="category">Категория (dog/cat)</label><input type="text" id="addCategory" required /></div>
+                <div class="form-group"><label data-i18n="price">Цена (RSD)</label><input type="number" id="addPrice" required /></div>
+                <div class="form-group"><label data-i18n="stock">Количество</label><input type="number" id="addStock" required /></div>
+                <div class="form-group"><label data-i18n="image_url">URL изображения</label><input type="text" id="addImage" placeholder="https://placehold.co/300x300/..." /></div>
+                <div class="form-group"><label data-i18n="name_ru">Название (RU)</label><input type="text" id="addNameRu" required /></div>
+                <div class="form-group"><label data-i18n="name_sr">Название (SR)</label><input type="text" id="addNameSr" /></div>
+                <div class="form-group"><label data-i18n="name_en">Название (EN)</label><input type="text" id="addNameEn" /></div>
+                <div class="form-group"><label data-i18n="desc_ru">Описание (RU)</label><textarea id="addDescRu"></textarea></div>
+                <div class="form-group"><label data-i18n="desc_sr">Описание (SR)</label><textarea id="addDescSr"></textarea></div>
+                <div class="form-group"><label data-i18n="desc_en">Описание (EN)</label><textarea id="addDescEn"></textarea></div>
+                <div class="form-group"><label data-i18n="weight_ru">Вес (RU)</label><input type="text" id="addWeightRu" /></div>
+                <div class="form-group"><label data-i18n="food_type_ru">Тип корма (RU)</label><input type="text" id="addFoodRu" /></div>
+                <div class="form-group"><label data-i18n="age_ru">Возраст (RU)</label><input type="text" id="addAgeRu" /></div>
                 <div style="display:flex; gap:12px; margin-top:8px;">
                     <button type="submit" class="btn btn-primary" data-i18n="add_product_save" style="flex:1;">Добавить товар</button>
                     <button type="button" class="btn btn-outline" id="addProductCancelBtn" style="flex:1;" data-i18n="cancel">Отмена</button>
@@ -562,7 +484,7 @@
     <script>
         /**
          * ============================================================
-         *  ПОЛНЫЙ ОСНОВНОЙ СКРИПТ
+         *  ПОЛНЫЙ ОСНОВНОЙ СКРИПТ (ВСЕ ФУНКЦИИ)
          * ============================================================
          */
         const CONFIG = {
@@ -872,46 +794,37 @@
             }
             return false;
         }
-
         function saveUser() {
             if (state.user) localStorage.setItem('zooUser', JSON.stringify(state.user));
             else localStorage.removeItem('zooUser');
         }
-
         function saveProducts() {
             localStorage.setItem('zoopet_products', JSON.stringify(state.products));
         }
-
         function saveOrders() {
             localStorage.setItem('zoopet_orders', JSON.stringify(state.orders));
         }
-
         function getTranslation(key) {
             return CONFIG.i18n[state.currentLang]?.[key] || key;
         }
-
         function getProductName(product) {
             return product.name?.[state.currentLang] || product.name?.ru || 'Без названия';
         }
-
         function getDescription(product) {
             return product.description?.[state.currentLang] || product.description?.ru || '';
         }
-
         function getAttrValue(product, attrKey) {
             if (product.attributes && product.attributes[attrKey]) {
                 return product.attributes[attrKey][state.currentLang] || product.attributes[attrKey].ru || '';
             }
             return '';
         }
-
         function formatPrice(priceRsd) {
             const rate = CONFIG.currencies[state.currentLang].rate;
             const code = CONFIG.currencies[state.currentLang].code;
             const converted = priceRsd / rate;
             return `${converted.toFixed(2)} ${code}`;
         }
-
         function calculateTotal() {
             let total = 0;
             state.cart.forEach(item => {
@@ -920,7 +833,6 @@
             });
             return total;
         }
-
         function getCartItemCount() {
             return state.cart.reduce((sum, item) => sum + item.quantity, 0);
         }
@@ -955,7 +867,6 @@
                     }
                 } catch (e) {}
             }
-
             try {
                 const baseUrl = window.location.pathname.replace(/\/[^/]*$/, '/');
                 const jsonUrl = baseUrl + 'products.json';
@@ -969,13 +880,10 @@
                         applyFiltersAndPagination();
                         return;
                     }
-                } else {
-                    console.warn('JSON не найден, статус:', response.status);
                 }
             } catch (error) {
                 console.warn('Ошибка загрузки JSON:', error);
             }
-
             state.products = [];
             localStorage.setItem('zoopet_products', JSON.stringify(state.products));
             updateBrandFilter(state.products);
@@ -1112,7 +1020,6 @@
             }
             renderAll();
         }
-
         function removeFromCart(productId) {
             state.cart = state.cart.filter(item => item.productId !== productId);
             renderAll();
@@ -1277,7 +1184,6 @@
         function openModal(id) {
             document.getElementById(id).classList.add('open');
         }
-
         function closeModal(id) {
             document.getElementById(id).classList.remove('open');
         }
@@ -1296,7 +1202,6 @@
             e.preventDefault();
             const email = document.getElementById('loginEmail').value.trim();
             const password = document.getElementById('loginPassword').value.trim();
-
             if (email === 'admin@admin.com' && password === 'admin123') {
                 state.user = { id: 999, email, firstName: '', lastName: '', phone: '', addresses: [], pets: [], isAdmin: true };
                 state.isAdmin = true;
@@ -1307,7 +1212,6 @@
                 showToast('🔧 Добро пожаловать, администратор!');
                 return;
             }
-
             const saved = localStorage.getItem('zooUser');
             if (saved) {
                 try {
@@ -1318,11 +1222,8 @@
                         saveUser();
                         closeModal('authModal');
                         renderAll();
-                        if (!state.isAdmin) {
-                            showUserFields();
-                        } else {
-                            hideAdminFields();
-                        }
+                        if (!state.isAdmin) showUserFields();
+                        else hideAdminFields();
                         showToast(getTranslation('toast_login'));
                         return;
                     }
@@ -1339,7 +1240,6 @@
             const phone = document.getElementById('regPhone').value.trim();
             const password = document.getElementById('regPassword').value;
             const consent = document.getElementById('consentPd').checked;
-
             if (!consent) {
                 document.getElementById('registerStatus').textContent = getTranslation('consent_required');
                 return;
@@ -1349,7 +1249,6 @@
                 document.getElementById('registerStatus').textContent = getTranslation('phone_invalid');
                 return;
             }
-
             const newUser = { id: Date.now(), email, firstName, lastName, phone, password, addresses: [], pets: [], isAdmin: false };
             localStorage.setItem('zooUser', JSON.stringify(newUser));
             state.user = newUser;
@@ -1377,18 +1276,11 @@
 
         function hideAdminFields() {
             const ids = ['nameFieldsGroup', 'phoneFieldGroup', 'addressesSection', 'petsSection', 'emailFieldGroup'];
-            ids.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.style.display = 'none';
-            });
+            ids.forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
         }
-
         function showUserFields() {
             const ids = ['nameFieldsGroup', 'phoneFieldGroup', 'addressesSection', 'petsSection', 'emailFieldGroup'];
-            ids.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.style.display = 'block';
-            });
+            ids.forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'block'; });
         }
 
         function openProfileModal() {
@@ -1403,11 +1295,8 @@
             document.getElementById('addAddressForm').classList.remove('open');
             document.getElementById('addPetForm').classList.remove('open');
 
-            if (state.isAdmin) {
-                hideAdminFields();
-            } else {
-                showUserFields();
-            }
+            if (state.isAdmin) hideAdminFields();
+            else showUserFields();
 
             const adminPanel = document.getElementById('adminPanel');
             if (state.isAdmin) {
@@ -1415,6 +1304,12 @@
                 if (!adminTabsInitialized) {
                     initAdminTabs();
                     adminTabsInitialized = true;
+                }
+                // Явно активируем вкладку "Добавить товар"
+                const addTab = document.querySelector('.admin-tabs button[data-admin-tab="add"]');
+                if (addTab) {
+                    addTab.classList.add('active');
+                    handleTabClick.call(addTab);
                 }
                 updateAdminProducts();
                 updateAdminOrders();
@@ -1550,21 +1445,24 @@
         document.getElementById('profileCloseBtn').addEventListener('click', () => closeModal('profileModal'));
         document.getElementById('profileModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeModal('profileModal'); });
 
+        // ---- АДМИН-ПАНЕЛЬ (ВКЛАДКИ) ----
         function initAdminTabs() {
             const tabs = document.querySelectorAll('.admin-tabs button');
             tabs.forEach(btn => {
                 btn.removeEventListener('click', handleTabClick);
                 btn.addEventListener('click', handleTabClick);
             });
-            const activeTab = document.querySelector('.admin-tabs button.active');
+            // Проверяем активную вкладку
+            let activeTab = document.querySelector('.admin-tabs button.active');
+            if (!activeTab) {
+                activeTab = document.querySelector('.admin-tabs button[data-admin-tab="add"]');
+                if (!activeTab) activeTab = document.querySelector('.admin-tabs button');
+                if (activeTab) activeTab.classList.add('active');
+            }
             if (activeTab) {
                 handleTabClick.call(activeTab);
             } else {
-                const firstTab = document.querySelector('.admin-tabs button');
-                if (firstTab) {
-                    firstTab.classList.add('active');
-                    handleTabClick.call(firstTab);
-                }
+                document.querySelectorAll('.admin-tab-content').forEach(t => t.style.display = 'block');
             }
         }
 
@@ -1577,6 +1475,7 @@
             this.classList.add('active');
         }
 
+        // ---- ОБНОВЛЕНИЕ СПИСКОВ (без перерисовки кнопок) ----
         function updateAdminProducts() {
             const container = document.getElementById('adminProductsList');
             if (!container) return;
@@ -1626,38 +1525,7 @@
             container.innerHTML = html;
         }
 
-        document.getElementById('loadJsonBtn')?.addEventListener('click', async function() {
-            const status = document.getElementById('loadJsonStatus');
-            try {
-                const baseUrl = window.location.pathname.replace(/\/[^/]*$/, '/');
-                const response = await fetch(baseUrl + 'products.json');
-                if (!response.ok) throw new Error('Файл products.json не найден');
-                const data = await response.json();
-                if (!Array.isArray(data) || data.length === 0) throw new Error('Файл пуст или невалиден');
-                state.products = data;
-                saveProducts();
-                applyFiltersAndPagination();
-                updateAdminProducts();
-                status.textContent = '✅ Загружено ' + data.length + ' товаров!';
-                status.style.color = 'var(--accent-green)';
-            } catch (error) {
-                status.textContent = '⚠️ Ошибка: ' + error.message;
-                status.style.color = 'var(--accent-orange)';
-            }
-        });
-
-        document.getElementById('exportJsonBtn')?.addEventListener('click', function() {
-            const dataStr = JSON.stringify(state.products, null, 2);
-            const blob = new Blob([dataStr], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'products.json';
-            a.click();
-            URL.revokeObjectURL(url);
-            showToast('📥 JSON скачан!');
-        });
-
+        // ---- РЕДАКТИРОВАНИЕ ТОВАРА ----
         function openEditProductModal(productId) {
             const product = state.products.find(p => p.id === productId);
             if (!product) return;
@@ -1699,6 +1567,7 @@
         document.getElementById('editProductCloseBtn').addEventListener('click', () => closeModal('editProductModal'));
         document.getElementById('editProductModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeModal('editProductModal'); });
 
+        // ---- ОФОРМЛЕНИЕ ЗАКАЗА ----
         function openCheckoutModal() {
             if (state.cart.length === 0) {
                 showToast(getTranslation('cart_empty'));
@@ -1756,7 +1625,6 @@
             }
             const delivery = document.getElementById('deliveryMethod').value;
             const payment = document.getElementById('paymentMethod').value;
-
             const order = {
                 id: Date.now(),
                 date: new Date().toLocaleString(),
@@ -1782,6 +1650,7 @@
         document.getElementById('checkoutCloseBtn').addEventListener('click', () => closeModal('checkoutModal'));
         document.getElementById('checkoutModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeModal('checkoutModal'); });
 
+        // ---- UI ФУНКЦИИ ----
         function renderUserArea() {
             const area = document.getElementById('userArea');
             if (!area) return;
@@ -1842,6 +1711,7 @@
             }
         }
 
+        // ---- ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА, ФИЛЬТРЫ, ПОИСК ----
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const lang = this.getAttribute('data-lang');
@@ -1864,6 +1734,7 @@
             searchTimeout = setTimeout(applyFiltersAndPagination, 300);
         });
 
+        // ---- КОРЗИНА ----
         document.getElementById('cartOpenBtn').addEventListener('click', function() {
             openModal('cartModal');
             renderModalCart();
@@ -1871,6 +1742,7 @@
         document.getElementById('cartCloseBtn').addEventListener('click', () => closeModal('cartModal'));
         document.getElementById('cartModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeModal('cartModal'); });
 
+        // ---- ТОСТ ----
         let toastTimeout;
         function showToast(message) {
             const toast = document.getElementById('toast');
@@ -1882,9 +1754,11 @@
             }, 3000);
         }
 
+        // ---- ЗАКРЫТИЕ МОДАЛОК (ПРОДУКТ) ----
         document.getElementById('productCloseBtn').addEventListener('click', () => closeModal('productModal'));
         document.getElementById('productModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeModal('productModal'); });
 
+        // ---- ИНИЦИАЛИЗАЦИЯ ----
         async function init() {
             const savedLang = localStorage.getItem('zooLang') || 'ru';
             state.currentLang = savedLang;
