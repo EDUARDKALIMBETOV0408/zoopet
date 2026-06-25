@@ -3,17 +3,19 @@
  */
 
 const GITHUB_CONFIG = {
-    owner: 'eduardkalimbetov0408',
-    repo: 'zoopet',
-    path: 'products.json'
+    owner: 'eduardkalimbetov0408',   // Замените на ваш GitHub username
+    repo: 'zoopet',                   // Название репозитория
+    path: 'products.json'             // Путь к файлу в репозитории
 };
 
 function getGitHubToken() {
     return localStorage.getItem('github_token');
 }
+
 function setGitHubToken(token) {
     localStorage.setItem('github_token', token);
 }
+
 function hasGitHubToken() {
     return !!getGitHubToken();
 }
@@ -27,7 +29,8 @@ function updateTokenStatus() {
         statusEl.style.color = hasToken ? 'var(--accent-green)' : 'var(--accent-orange)';
     }
     if (inputEl) {
-        inputEl.value = getGitHubToken() || '';
+        const token = getGitHubToken();
+        inputEl.value = token || '';
     }
 }
 
@@ -39,7 +42,9 @@ async function syncProductsToGitHub(products) {
     }
 
     const { owner, repo, path } = GITHUB_CONFIG;
+
     try {
+        // 1. Получаем текущий SHA файла
         const getUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
         const getResponse = await fetch(getUrl, {
             headers: {
@@ -47,17 +52,21 @@ async function syncProductsToGitHub(products) {
                 'Accept': 'application/vnd.github.v3+json'
             }
         });
+
         if (!getResponse.ok) {
             throw new Error(`Не удалось получить файл: ${getResponse.status}`);
         }
+
         const fileData = await getResponse.json();
         const sha = fileData.sha;
 
+        // 2. Кодируем новое содержимое в Base64 (UTF-8)
         const newContent = JSON.stringify(products, null, 2);
         const encoder = new TextEncoder();
         const data = encoder.encode(newContent);
         const encodedContent = btoa(String.fromCharCode(...data));
 
+        // 3. Отправляем PUT-запрос на обновление
         const updateUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
         const updateResponse = await fetch(updateUrl, {
             method: 'PUT',
@@ -72,6 +81,7 @@ async function syncProductsToGitHub(products) {
                 sha: sha
             })
         });
+
         if (!updateResponse.ok) {
             const errorData = await updateResponse.json();
             throw new Error(`Ошибка обновления: ${updateResponse.status} - ${errorData.message}`);
@@ -88,8 +98,12 @@ async function syncProductsToGitHub(products) {
 
 function openAddProductModal() {
     const modal = document.getElementById('addProductModal');
-    if (modal) modal.classList.add('open');
-    else showToast('❌ Ошибка: модальное окно не найдено');
+    if (modal) {
+        modal.classList.add('open');
+    } else {
+        console.error('Модальное окно #addProductModal не найдено');
+        showToast('❌ Ошибка: модальное окно не найдено');
+    }
 }
 
 function closeAddProductModal() {
@@ -158,6 +172,7 @@ function handleAddProductSubmit(e) {
     }
 
     closeAddProductModal();
+
     showToast('✅ Товар добавлен!');
 
     const token = getGitHubToken();
@@ -236,6 +251,7 @@ function initAdmin() {
         });
     }
 
+    // Открытие модального окна добавления товара (делегирование)
     document.addEventListener('click', function(e) {
         const target = e.target.closest('#openAddProductBtn');
         if (target) {
@@ -245,30 +261,50 @@ function initAdmin() {
         }
     });
 
+    // Закрытие по крестику
     const closeBtn = document.getElementById('addProductCloseBtn');
-    if (closeBtn) closeBtn.addEventListener('click', closeAddProductModal);
-
-    const modalOverlay = document.getElementById('addProductModal');
-    if (modalOverlay) {
-        modalOverlay.addEventListener('click', function(e) {
-            if (e.target === this) closeAddProductModal();
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            closeAddProductModal();
         });
     }
 
-    const cancelBtn = document.getElementById('addProductCancelBtn');
-    if (cancelBtn) cancelBtn.addEventListener('click', closeAddProductModal);
+    // Закрытие по клику на фон
+    const modalOverlay = document.getElementById('addProductModal');
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAddProductModal();
+            }
+        });
+    }
 
+    // Закрытие по кнопке "Отмена"
+    const cancelBtn = document.getElementById('addProductCancelBtn');
+    if (cancelBtn) {
+        cancelBtn.addEventListener('click', function() {
+            closeAddProductModal();
+        });
+    }
+
+    // Обработчик формы добавления
     const addForm = document.getElementById('addProductForm');
     if (addForm) {
         addForm.removeEventListener('submit', handleAddProductSubmit);
         addForm.addEventListener('submit', handleAddProductSubmit);
     }
 
+    // Экспорт JSON
     const exportBtn = document.getElementById('exportJsonBtn');
-    if (exportBtn) exportBtn.addEventListener('click', exportJsonData);
+    if (exportBtn) {
+        exportBtn.addEventListener('click', exportJsonData);
+    }
 
+    // Загрузка JSON
     const loadBtn = document.getElementById('loadJsonBtn');
-    if (loadBtn) loadBtn.addEventListener('click', loadJsonData);
+    if (loadBtn) {
+        loadBtn.addEventListener('click', loadJsonData);
+    }
 
     updateTokenStatus();
 }
