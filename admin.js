@@ -93,6 +93,7 @@ async function syncProductsToGitHub(products) {
     }
 }
 
+// ===== ОТКРЫТИЕ / ЗАКРЫТИЕ МОДАЛЬНОГО ОКНА =====
 function openAddProductModal() {
     const modal = document.getElementById('addProductModal');
     if (modal) {
@@ -100,6 +101,13 @@ function openAddProductModal() {
     } else {
         console.error('Модальное окно #addProductModal не найдено');
         showToast('❌ Ошибка: модальное окно не найдено');
+    }
+}
+
+function closeAddProductModal() {
+    const modal = document.getElementById('addProductModal');
+    if (modal) {
+        modal.classList.remove('open');
     }
 }
 
@@ -159,8 +167,7 @@ function handleAddProductSubmit(e) {
         if (typeof renderAdminProducts === 'function') renderAdminProducts();
     }
 
-    const modal = document.getElementById('addProductModal');
-    if (modal) modal.classList.remove('open');
+    closeAddProductModal(); // закрываем после сохранения
 
     showToast('✅ Товар добавлен!');
 
@@ -173,6 +180,7 @@ function handleAddProductSubmit(e) {
     }
 }
 
+// ===== ИНИЦИАЛИЗАЦИЯ =====
 function initAdmin() {
     const inputEl = document.getElementById('githubTokenInput');
     const saveBtn = document.getElementById('saveGitHubTokenBtn');
@@ -201,7 +209,7 @@ function initAdmin() {
         });
     }
 
-    // Открытие модального окна по клику на кнопку "Открыть форму добавления"
+    // === ОТКРЫТИЕ МОДАЛЬНОГО ОКНА (кнопка "Открыть форму добавления") ===
     document.addEventListener('click', function(e) {
         const target = e.target.closest('#openAddProductBtn');
         if (target) {
@@ -211,25 +219,56 @@ function initAdmin() {
         }
     });
 
-    // Дополнительный прямой обработчик на случай, если кнопка уже существует
-    const btn = document.getElementById('openAddProductBtn');
-    if (btn) {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            openAddProductModal();
+    // === ЗАКРЫТИЕ МОДАЛЬНОГО ОКНА (крестик) ===
+    const closeBtn = document.getElementById('addProductCloseBtn');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            closeAddProductModal();
         });
     }
 
+    // === ЗАКРЫТИЕ ПО КЛИКУ НА ФОН ===
+    const modalOverlay = document.getElementById('addProductModal');
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAddProductModal();
+            }
+        });
+    }
+
+    // === ОБРАБОТЧИК ФОРМЫ ДОБАВЛЕНИЯ ===
     const addForm = document.getElementById('addProductForm');
     if (addForm) {
         addForm.removeEventListener('submit', handleAddProductSubmit);
         addForm.addEventListener('submit', handleAddProductSubmit);
     }
+    // === КНОПКА "ОТМЕНА" В МОДАЛКЕ ===
+const cancelBtn = document.getElementById('addProductCancelBtn');
+if (cancelBtn) {
+    cancelBtn.addEventListener('click', function() {
+        closeAddProductModal();
+    });
+}
+
+    // === КНОПКА "ОТМЕНА" ВНУТРИ МОДАЛЬНОГО ОКНА ===
+    // Добавим кнопку "Отмена" в HTML (если её нет), или используем существующую.
+    // В разметке у нас есть только кнопка "Добавить товар". Добавим кнопку "Отмена" динамически,
+    // но проще добавить её в HTML. В текущем HTML её нет, поэтому добавим сейчас.
+    // Мы можем также использовать крестик как отмену, но пользователь хочет кнопку.
+    // Я добавлю кнопку "Отмена" прямо здесь, вставив её в модалку.
+    // Но лучше сделать это в HTML, чтобы сохранить структуру. Поскольку я даю полный код,
+    // я обновлю HTML-разметку с кнопкой "Отмена".
+    // Но для совместимости добавим обработчик, если кнопка "Отмена" уже есть в разметке.
+    // Для этого добавим поиск кнопки с классом "cancel-btn" внутри модалки и навесим обработчик.
+    // Однако в текущей разметке такой кнопки нет. Поэтому я добавлю её в HTML-код.
+    // В финальном ответе я дам обновлённый index.html с кнопкой "Отмена".
+    // Пока здесь просто заглушка.
 
     updateTokenStatus();
 }
 
+// Запускаем инициализацию
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initAdmin);
 } else {
@@ -239,3 +278,4 @@ if (document.readyState === 'loading') {
 window.updateTokenStatus = updateTokenStatus;
 window.syncProductsToGitHub = syncProductsToGitHub;
 window.openAddProductModal = openAddProductModal;
+window.closeAddProductModal = closeAddProductModal;
