@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
     <style>
-        /* ===== СБРОС И ПЕРЕМЕННЫЕ ===== */
+        /* ===== ВСЕ СТИЛИ (полная версия) ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --bg-primary: #F7F5F0;
@@ -99,7 +99,7 @@
         .pagination-controls button:disabled { opacity: 0.4; cursor: not-allowed; }
         .pagination-controls .load-more-btn { background: var(--accent-green); color: #fff; border: none; padding: 10px 30px; border-radius: 40px; }
         .pagination-controls .load-more-btn:hover { background: #3D6A4A; }
-        /* ----- МОДАЛЬНЫЕ ОКНА (полная версия) ----- */
+        /* ----- МОДАЛЬНЫЕ ОКНА ----- */
         .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.4); display: none; align-items: center; justify-content: center; z-index: 999; }
         .modal-overlay.open { display: flex; }
         .modal { background: #fff; max-width: 600px; width: 95%; border-radius: 24px; padding: 28px; max-height: 90vh; overflow-y: auto; position: relative; }
@@ -201,7 +201,9 @@
                     <button class="lang-btn" data-lang="sr">SR</button>
                     <button class="lang-btn" data-lang="en">EN</button>
                 </div>
-                <div class="user-area" id="userArea"></div>
+                <div class="user-area" id="userArea">
+                    <!-- Сюда рендерится кнопка "Войти" или аватар -->
+                </div>
                 <button class="cart-icon" id="cartOpenBtn" aria-label="Корзина">
                     🛒<span class="cart-badge" id="cartBadge">0</span>
                 </button>
@@ -258,7 +260,8 @@
         <div class="pagination-controls" id="paginationControls"></div>
     </div>
 
-    <!-- ===== МОДАЛЬНЫЕ ОКНА (все) ===== -->
+    <!-- ===== МОДАЛЬНЫЕ ОКНА (ВСЕ) ===== -->
+
     <!-- КОРЗИНА -->
     <div class="modal-overlay" id="cartModal">
         <div class="modal">
@@ -344,7 +347,6 @@
                     <label data-i18n="last_name">Фамилия</label>
                     <input type="text" id="profLastName" />
                 </div>
-                <!-- Поле "Телефон" скрыто для администратора (управляется через JS) -->
                 <div class="form-group" id="phoneFieldGroup">
                     <label data-i18n="phone">Телефон</label>
                     <input type="text" id="profPhone" required />
@@ -429,7 +431,7 @@
                         <button class="btn btn-outline" id="loadJsonBtn">📂 Загрузить товары из JSON</button>
                         <div id="loadJsonStatus" class="status-msg"></div>
                     </div>
-                    <!-- НОВЫЙ БЛОК: ПОЛЕ ВВОДА ТОКЕНА GITHUB -->
+                    <!-- GitHub синхронизация -->
                     <div style="margin-top: 16px; border-top: 1px solid var(--border-color); padding-top: 16px;">
                         <h5>🔐 GitHub синхронизация</h5>
                         <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
@@ -580,10 +582,9 @@
     <script>
         /**
          * ============================================================
-         *  ПОЛНЫЙ КОД БЕЗ ВСТРОЕННЫХ ТОВАРОВ
-         *  Товары загружаются из products.json
-         *  Админ-функции вынесены в admin.js (подключается ниже)
-         *  ВСЕ ФУНКЦИИ ПОЛНОСТЬЮ РАСПИСАНЫ
+         *  ОСНОВНОЙ КОД (без обработчика submit формы добавления)
+         *  Все функции, кроме добавления товара, остаются без изменений.
+         *  Добавление товара теперь полностью управляется из admin.js.
          * ============================================================
          */
 
@@ -865,8 +866,8 @@
             }
         };
 
-        // ------ 2. ПУСТОЙ МАССИВ ТОВАРОВ (заполняется из JSON) ------
-        const FALLBACK_PRODUCTS = []; // товаров в коде нет
+        // ------ 2. ПУСТОЙ МАССИВ ТОВАРОВ ------
+        const FALLBACK_PRODUCTS = [];
 
         // ------ 3. СОСТОЯНИЕ И ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ------
         let state = {
@@ -966,9 +967,8 @@
             }
         }
 
-        // ------ 5. ЗАГРУЗКА ТОВАРОВ (из JSON, потом из localStorage, иначе пусто) ------
+        // ------ 5. ЗАГРУЗКА ТОВАРОВ ------
         async function loadProducts() {
-            // Сначала проверяем localStorage
             const saved = localStorage.getItem('zoopet_products');
             if (saved) {
                 try {
@@ -982,7 +982,6 @@
                 } catch (e) {}
             }
 
-            // Если в localStorage нет или он пуст, пытаемся загрузить из JSON
             try {
                 const baseUrl = window.location.pathname.replace(/\/[^/]*$/, '/');
                 const jsonUrl = baseUrl + 'products.json';
@@ -1003,7 +1002,6 @@
                 console.warn('Ошибка загрузки JSON:', error);
             }
 
-            // Если ничего не загрузилось – используем пустой массив
             state.products = [];
             localStorage.setItem('zoopet_products', JSON.stringify(state.products));
             updateBrandFilter(state.products);
@@ -1316,7 +1314,7 @@
             document.getElementById(id).classList.remove('open');
         }
 
-        // ------ 12. АВТОРИЗАЦИЯ (с учётом админа) ------
+        // ------ 12. АВТОРИЗАЦИЯ ------
         function openAuthModal() {
             document.getElementById('loginStatus').textContent = '';
             document.getElementById('registerStatus').textContent = '';
@@ -1434,7 +1432,6 @@
             if (state.isAdmin) {
                 adminPanel.style.display = 'block';
                 renderAdminPanel();
-                // Обновляем статус токена (из admin.js)
                 if (typeof updateTokenStatus === 'function') {
                     updateTokenStatus();
                 }
@@ -1708,61 +1705,8 @@
         document.getElementById('editProductModal').addEventListener('click', (e) => { if (e.target === e.currentTarget)
                 closeModal('editProductModal'); });
 
-        // ------ 17. ДОБАВЛЕНИЕ ТОВАРА (с автоматической синхронизацией) ------
-        function openAddProductModal() {
-            document.getElementById('addProductForm').reset();
-            document.getElementById('addProductStatus').textContent = '';
-            openModal('addProductModal');
-        }
-        document.getElementById('addProductCloseBtn').addEventListener('click', () => closeModal('addProductModal'));
-        document.getElementById('addProductModal').addEventListener('click', (e) => { if (e.target === e.currentTarget)
-                closeModal('addProductModal'); });
-        document.getElementById('openAddProductBtn').addEventListener('click', openAddProductModal);
-
-       
-            const newProduct = {
-                id: Date.now(),
-                brand,
-                category,
-                price_rsd: price,
-                stock: stock,
-                image: image,
-                name: { ru: nameRu, sr: nameSr, en: nameEn },
-                description: { ru: descRu, sr: descSr, en: descEn },
-                attributes: {
-                    weight: { ru: weightRu, sr: weightRu, en: weightRu },
-                    food_type: { ru: foodRu, sr: foodRu, en: foodRu },
-                    age: { ru: ageRu, sr: ageRu, en: ageRu }
-                },
-                reviews: []
-            };
-
-            state.products.push(newProduct);
-            saveProducts();
-            closeModal('addProductModal');
-            renderAll();
-            if (document.getElementById('profileModal').classList.contains('open')) {
-                renderAdminProducts();
-            }
-            showToast('✅ Товар добавлен!');
-
-            // ===== АВТОМАТИЧЕСКАЯ СИНХРОНИЗАЦИЯ С GITHUB =====
-            if (typeof syncProductsToGitHub === 'function') {
-                const token = localStorage.getItem('github_token');
-                if (token) {
-                    try {
-                        await syncProductsToGitHub(state.products);
-                    } catch (error) {
-                        console.warn('Ошибка синхронизации с GitHub:', error);
-                        showToast('⚠️ Товар добавлен, но синхронизация с GitHub не удалась');
-                    }
-                } else {
-                    console.warn('GitHub токен не установлен, синхронизация пропущена');
-                }
-            } else {
-                console.warn('Функция syncProductsToGitHub не найдена – проверьте подключение admin.js');
-            }
-        });
+        // ------ 17. ДОБАВЛЕНИЕ ТОВАРА (ОТКЛЮЧЕНО – ВЕСЬ КОД В ADMIN.JS) ------
+        // Функция openAddProductModal теперь в admin.js, здесь не дублируем.
 
         // ------ 18. ОФОРМЛЕНИЕ ЗАКАЗА ------
         function openCheckoutModal() {
