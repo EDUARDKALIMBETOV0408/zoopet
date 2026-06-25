@@ -165,7 +165,7 @@ function handleAddProductSubmit(e) {
     if (typeof renderAll === 'function') renderAll();
 
     if (document.getElementById('profileModal').classList.contains('open')) {
-        if (typeof renderAdminProducts === 'function') renderAdminProducts();
+        if (typeof updateAdminProducts === 'function') updateAdminProducts();
     }
 
     closeAddProductModal();
