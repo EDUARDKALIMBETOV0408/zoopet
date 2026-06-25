@@ -1,6 +1,5 @@
 /**
  * admin.js – административные функции и синхронизация с GitHub
- * Добавлена отладка для проверки открытия модального окна.
  */
 
 const GITHUB_CONFIG = {
@@ -94,16 +93,13 @@ async function syncProductsToGitHub(products) {
     }
 }
 
-// ===== ОТКРЫТИЕ МОДАЛЬНОГО ОКНА (С ОТЛАДКОЙ) =====
 function openAddProductModal() {
-    console.log('openAddProductModal вызвана'); // отладка
     const modal = document.getElementById('addProductModal');
-    console.log('Модальное окно:', modal); // отладка
     if (modal) {
         modal.classList.add('open');
-        console.log('Класс open добавлен'); // отладка
     } else {
-        console.error('Модальное окно #addProductModal не найдено!');
+        console.error('Модальное окно #addProductModal не найдено');
+        showToast('❌ Ошибка: модальное окно не найдено');
     }
 }
 
@@ -177,7 +173,6 @@ function handleAddProductSubmit(e) {
     }
 }
 
-// ===== ИНИЦИАЛИЗАЦИЯ =====
 function initAdmin() {
     const inputEl = document.getElementById('githubTokenInput');
     const saveBtn = document.getElementById('saveGitHubTokenBtn');
@@ -206,18 +201,17 @@ function initAdmin() {
         });
     }
 
-    // === ОСНОВНОЕ ИСПРАВЛЕНИЕ: делегирование клика + дополнительная проверка ===
+    // Открытие модального окна по клику на кнопку "Открыть форму добавления"
     document.addEventListener('click', function(e) {
         const target = e.target.closest('#openAddProductBtn');
         if (target) {
-            e.preventDefault(); // предотвращает любые действия по умолчанию
-            e.stopPropagation(); // предотвращает всплытие
-            console.log('Клик по кнопке добавления товара'); // отладка
+            e.preventDefault();
+            e.stopPropagation();
             openAddProductModal();
         }
     });
 
-    // Также можно навесить обработчик напрямую, если кнопка уже существует (на случай, если делегирование не сработает)
+    // Дополнительный прямой обработчик на случай, если кнопка уже существует
     const btn = document.getElementById('openAddProductBtn');
     if (btn) {
         btn.addEventListener('click', function(e) {
@@ -225,7 +219,6 @@ function initAdmin() {
             e.stopPropagation();
             openAddProductModal();
         });
-        console.log('Прямой обработчик навешен на кнопку'); // отладка
     }
 
     const addForm = document.getElementById('addProductForm');
